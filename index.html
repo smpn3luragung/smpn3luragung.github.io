@@ -47,7 +47,6 @@
         nav ul { display: flex; gap: 20px; align-items: center; }
         nav ul li { position: relative; display: inline-block; }
         
-        /* Link Menu Utama */
         nav ul li a { font-weight: 600; font-size: 14px; transition: 0.3s; padding: 8px 12px; border-radius: 4px; color: white; display: flex; align-items: center; gap: 5px; cursor: pointer; }
         nav ul li a:hover { background: rgba(255,255,255,0.2); color: var(--warna-aksen); }
 
@@ -66,11 +65,9 @@
         .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s; }
         .dropdown-content a:hover { background-color: #1565c0; color: #ffeb3b !important; }
 
-        /* Tombol PPDB (Hijau) */
         .btn-ppdb { background: #27ae60; border: 2px solid #27ae60; border-radius: 20px !important; padding: 6px 20px !important; }
         .btn-ppdb:hover { background: transparent !important; color: #27ae60 !important; }
 
-        /* Tombol Hamburger (Mobile) */
         .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: white; }
 
         /* --- 3. RUNNING TEXT --- */
@@ -90,14 +87,8 @@
         @keyframes tickerAnimasi { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
         /* --- 4. LOGIC SPA (TAMPILAN HALAMAN) --- */
-        
-        /* Default: Semua halaman sembunyi */
         .halaman { display: none; padding: 60px 5%; animation: fadeIn 0.5s; flex: 1; }
-        
-        /* Kelas Active: Hanya halaman ini yang muncul */
         .halaman.active { display: block; }
-        
-        /* Khusus Beranda (Hero) paddingnya 0 biar full */
         #beranda.halaman.active { display: flex; padding: 0; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -117,7 +108,6 @@
         .konten-judul { border-left: 5px solid var(--warna-aksen); padding-left: 15px; margin-bottom: 30px; color: var(--warna-utama); font-size: 2rem; }
         .card-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         
-        /* KARTU PROFIL (INFO CARDS) */
         .card {
             background: white; padding: 30px; border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-align: center;
@@ -126,30 +116,26 @@
         }
         .card:hover { transform: translateY(-10px); }
 
-        /* SAMBUTAN */
         .sambutan-box { display: flex; gap: 50px; align-items: flex-start; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .sambutan-img { width: 100%; max-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--warna-aksen); }
         
-        /* --- 5. FOOTER --- */
+        /* FOOTER */
         footer { background: #222; color: white; padding: 40px 5%; text-align: center; margin-top: auto; }
         .footer-content { margin-bottom: 20px; }
         .copyright { border-top: 1px solid #444; padding-top: 20px; font-size: 13px; color: #aaa; }
 
-        /* --- RESPONSIVE (HP) --- */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; } /* Munculkan tombol hamburger */
+            .menu-toggle { display: block; }
             nav ul {
-                display: none; /* Sembunyikan menu desktop */
-                flex-direction: column; width: 100%; position: absolute;
+                display: none; flex-direction: column; width: 100%; position: absolute;
                 top: 70px; left: 0; background: var(--warna-utama);
                 padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             }
-            nav ul.tampil { display: flex; } /* Kelas untuk memunculkan menu */
+            nav ul.tampil { display: flex; }
             nav ul li { width: 100%; }
             .dropdown-content { position: static; width: 100%; box-shadow: none; background: #223040; display: none; }
             .dropdown.active .dropdown-content { display: block; }
-            
-            /* Penyesuaian Konten */
             .hero h2 { font-size: 2rem; }
             .sambutan-box { flex-direction: column; }
             .sambutan-img { margin-bottom: 20px; width: 100%; }
@@ -185,10 +171,12 @@
                 </li>
 
                 <li class="dropdown">
-                    <a href="javascript:void(0)">Program <i class="fas fa-caret-down"></i></a>
+                    <a href="javascript:void(0)">Kegiatan Pembelajaran <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="bukaHalaman('kaih')">Anak Indonesia Hebat</a>
-                        <a href="#" onclick="bukaHalaman('literasi')">Literasi Sekolah</a>
+                        <a href="#" onclick="bukaHalaman('intra')">Intrakurikuler</a>
+                        <a href="#" onclick="bukaHalaman('kokuri')">Kokurikuler</a>
+                        <a href="#" onclick="bukaHalaman('ekstra')">Ekstrakurikuler</a>
+                        <a href="#" onclick="bukaHalaman('pembiasaan')">Pembiasaan Sekolah</a>
                     </div>
                 </li>
 
@@ -233,15 +221,18 @@
         <div class="card-container">
             <div class="card">
                 <h3>🏫 Sejarah Singkat</h3>
-                <p>SMPN 3 Luragung berdiri sejak tahun 1999, berkomitmen mencetak generasi unggul.</p>
+                <p>SMPN 3 Luragung berdiri sejak tahun 1999, berkomitmen mencetak generasi unggul. SMP Negeri 3 Luragung adalah salah satu sekolah menengah pertama yang berada di wilayah utara Kabupaten Kuningan. Sekolah ini terletak di lingkungan kaki gunung yang masih asri, dengan masyarakat yang memegang kuat nilai-nilai sosial dan budaya lokal. Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan, sekaligus menjadi jawaban atas pentingnya menghadirkan pendidikan bermutu di kawasan dengan kondisi ekonomi masyarakat yang sebagian besar berada pada tingkat menengah ke bawah.
+Mayoritas peserta didik di sekolah ini berasal dari keluarga petani, pedagang tradisional, dan sebagian dari keluarga aparatur sipil negara (ASN) yang bekerja di berbagai instansi pemerintahan lokal. Keterbatasan ekonomi memang menjadi tantangan nyata, namun semangat belajar para peserta didik dan dukungan masyarakat tetap menjadi modal utama. Hal inilah yang membuat sekolah tumbuh dengan suasana pendidikan yang inklusif, partisipatif, dan berkarakter.
+SMP  Negeri 3 Luragung berkomitmen untuk mengimplementasikan Pembelajaran Mendalam dalam setiap proses belajar mengajar. Pendekatan ini bukan sekadar metode, melainkan perubahan paradigma yang menempatkan peserta didik sebagai subjek aktif: berpikir kritis, kreatif, reflektif, serta memiliki daya cipta. Proses belajar diarahkan agar berjalan dengan penuh kesadaran (mindful), bermakna (meaningful), dan menyenangkan (joyful), sehingga setiap pengalaman belajar benar-benar membekas dalam diri peserta didik.
+</p>
             </div>
             <div class="card">
                 <h3>📚 Visi & Misi</h3>
-                <p>Mewujudkan pendidikan berkarakter sesuai dengan 8 profil Lulusan.</p>
+                <p>Mewujudkan Pendidikan Berkarakter dan Bermakna Berlandaskan 8 Dimensi Profil Lulusan.</p>
             </div>
             <div class="card">
                 <h3>🏆 Fasilitas</h3>
-                <p>Ruang Pjok Baca, Lab Komputer, Perpustakaan, Lapangan Olahraga, Musholla.</p>
+                <p>Mushola, Ruang Pojok Baca, Ruang Multimedia, Lab Komputer, Perpustakaan, Lapangan Olahraga.</p>
             </div>
         </div>
     </section>
@@ -263,14 +254,52 @@
         </div>
     </section>
 
-    <section id="kaih" class="halaman">
-        <h2 class="konten-judul">Program Anak Indonesia Hebat</h2>
-        <p>Halaman ini berisi dokumentasi program pembentukan karakter siswa...</p>
+    <section id="intra" class="halaman">
+        <h2 class="konten-judul">Intrakurikuler</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>📚 Kegiatan Belajar Mengajar</h3>
+                <p>Informasi mengenai jadwal pelajaran, kurikulum Merdeka, dan aktivitas kelas sehari-hari.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="literasi" class="halaman">
-        <h2 class="konten-judul">Program Literasi Sekolah</h2>
-        <p>Gerakan literasi sekolah dilaksanakan setiap pagi sebelum KBM...</p>
+    <section id="kokuri" class="halaman">
+        <h2 class="konten-judul">Kokurikuler</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>🌱 Delapan Dimensi Profil Lulusan</h3>
+                <p>Dokumentasi kegiatan tercapainya delapan dimensi profil lulusan secara nyata dan kontekstual melalui pengalaman belajar yang bermakna.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ekstra" class="halaman">
+        <h2 class="konten-judul">Ekstrakurikuler</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>⚽ Olahraga</h3>
+                <p>Futsal.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Seni & Keterampilan</h3>
+                <p>Tari, Musik, PMR, Pramuka, Paskibra.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pembiasaan" class="halaman">
+        <h2 class="konten-judul">Pembiasaan Sekolah</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>🤲 7KAIH dan Keagamaan</h3>
+                <p>Program Sapa Pagi, Program Literasi setiap hari Selas, Senam Sehat setiap hari Rabu, Sholat Dhuha berjamaah, Yasinan setiap Jumat pagi, dan Tadarus Al-Quran.</p>
+            </div>
+            <div class="card">
+                <h3>🧹 Kebersihan & Kedisiplinan</h3>
+                <p>Operasi Semut, Piket Kelas, dan Upacara Bendera Senin pagi.</p>
+            </div>
+        </div>
     </section>
 
     <section id="akademik" class="halaman">
@@ -281,7 +310,7 @@
                 <h3>Penilaian Tengah Semester</h3>
                 <p>Dilaksanakan mulai tanggal 10 - 15 Maret.</p>
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="non-akademik" class="halaman">
@@ -292,18 +321,13 @@
                 <h3>Juara 1 Futsal</h3>
                 <p>Tim Futsal Sekolah berhasil meraih juara tingkat Kabupaten.</p>
             </div>
-            <div class="card">
-                <div style="background: #3498db; color: white; padding: 5px; border-radius: 5px; margin-bottom: 10px;">EKSKUL</div>
-                <h3>Latihan Pramuka</h3>
-                <p>Jadwal rutin setiap hari Jumat sore.</p>
-            </div>
         </div>
     </section>
 
     <section id="ppdb" class="halaman">
         <div style="text-align: center; background: white; padding: 40px; border-radius: 10px;">
             <h2 class="konten-judul" style="border: none;">Penerimaan Peserta Didik Baru (PPDB)</h2>
-            <p>Informasi pendaftaran Murid baru Tahun Pelajaran 2026/2027.</p>
+            <p>Informasi pendaftaran Murid baru tahun Pelajaran 2026/2027.</p>
             <br>
             <div style="background: #e8f6f3; padding: 20px; display: inline-block; border-radius: 10px; border: 1px solid #27ae60;">
                 <h3>📅 Gelombang 1</h3>
@@ -326,28 +350,22 @@
     </footer>
 
     <script>
-        // Fungsi ganti halaman (Tab)
         function bukaHalaman(id) {
-            // 1. Sembunyikan semua halaman
             const semuaHalaman = document.querySelectorAll('.halaman');
             semuaHalaman.forEach(hal => hal.classList.remove('active'));
 
-            // 2. Munculkan halaman yang dipilih
             const tujuan = document.getElementById(id);
             if(tujuan) tujuan.classList.add('active');
 
-            // 3. Tutup menu di HP setelah klik
             if(window.innerWidth < 768) {
                 document.getElementById('menu-list').classList.remove('tampil');
             }
         }
 
-        // Fungsi Buka/Tutup Menu di HP
         function toggleMenu() {
             document.getElementById('menu-list').classList.toggle('tampil');
         }
 
-        // Fungsi Dropdown di HP (Supaya bisa diklik)
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dd => {
             dd.addEventListener('click', function() {
