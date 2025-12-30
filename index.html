@@ -56,7 +56,8 @@
 
         /* --- 3. RUNNING TEXT (TEKS BERJALAN) --- */
         .ticker-container {
-            background: #0d47a1; /* Biru Tua Biar Kontras sama Header Biru Langit */
+            /* KITA UBAH INI: Pakai variabel tema biar serasi (Gelap Elegan) */
+            background: var(--warna-ticker-bg); 
             color: white;
             overflow: hidden;
             white-space: nowrap;
@@ -65,9 +66,11 @@
             align-items: center;
             position: relative;
             z-index: 900;
+            border-bottom: 1px solid rgba(255,255,255,0.1); /* Pemanis dikit */
         }
         .ticker-label {
-            background: #c0392b;
+            /* KITA UBAH INI: Pakai variabel merah kalem (Alizarin) */
+            background: var(--warna-ticker-label);
             padding: 0 20px;
             height: 100%;
             display: flex;
