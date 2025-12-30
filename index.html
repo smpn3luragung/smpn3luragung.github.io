@@ -131,6 +131,47 @@
             border-left: 5px solid #27ae60;
         }
         
+        /* --- FITUR READ MORE (KUNCI YANG BARU) --- */
+        .baca-container {
+            position: relative;
+            max-height: 200px; /* Tinggi awal teks yang terlihat */
+            overflow: hidden;
+            transition: max-height 0.8s ease-in-out; /* Animasi halus */
+        }
+        
+        /* Efek bayangan putih pudar di bawah */
+        .baca-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 80px;
+            background: linear-gradient(to bottom, transparent 0%, white 90%);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        /* Kelas saat tombol diklik (Terbuka Penuh) */
+        .baca-container.terbuka {
+            max-height: 2000px; /* Nilai besar agar semua teks muat */
+        }
+        .baca-container.terbuka::after {
+            opacity: 0; /* Hilangkan bayangan pudar */
+        }
+
+        /* Tombol Baca Selengkapnya */
+        .btn-toggle-baca {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--warna-aksen);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+        .btn-toggle-baca:hover { color: #1565c0; }
+
+        /* ----------------------------------------- */
+
         .visi-misi-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
         .box-visi, .box-misi { flex: 1; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-width: 300px; }
         .list-misi { text-align: left; padding-left: 20px; }
@@ -188,7 +229,6 @@
                 box-shadow: 3px 3px 0 var(--warna-aksen);
             }
             
-            /* Kontak Responsive */
             .kontak-container { flex-direction: column; }
         }
     </style>
@@ -273,8 +313,15 @@
 
         <div class="box-sejarah">
             <h3 style="margin-bottom: 20px; color: #2c3e50;"><i class="fas fa-landmark"></i> Sejarah Singkat</h3>
-            <p>SMPN 3 Luragung berdiri sejak tahun 1999, salah satu sekolah menengah pertama yang berada di wilayah timur Kabupaten Kuningan...</p>
-            <p>Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan...</p>
+            
+            <div id="text-sejarah" class="baca-container">
+                <p>SMPN 3 Luragung berdiri sejak tahun 1999, salah satu sekolah menengah pertama yang berada di wilayah timur Kabupaten Kuningan. Sekolah ini terletak di lingkungan yang masih asri, dengan masyarakat yang memegang kuat nilai-nilai sosial dan budaya lokal.</p>
+                <p>Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan, sekaligus menjadi jawaban atas pentingnya menghadirkan pendidikan bermutu di kawasan dengan kondisi ekonomi masyarakat yang sebagian besar berada pada tingkat menengah ke bawah.</p>
+                <p>Mayoritas peserta didik di sekolah ini berasal dari keluarga petani, pedagang, dan sebagian dari keluarga aparatur sipil negara (ASN). Keterbatasan ekonomi memang menjadi tantangan nyata, namun semangat belajar para murid dan dukungan masyarakat tetap menjadi modal utama. Hal inilah yang membuat sekolah tumbuh dengan suasana pendidikan yang inklusif, partisipatif, dan berkarakter.</p>
+                <p>SMP Negeri 3 Luragung berkomitmen mencetak generasi unggul untuk mengimplementasikan Pembelajaran Mendalam dalam setiap proses belajar mengajar. Pendekatan ini bukan sekadar metode, melainkan perubahan paradigma yang menempatkan peserta didik sebagai subjek aktif: berpikir kritis, kreatif, reflektif, serta memiliki daya cipta. Proses belajar diarahkan agar berjalan dengan penuh kesadaran (mindful), bermakna (meaningful), dan menyenangkan (joyful).</p>
+            </div>
+            <span class="btn-toggle-baca" onclick="toggleBaca('text-sejarah', this)">Baca Selengkapnya ⇩</span>
+        
         </div>
 
         <div class="visi-misi-container">
@@ -291,6 +338,11 @@
                     <li>Membiasakan ibadah serta menanamkan sikap jujur, disiplin, dan tanggung jawab.</li>
                     <li>Membentuk karakter siswa yang percaya diri, tangguh, dan berdaya juang tinggi.</li>
                     <li>Mendorong pembelajaran berbasis literasi, numerasi, dan berpikir logis.</li>
+                    <li>Mengembangkan keterampilan seni, budaya, dan teknologi informasi.</li>
+                    <li>Menumbuhkan semangat kerja sama dan kepedulian sosial.</li>
+                    <li>Menanamkan sikap menghargai perbedaan suku, agama, dan budaya.</li>
+                    <li>Membiasakan hidup bersih, sehat, dan peduli lingkungan.</li>
+                    <li>Mengintegrasikan dimensi Profil Pelajar Pancasila dalam budaya sekolah.</li>
                 </ul>
             </div>
         </div>
@@ -300,18 +352,26 @@
         <div class="sambutan-box-flow">
             <h2 style="color: var(--warna-utama); margin-bottom: 25px; font-size: 1.8rem;">Sambutan Kepala Sekolah</h2>
             
-            <img src="https://dummyimage.com/600x800/ccc/000&text=Foto+Kepsek" class="sambutan-img-flow" alt="Kepala Sekolah">
+            <img src="https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg" class="sambutan-img-flow" alt="Kepala Sekolah">
             
-            <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-            <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital...</p>
-            <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks...</p>
-            <br>
-            <div style="clear: both;">
-                <p>Hormat kami,</p>
-                <p style="font-weight: bold;">Kepala SMP Negeri 3 Luragung</p> 
+            <div id="text-sambutan" class="baca-container" style="max-height: 250px;">
+                <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+                <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital, sekaligus menjadi jembatan informasi dan komunikasi yang efektif antara sekolah, orang tua, dan masyarakat luas.</p>
+                <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks. Oleh karena itu, SMP Negeri 3 Luragung terus berbenah diri, baik dari segi fasilitas, kualitas pembelajaran, maupun pengembangan karakter peserta didik. Kami bertekad mencetak generasi yang tidak hanya cerdas secara akademis, tetapi juga berakhlak mulia, kreatif, dan peduli terhadap lingkungan.</p>
+                <p>Melalui website ini, kami berharap dapat memberikan layanan informasi yang transparan dan akuntabel. Mari kita bersinergi dan berkolaborasi untuk menghadirkan pendidikan terbaik bagi putra-putri kita tercinta.</p>
+                <p>Terima kasih atas dukungan dan kepercayaan yang telah diberikan kepada kami. Maju terus pendidikan Indonesia!</p>
+                <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
                 <br>
-                <p style="font-weight: bold; font-size: 1.1rem; text-decoration: underline;">H. SAHDIANI, S.Pd., M.Pd.</p>
+                <div style="clear: both;">
+                    <p>Hormat kami,</p>
+                    <p style="font-weight: bold;">Kepala SMP Negeri 3 Luragung</p> 
+                    <br>
+                    <p style="font-weight: bold; font-size: 1.1rem; text-decoration: underline;">H. SAHDIANI, S.Pd., M.Pd.</p>
+                    <p style="font-size: 0.9rem;">NIP. 19780130 202121 1 001</p>
+                </div>
             </div>
+            <span class="btn-toggle-baca" onclick="toggleBaca('text-sambutan', this)">Baca Selengkapnya ⇩</span>
+
         </div>
     </section>
 
@@ -354,7 +414,11 @@
         <div class="card-container">
             <div class="card">
                 <h3>🤲 7KAIH dan Keagamaan</h3>
-                <p>Program Sapa Pagi, Literasi, Senam Sehat, Sholat Dhuha, dan Tadarus.</p>
+                <p>Program Sapa Pagi, Program Literasi setiap hari Selasa, Senam Sehat setiap hari Rabu, Sholat Dhuha berjamaah, Yasinan setiap Jumat pagi, dan Tadarus Al-Quran.</p>
+            </div>
+            <div class="card">
+                <h3>🧹 Kebersihan & Kedisiplinan</h3>
+                <p>Operasi Semut, Piket Kelas, dan Upacara Bendera Senin pagi.</p>
             </div>
         </div>
     </section>
@@ -482,7 +546,21 @@
             });
         });
 
-        // SCRIPT PENGIRIM PESAN KE GOOGLE SHEET
+        // --- FUNGSI BACA SELENGKAPNYA (BARU) ---
+        function toggleBaca(idElement, btn) {
+            const container = document.getElementById(idElement);
+            container.classList.toggle('terbuka');
+            
+            if (container.classList.contains('terbuka')) {
+                btn.innerHTML = "Sembunyikan ⇧";
+            } else {
+                btn.innerHTML = "Baca Selengkapnya ⇩";
+                // Scroll sedikit ke atas agar user tidak bingung saat menutup
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // SCRIPT PENGIRIM PESAN
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyGCcXoJ9CySCs_LPGn3thXtvvBnigpKQRZe4_iAgw3MAoCX9pqyhxAZC1NeIm5qpC2MQ/exec';
         const form = document.forms['submit-to-google-sheet'];
         const btnKirim = document.querySelector('.btn-kirim');
