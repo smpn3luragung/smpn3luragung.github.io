@@ -8,6 +8,7 @@
         /* --- 1. PENGATURAN DASAR (RESET) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.6; }
+        html { scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
@@ -185,8 +186,8 @@
         <nav>
             <ul>
                 <li><a href="#">Beranda</a></li>
-                <li><a href="#">Profil</a></li>
-                <li><a href="#">Berita</a></li>
+                <li><a href="#profil">Profil</a></li> 
+                <li><a href="#berita">Berita</a></li>
                 <li><a href="#" class="btn-cbt">🔐 APLIKASI UJIAN</a></li>
             </ul>
         </nav>
@@ -208,7 +209,7 @@
         <a href="#" class="btn-hero">Jelajahi Profil Sekolah</a>
     </section>
 
-    <section class="info-cards">
+    <section class="info-cards" id="profil">
         <div class="card">
             <h3>🏫 Profil Sekolah</h3>
             <p>Mengenal lebih dekat visi, misi, dan sejarah SMPN 3 Luragung.</p>
@@ -236,6 +237,34 @@
             <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
             <br>
             <p style="font-style: italic;">Kepala SMP Negeri 3 Luragung</p>
+        </div>
+    </section>
+    <section id="berita" style="padding: 60px 5%; background: #f1f2f6;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #2c3e50; font-size: 2rem;">Berita & Kegiatan Sekolah</h2>
+            <p>Update terbaru seputar kegiatan siswa dan prestasi sekolah.</p>
+        </div>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            
+            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: #3498db; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">PRESTASI</div>
+                <h3 style="margin-bottom: 10px; color: #333;">Juara 1 Lomba Futsal</h3>
+                <p style="font-size: 14px; color: #666;">Tim Futsal SMPN 3 Luragung kembali mengharumkan nama sekolah di tingkat kabupaten.</p>
+            </div>
+
+            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: #e67e22; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">KEGIATAN</div>
+                <h3 style="margin-bottom: 10px; color: #333;">Peringatan Hari Guru</h3>
+                <p style="font-size: 14px; color: #666;">Upacara bendera dan pentas seni siswa dalam rangka memeriahkan Hari Guru Nasional.</p>
+            </div>
+
+            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="background: #2ecc71; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">AKADEMIK</div>
+                <h3 style="margin-bottom: 10px; color: #333;">Persiapan PAS Ganjil</h3>
+                <p style="font-size: 14px; color: #666;">Siswa kelas VII, VIII, dan IX diharapkan mempersiapkan diri menghadapi ujian pekan depan.</p>
+            </div>
+
         </div>
     </section>
 
