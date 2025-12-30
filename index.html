@@ -1,231 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base target="_top">
-  <title>Website SMPN 3 Luragung</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* --- RESET & GLOBAL --- */
-    :root {
-      --warna-utama: #1e3a8a; /* Biru Sekolah */
-      --warna-kedua: #f59e0b; /* Kuning Emas */
-      --bg-body: #f3f4f6;
-      --text-dark: #1f2937;
-    }
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-dark); }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; padding: 0; margin: 0; }
+<style>
+  body { font-family: sans-serif; margin: 0; padding: 0; }
 
-    /* --- NAVBAR (MENU ATAS) --- */
-    nav {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky; top: 0; z-index: 1000;
-      padding: 0 20px;
-    }
-    .nav-container {
-      display: flex; justify-content: space-between; align-items: center;
-      height: 70px; max-width: 1000px; margin: 0 auto;
-    }
-    
-    /* LOGO DI NAVIGASI */
-    .brand {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 18px; color: var(--warna-utama);
-    }
-    .brand img { height: 40px; } /* Ukuran Logo */
+  /* GAYA NAVIGASI (Hanya Contoh) */
+  .navbar { background: #006400; color: white; padding: 15px; text-align: center; font-weight: bold; }
 
-    /* HAMBURGER MENU (GARIS 3) */
-    .hamburger { display: none; font-size: 24px; cursor: pointer; color: var(--warna-utama); }
+  /* --- INI RACIKAN RUNNING TEXT NYA --- */
+  .news-ticker {
+    width: 100%;
+    background: #333; /* Warna Background Gelap biar Teks Menonjol */
+    color: #fff;
+    overflow: hidden; /* Sembunyikan teks yang lewat batas */
+    white-space: nowrap; /* Teks dipaksa satu baris */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+  }
 
-    /* LINK MENU */
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links li a { font-weight: 600; color: #4b5563; transition: 0.3s; }
-    .nav-links li a:hover { color: var(--warna-utama); }
+  .ticker-wrap {
+    display: inline-block;
+    padding-left: 100%; /* Mulai dari luar layar kanan */
+    animation: jalanTerus 20s linear infinite; /* Kecepatan animasi */
+  }
 
-    /* --- HERO SECTION (JUDUL BESAR) --- */
-    .hero {
-      background: linear-gradient(135deg, var(--warna-utama) 0%, #3b82f6 100%);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-    }
-    .hero h1 {
-      margin: 0;
-      font-size: 24px; /* Ukuran Baris 1 */
-      font-weight: 400; /* Agak tipis */
-      letter-spacing: 1px;
-      opacity: 0.9;
-    }
-    .hero h2 {
-      margin: 5px 0 0 0;
-      font-size: 32px; /* Ukuran Baris 2 (Lebih Besar) */
-      font-weight: 800;
-      color: var(--warna-kedua); /* Warna Kuning Emas */
-    }
+  .ticker-item {
+    display: inline-block;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
 
-    /* --- CONTAINER BERITA --- */
-    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-    .section-title { font-size: 20px; font-weight: 700; color: var(--warna-utama); margin-bottom: 20px; border-left: 5px solid var(--warna-kedua); padding-left: 10px; }
+  /* Animasi Gerak dari Kanan ke Kiri */
+  @keyframes jalanTerus {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+  }
 
-    /* LAYOUT BERITA (LIST KOMPAK) */
-    .berita-list { display: flex; flex-direction: column; gap: 15px; }
-
-    .berita-item {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      display: flex; /* Kunci biar gambar di kiri, teks di kanan */
-      align-items: center;
-      transition: transform 0.2s;
-      padding: 10px;
-    }
-    .berita-item:active { transform: scale(0.98); }
-
-    /* GAMBAR BERITA (KECIL) */
-    .berita-thumb {
-      width: 80px; 
-      height: 80px; 
-      flex-shrink: 0; /* Biar gak gepeng */
-      border-radius: 8px;
-      object-fit: cover;
-      margin-right: 15px;
-      background-color: #ddd;
-    }
-
-    .berita-info { flex: 1; }
-    .berita-judul { font-weight: 700; font-size: 15px; line-height: 1.3; color: #333; margin-bottom: 5px; }
-    .berita-tanggal { font-size: 11px; color: #888; display: flex; align-items: center; gap: 5px; }
-    
-    /* Icon Kalender Kecil */
-    .icon-cal { width: 12px; height: 12px; opacity: 0.6; }
-
-    /* --- RESPONSIVE (TAMPILAN HP) --- */
-    @media (max-width: 768px) {
-      .hamburger { display: block; } /* Munculkan Garis 3 */
-      
-      .nav-links {
-        display: none; /* Sembunyikan menu desktop */
-        position: absolute;
-        top: 70px; left: 0; right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        gap: 15px;
-        text-align: center;
-      }
-      
-      /* Class ini ditambahkan lewat JS saat diklik */
-      .nav-links.active { display: flex; }
-
-      .hero h1 { font-size: 18px; }
-      .hero h2 { font-size: 26px; }
-    }
-  </style>
+  /* Biar berhenti pas kursor diarahkan (Opsional) */
+  .news-ticker:hover .ticker-wrap {
+    animation-play-state: paused;
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-container">
-      <a href="#" class="brand">
-  <img src=" https://i.postimg.cc/pLqPv2T6/logo.png" alt="Logo">
-  <div>
-    <div style="font-size:14px; line-height:1;">Pusat Informasi</div>
-    <div style="font-size:16px; line-height:1;">SMPN 3 Luragung</div>
-  </div>
-</a>
+  <div class="navbar">SMP NEGERI 3 LURAGUNG</div>
 
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-      <ul class="nav-links" id="menuList">
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Profil</a></li>
-        <li><a href="#">Guru</a></li>
-        <li><a href="#">Berita</a></li>
-        <li><a href="#">Kontak</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <h1>Pusat Informasi Digital</h1>
-    <h2>SMPN 3 Luragung</h2>
-  </header>
-
-  <div class="container">
-    <div class="section-title">Berita Terbaru</div>
-    
-    <div class="berita-list" id="wadah-berita">
-      <div class="berita-item">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=200" class="berita-thumb">
-        <div class="berita-info">
-          <div class="berita-judul">Kegiatan Upacara Bendera Senin Pagi Berjalan Khidmat</div>
-          <div class="berita-tanggal" data-tgl="2025-12-29T17:00:00.000Z">
-            📅 <span class="tgl-text">Loading...</span>
-          </div>
-        </div>
+  <div class="news-ticker">
+    <div class="ticker-wrap">
+      <div class="ticker-item">
+        📢 <strong>PENGUMUMAN PENTING:</strong> Penilaian Akhir Semester (PAS) dimulai tanggal 20 Mei 2025. Persiapkan diri kalian!  &nbsp;&nbsp; | &nbsp;&nbsp;  
+        🏆 <strong>PRESTASI:</strong> Selamat kepada Tim Pramuka SMPN 3 Luragung atas Juara Umum Tingkat Kabupaten! &nbsp;&nbsp; | &nbsp;&nbsp; 
+        ✅ <strong>PPDB:</strong> Pendaftaran Peserta Didik Baru Tahun Ajaran 2025/2026 Segera Dibuka.
       </div>
-
-      <div class="berita-item">
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=200" class="berita-thumb">
-        <div class="berita-info">
-          <div class="berita-judul">Rapat Persiapan Ujian Sekolah Semester Genap</div>
-          <div class="berita-tanggal" data-tgl="2025-01-15T08:30:00.000Z">
-            📅 <span class="tgl-text">Loading...</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="berita-item">
-        <img src="https://images.unsplash.com/photo-1577896335477-2858506f48db?w=200" class="berita-thumb">
-        <div class="berita-info">
-          <div class="berita-judul">Juara 1 Lomba Futsal Tingkat Kabupaten Kuningan</div>
-          <div class="berita-tanggal" data-tgl="2024-11-20T14:00:00.000Z">
-            📅 <span class="tgl-text">Loading...</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <script>
-    // --- 1. FUNGSI TOGGLE MENU (Garis 3) ---
-    function toggleMenu() {
-      var menu = document.getElementById("menuList");
-      // Menambah/Menghapus class 'active' biar menu muncul
-      menu.classList.toggle("active");
-    }
-
-    // --- 2. FUNGSI FORMAT TANGGAL INDONESIA ---
-    function rapikanTanggal() {
-      // Cari semua elemen yang punya class 'berita-tanggal'
-      var elemenTanggal = document.querySelectorAll('.berita-tanggal');
-      
-      elemenTanggal.forEach(function(el) {
-        var rawData = el.getAttribute('data-tgl'); // Ambil data 2025-12-29T...
-        if(rawData) {
-          var dateObj = new Date(rawData);
-          // Format ke Indonesia: 29 Desember 2025
-          var options = { year: 'numeric', month: 'long', day: 'numeric' };
-          var hasil = dateObj.toLocaleDateString('id-ID', options);
-          
-          // Masukkan ke dalam span
-          el.querySelector('.tgl-text').innerText = hasil;
-        }
-      });
-    }
-
-    // Jalankan fungsi tanggal saat halaman selesai dimuat
-    window.onload = function() {
-      rapikanTanggal();
-    };
-  </script>
+  <div style="padding: 50px; text-align: center; background: #f4f4f4; height: 300px;">
+    <h2>Selamat Datang di Website Sekolah</h2>
+    <p>Ini adalah area Hero Image (Gambar Besar) nanti.</p>
+  </div>
 
 </body>
 </html>
