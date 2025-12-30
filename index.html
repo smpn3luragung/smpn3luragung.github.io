@@ -15,7 +15,7 @@
             color: #333; 
             line-height: 1.6; 
             display: flex; flex-direction: column; min-height: 100vh; 
-            font-size: 15px; /* Ukuran font standar diperkecil sedikit biar pas */
+            font-size: 15px;
         }
         html { scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
@@ -44,7 +44,7 @@
         }
 
         .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 45px; height: auto; transition: transform 0.3s; } /* Logo diperkecil sedikit */
+        .logo-img { width: 45px; height: auto; transition: transform 0.3s; }
         .logo-img:hover { transform: rotate(-10deg) scale(1.1); } 
 
         .nama-sekolah h1 { font-size: 1.1rem; font-weight: 800; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
@@ -79,7 +79,7 @@
         /* --- 3. RUNNING TEXT --- */
         .ticker-container {
             background: var(--warna-ticker-bg); color: white;
-            overflow: hidden; white-space: nowrap; height: 35px; /* Tinggi diperkecil */
+            overflow: hidden; white-space: nowrap; height: 35px;
             display: flex; align-items: center; position: relative; z-index: 900;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
@@ -103,7 +103,7 @@
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg');
             background-size: cover; background-position: center top;
-            height: 70vh; /* Tinggi dikurangi sedikit biar pas di laptop */
+            height: 70vh; 
             width: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 20px;
@@ -124,43 +124,43 @@
         .card h3 { font-size: 1.1rem; margin-bottom: 10px; }
         .card:hover { transform: translateY(-5px); }
 
-        /* KHUSUS PROFIL & SAMBUTAN (REVISI) */
+        /* KHUSUS PROFIL & SAMBUTAN */
         .box-sejarah {
             background: white; padding: 30px; border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px;
             border-left: 5px solid #27ae60;
         }
         
-        /* --- SAMBUTAN KEPALA SEKOLAH --- */
-        .sambutan-box { 
-            display: flex; 
-            gap: 30px; 
-            align-items: flex-start; /* Gambar & teks rata atas */
-            background: white; 
-            padding: 30px; 
-            border-radius: 10px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-        }
-        
-        .sambutan-img { 
-            width: 100%; 
-            max-width: 250px; /* BATAS MAKSIMAL LEBAR GAMBAR DI LAPTOP */
-            height: auto;
-            border-radius: 10px; 
-            box-shadow: 5px 5px 0 var(--warna-aksen); 
-        }
-
         .visi-misi-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
         .box-visi, .box-misi { flex: 1; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-width: 300px; }
         .list-misi { text-align: left; padding-left: 20px; }
         .list-misi li { margin-bottom: 8px; list-style-type: decimal; }
 
-        /* FOOTER */
+        /* GAYA SAMBUTAN MENGALIR */
+        .sambutan-box-flow {
+            background: white;
+            padding: 40px; 
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flow-root; 
+        }
+        .sambutan-img-flow {
+            float: left; 
+            width: 220px; 
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0 var(--warna-aksen);
+            margin-right: 30px;  
+            margin-bottom: 15px; 
+        }
+        .sambutan-box-flow p { text-align: justify; margin-bottom: 15px; }
+
+        /* --- FOOTER --- */
         footer { background: #222; color: white; padding: 30px 5%; text-align: center; margin-top: auto; }
         .footer-content h3 { font-size: 1.1rem; margin-bottom: 10px; }
         .copyright { border-top: 1px solid #444; padding-top: 15px; font-size: 12px; color: #aaa; margin-top: 15px; }
 
-        /* --- RESPONSIVE (TAMPILAN HP) --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             nav ul {
@@ -176,65 +176,20 @@
             .hero h2 { font-size: 1.8rem; }
             .hero p { font-size: 0.9rem; }
             
-            /* REVISI SAMBUTAN DI HP: TETAP KE SAMPING */
-            .sambutan-box { 
-                flex-direction: row; /* Paksa tetap baris (kiri-kanan) */
-                padding: 15px; 
-                gap: 15px;
-            }
-            .sambutan-img { 
-                width: 100px; /* Ukuran FIX kecil di HP */
-                max-width: 100px; /* Jangan lebih dari ini */
-                min-width: 80px;
-                box-shadow: 3px 3px 0 var(--warna-aksen);
-                margin-bottom: 0;
-            }
-            .teks-sambutan h2 { font-size: 1.1rem; margin-bottom: 10px; }
-            .teks-sambutan p { font-size: 0.85rem; line-height: 1.4; }
-            
-            /* Ticker & Visi Misi */
             .ticker-label { display: none; }
             .visi-misi-container { flex-direction: column; }
             .box-visi, .box-misi { min-width: 100%; }
-        }
-        /* --- GAYA BARU SAMBUTAN (MODEL MENGALIR/WRAPPING) --- */
-        
-        /* 1. Kotak Pembungkus Utama (Sesuai garis biru di sketsa) */
-        .sambutan-box-flow {
-            background: white;
-            padding: 40px; /* Jarak dalam yang lega */
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            /* INI KUNCINYA: Agar kotak membungkus elemen yang 'mengambang' (float) */
-            display: flow-root; 
-        }
 
-        /* 2. Pengaturan Foto Kepsek */
-        .sambutan-img-flow {
-            float: left; /* MANTRA AJAIB: Foto 'mengambang' ke kiri */
-            width: 220px; /* Ukuran foto di laptop */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 5px 5px 0 var(--warna-aksen);
-            /* Memberi jarak biar teks tidak nempel ke foto */
-            margin-right: 30px;  /* Jarak ke kanan */
-            margin-bottom: 15px; /* Jarak ke bawah */
-        }
-
-        /* 3. Merapikan Teks Sambutan */
-        .sambutan-box-flow p {
-            text-align: justify; /* Teks rata kanan-kiri biar rapi kayak di sketsa */
-            margin-bottom: 15px; /* Jarak antar paragraf */
-        }
-        
-        /* --- RESPONSIVE KHUSUS SAMBUTAN BARU (DI HP) --- */
-        @media (max-width: 768px) {
-            .sambutan-box-flow { padding: 20px; } /* Padding diperkecil */
+            /* Sambutan Responsive */
+            .sambutan-box-flow { padding: 20px; } 
             .sambutan-img-flow {
-                width: 130px; /* Foto diperkecil di HP */
-                margin-right: 15px; /* Jarak diperdekat */
+                width: 130px; 
+                margin-right: 15px; 
                 box-shadow: 3px 3px 0 var(--warna-aksen);
             }
+            
+            /* Kontak Responsive */
+            .kontak-container { flex-direction: column; }
         }
     </style>
 </head>
@@ -289,6 +244,8 @@
                     </div>
                 </li>
 
+                <li><a href="#" onclick="bukaHalaman('kontak')">Hubungi Kami</a></li>
+
                 <li><a href="#" onclick="bukaHalaman('ppdb')" class="btn-ppdb">📢 Info PPDB</a></li>
             </ul>
         </nav>
@@ -316,10 +273,8 @@
 
         <div class="box-sejarah">
             <h3 style="margin-bottom: 20px; color: #2c3e50;"><i class="fas fa-landmark"></i> Sejarah Singkat</h3>
-            <p>SMPN 3 Luragung berdiri sejak tahun 1999, salah satu sekolah menengah pertama yang berada di wilayah timur Kabupaten Kuningan. Sekolah ini terletak di lingkungan yang masih asri, dengan masyarakat yang memegang kuat nilai-nilai sosial dan budaya lokal.</p>
-            <p>Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan, sekaligus menjadi jawaban atas pentingnya menghadirkan pendidikan bermutu di kawasan dengan kondisi ekonomi masyarakat yang sebagian besar berada pada tingkat menengah ke bawah.</p>
-            <p>Mayoritas peserta didik di sekolah ini berasal dari keluarga petani, pedagang, dan sebagian dari keluarga aparatur sipil negara (ASN). Keterbatasan ekonomi memang menjadi tantangan nyata, namun semangat belajar para murid dan dukungan masyarakat tetap menjadi modal utama. Hal inilah yang membuat sekolah tumbuh dengan suasana pendidikan yang inklusif, partisipatif, dan berkarakter.</p>
-            <p>SMP Negeri 3 Luragung berkomitmen mencetak generasi unggul untuk mengimplementasikan Pembelajaran Mendalam dalam setiap proses belajar mengajar. Pendekatan ini bukan sekadar metode, melainkan perubahan paradigma yang menempatkan peserta didik sebagai subjek aktif: berpikir kritis, kreatif, reflektif, serta memiliki daya cipta. Proses belajar diarahkan agar berjalan dengan penuh kesadaran (mindful), bermakna (meaningful), dan menyenangkan (joyful).</p>
+            <p>SMPN 3 Luragung berdiri sejak tahun 1999, salah satu sekolah menengah pertama yang berada di wilayah timur Kabupaten Kuningan...</p>
+            <p>Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan...</p>
         </div>
 
         <div class="visi-misi-container">
@@ -328,15 +283,6 @@
                 <p style="font-weight: bold; font-style: italic; color: #2980b9; margin-bottom: 20px;">
                     “Terwujudnya peserta didik yang beriman, bertakwa, berakhlak mulia, mandiri, bernalar kritis, kreatif, gotong royong, berkebinekaan global, dan cinta lingkungan sebagai dasar karakter lulusan.”
                 </p>
-                <h4>Indikator:</h4>
-                <ul class="list-misi">
-                    <li>Terwujudnya pembangunan kurikulum yang adaptif dan proaktif.</li>
-                    <li>Terwujudnya proses Pembelajaran yang efektif dan efisien.</li>
-                    <li>Terwujudnya lulusan yang cerdas dan kompetitif.</li>
-                    <li>Terwujudnya sarana dan prasarana pendidikan yang relevan.</li>
-                    <li>Terwujudnya manajemen sekolah yang tangguh.</li>
-                    <li>Terwujudnya pengembangan kehidupan beragama yang optimal.</li>
-                </ul>
             </div>
 
             <div class="box-misi">
@@ -345,19 +291,7 @@
                     <li>Membiasakan ibadah serta menanamkan sikap jujur, disiplin, dan tanggung jawab.</li>
                     <li>Membentuk karakter siswa yang percaya diri, tangguh, dan berdaya juang tinggi.</li>
                     <li>Mendorong pembelajaran berbasis literasi, numerasi, dan berpikir logis.</li>
-                    <li>Mengembangkan keterampilan seni, budaya, dan teknologi informasi.</li>
-                    <li>Menumbuhkan semangat kerja sama dan kepedulian sosial.</li>
-                    <li>Menanamkan sikap menghargai perbedaan suku, agama, dan budaya.</li>
-                    <li>Membiasakan hidup bersih, sehat, dan peduli lingkungan.</li>
-                    <li>Mengintegrasikan dimensi Profil Pelajar Pancasila dalam budaya sekolah.</li>
                 </ul>
-            </div>
-        </div>
-
-        <div class="card-container" style="margin-top: 30px;">
-            <div class="card">
-                <h3>🏆 Fasilitas Sekolah</h3>
-                <p>Mushola, Ruang Pojok Baca, Ruang Multimedia, Lab Komputer, Perpustakaan, Lapangan Olahraga.</p>
             </div>
         </div>
     </section>
@@ -369,18 +303,14 @@
             <img src="https://dummyimage.com/600x800/ccc/000&text=Foto+Kepsek" class="sambutan-img-flow" alt="Kepala Sekolah">
             
             <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-            <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital, sekaligus menjadi jembatan informasi dan komunikasi yang efektif antara sekolah, orang tua, dan masyarakat luas.</p>
-            <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks. Oleh karena itu, SMP Negeri 3 Luragung terus berbenah diri, baik dari segi fasilitas, kualitas pembelajaran, maupun pengembangan karakter peserta didik. Kami bertekad mencetak generasi yang tidak hanya cerdas secara akademis, tetapi juga berakhlak mulia, kreatif, dan peduli terhadap lingkungan.</p>
-            <p>Melalui website ini, kami berharap dapat memberikan layanan informasi yang transparan dan akuntabel. Mari kita bersinergi dan berkolaborasi untuk menghadirkan pendidikan terbaik bagi putra-putri kita tercinta.</p>
-            <p>Terima kasih atas dukungan dan kepercayaan yang telah diberikan kepada kami. Maju terus pendidikan Indonesia!</p>
-            <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+            <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital...</p>
+            <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks...</p>
             <br>
             <div style="clear: both;">
                 <p>Hormat kami,</p>
                 <p style="font-weight: bold;">Kepala SMP Negeri 3 Luragung</p> 
                 <br>
                 <p style="font-weight: bold; font-size: 1.1rem; text-decoration: underline;">H. SAHDIANI, S.Pd., M.Pd.</p>
-                <p style="font-size: 0.9rem;">NIP. 198xxxxxxx</p>
             </div>
         </div>
     </section>
@@ -400,7 +330,7 @@
         <div class="card-container">
             <div class="card">
                 <h3>🌱 Delapan Dimensi Profil Lulusan</h3>
-                <p>Kegiatan tercapainya delapan dimensi profil lulusan secara nyata dan kontekstual melalui pengalaman belajar yang bermakna.</p>
+                <p>Kegiatan tercapainya delapan dimensi profil lulusan secara nyata dan kontekstual.</p>
             </div>
         </div>
     </section>
@@ -424,11 +354,7 @@
         <div class="card-container">
             <div class="card">
                 <h3>🤲 7KAIH dan Keagamaan</h3>
-                <p>Program Sapa Pagi, Program Literasi setiap hari Selasa, Senam Sehat setiap hari Rabu, Sholat Dhuha berjamaah, Yasinan setiap Jumat pagi, dan Tadarus Al-Quran.</p>
-            </div>
-            <div class="card">
-                <h3>🧹 Kebersihan & Kedisiplinan</h3>
-                <p>Operasi Semut, Piket Kelas, dan Upacara Bendera Senin pagi.</p>
+                <p>Program Sapa Pagi, Literasi, Senam Sehat, Sholat Dhuha, dan Tadarus.</p>
             </div>
         </div>
     </section>
@@ -469,6 +395,55 @@
         </div>
     </section>
 
+    <section id="kontak" class="halaman">
+        <h2 class="konten-judul">Hubungi Kami</h2>
+        
+        <div class="kontak-container" style="display: flex; flex-wrap: wrap; gap: 30px;">
+            <div class="info-box" style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 20px; color: var(--warna-utama);">Kantor Sekolah</h3>
+                <p style="margin-bottom: 10px;"><strong>📍 Alamat:</strong><br>Jl. Abdi Praja No. 01 Desa Gunungkarung<br>Luragung - Kuningan, Jawa Barat</p>
+                <p style="margin-bottom: 10px;"><strong>📧 Email:</strong><br>it.smpn3luragung@gmail.com</p>
+                <p><strong>🕒 Jam Operasional:</strong><br>Senin - Jumat: 07.00 - 15.00 WIB</p>
+            </div>
+
+            <div class="form-box" style="flex: 1.5; min-width: 300px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--warna-aksen);">
+                <h3 style="margin-bottom: 20px; color: var(--warna-utama);">Kirim Pesan / Pertanyaan</h3>
+                
+                <form name="submit-to-google-sheet">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Nama Lengkap</label>
+                        <input type="text" name="nama" placeholder="Contoh: Budi Santoso" required 
+                               style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Kontak (WA / Email)</label>
+                        <input type="text" name="kontak" placeholder="Contoh: 0812xxxx atau email@gmail.com" required 
+                               style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Isi Pesan</label>
+                        <textarea name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required 
+                                  style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-kirim" 
+                            style="background: var(--warna-utama); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;">
+                        🚀 KIRIM PESAN
+                    </button>
+                    
+                    <p class="my-alert" style="display: none; margin-top: 15px; color: green; font-weight: bold; text-align: center;">
+                        ✅ Pesan berhasil terkirim! Terima kasih.
+                    </p>
+                    <p class="my-loading" style="display: none; margin-top: 15px; color: var(--warna-aksen); font-weight: bold; text-align: center;">
+                        ⏳ Sedang mengirim...
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <h3>SMP NEGERI 3 LURAGUNG</h3>
@@ -481,6 +456,7 @@
     </footer>
 
     <script>
+        // SCRIPT NAVIGASI HALAMAN
         function bukaHalaman(id) {
             const semuaHalaman = document.querySelectorAll('.halaman');
             semuaHalaman.forEach(hal => hal.classList.remove('active'));
@@ -505,6 +481,37 @@
                 }
             });
         });
+
+        // SCRIPT PENGIRIM PESAN KE GOOGLE SHEET
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyGCcXoJ9CySCs_LPGn3thXtvvBnigpKQRZe4_iAgw3MAoCX9pqyhxAZC1NeIm5qpC2MQ/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const btnKirim = document.querySelector('.btn-kirim');
+        const myAlert = document.querySelector('.my-alert');
+        const myLoading = document.querySelector('.my-loading');
+
+        if(form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                myLoading.style.display = 'block';
+                btnKirim.style.display = 'none';
+                
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => {
+                        myLoading.style.display = 'none';
+                        btnKirim.style.display = 'block';
+                        myAlert.style.display = 'block';
+                        form.reset();
+                        setTimeout(() => { myAlert.style.display = 'none'; }, 3000);
+                        console.log('Success!', response);
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        myLoading.style.display = 'none';
+                        btnKirim.style.display = 'block';
+                        alert("Gagal mengirim pesan. Coba periksa koneksi internet.");
+                    });
+            });
+        }
     </script>
 
 </body>
