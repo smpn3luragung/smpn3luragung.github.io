@@ -4,221 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Resmi SMP Negeri 3 Luragung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         /* --- 1. PENGATURAN DASAR (RESET) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         html { scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* WARNA TEMA SEKOLAH (SUDAH JADI BIRU LANGIT) */
+        /* WARNA TEMA SEKOLAH */
         :root {
-            --warna-utama: #2c3e50; /* Midnight Blue - Biru keabu-abuan, sangat elegan */
-            --warna-aksen: #3498db; /* Biru Laut Cerah sebagai pemanis */
+            --warna-utama: #2c3e50; 
+            --warna-aksen: #3498db; 
             --warna-teks-putih: #ffffff;
             --warna-bg-abu: #ecf0f1;
-
-            /* Tambahan untuk Running Text */
-            --warna-ticker-bg: #1a252f; /* Biru Sangat Gelap */
-            --warna-ticker-label: #e74c3c; /* Merah lembut (Alizarin) */
+            --warna-ticker-bg: #1a252f; 
+            --warna-ticker-label: #e74c3c;
         }
 
         /* --- 2. NAVBAR (MENU ATAS) --- */
         header {
             background: var(--warna-utama);
             color: var(--warna-teks-putih);
-            padding: 10px 5%; /* Padding sedikit dirampingkan biar pas */
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky; 
-            top: 0;
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .logo-area { display: flex; align-items: center; gap: 15px; }
-        
-        /* LOGO SUDAH DIPERBAIKI (Transparan & Keren) */
         .logo-img { width: 55px; height: auto; transition: transform 0.3s; }
         .logo-img:hover { transform: rotate(-10deg) scale(1.1); } 
 
         .nama-sekolah h1 { font-size: 1.2rem; font-weight: 800; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
         .nama-sekolah p { font-size: 0.8rem; margin: 0; opacity: 0.9; }
 
+        /* NAVIGASI & DROPDOWN */
         nav ul { display: flex; gap: 20px; align-items: center; }
-        nav ul li a { font-weight: 600; font-size: 15px; transition: 0.3s; padding: 8px 15px; border-radius: 20px; color: white; }
+        nav ul li { position: relative; display: inline-block; }
+        
+        /* Link Menu Utama */
+        nav ul li a { font-weight: 600; font-size: 14px; transition: 0.3s; padding: 8px 12px; border-radius: 4px; color: white; display: flex; align-items: center; gap: 5px; cursor: pointer; }
         nav ul li a:hover { background: rgba(255,255,255,0.2); color: var(--warna-aksen); }
 
-/* --- CSS TAMBAHAN UNTUK DROPDOWN MENU --- */
-        
-        /* Pastikan pembungkus menu posisinya relative */
-        nav ul li {
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Tampilan Kotak Menu Turunan (Awalnya sembunyi) */
+        /* Isi Dropdown */
         .dropdown-content {
-            display: none; /* Sembunyi dulu */
-            position: absolute;
-            background-color: #0d47a1; /* Samakan dengan warna header */
-            min-width: 220px; /* Lebar kotak menu */
+            display: none; position: absolute;
+            background-color: var(--warna-utama); min-width: 220px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1000;
-            top: 100%; /* Muncul tepat di bawah menu induk */
-            left: 0;
-            border-radius: 0 0 8px 8px; /* Sudut bawah melengkung */
-            text-align: left;
+            z-index: 1000; top: 100%; left: 0;
+            border-radius: 0 0 8px 8px; text-align: left;
         }
-
-        /* Gaya Link di dalam Dropdown */
         .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis tipis pemisah */
+            color: white; padding: 12px 16px; display: block;
+            font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s; }
+        .dropdown-content a:hover { background-color: #1565c0; color: #ffeb3b !important; }
 
-        /* Efek saat mouse arahkan ke Menu Induk -> Tampilkan Anaknya */
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s; /* Efek muncul pelan */
-        }
+        /* Tombol PPDB (Hijau) */
+        .btn-ppdb { background: #27ae60; border: 2px solid #27ae60; border-radius: 20px !important; padding: 6px 20px !important; }
+        .btn-ppdb:hover { background: transparent !important; color: #27ae60 !important; }
 
-        /* Efek Hover untuk link dalam dropdown */
-        .dropdown-content a:hover {
-            background-color: #1565c0; /* Warna sedikit lebih terang saat disorot */
-            color: #ffeb3b; /* Teks jadi kuning */
-        }
+        /* Tombol Hamburger (Mobile) */
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: white; }
 
-        /* Animasi Simpel biar halus */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Tombol Login Ujian */
-        .btn-cbt { background: var(--warna-aksen); color: #004ba0 !important; font-weight: bold; border: 2px solid var(--warna-aksen); }
-        .btn-cbt:hover { background: white !important; color: #004ba0 !important; border-color: white; }
-
-        /* --- 3. RUNNING TEXT (TEKS BERJALAN) --- */
+        /* --- 3. RUNNING TEXT --- */
         .ticker-container {
-            /* KITA UBAH INI: Pakai variabel tema biar serasi (Gelap Elegan) */
-            background: var(--warna-ticker-bg); 
-            color: white;
-            overflow: hidden;
-            white-space: nowrap;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 900;
-            border-bottom: 1px solid rgba(255,255,255,0.1); /* Pemanis dikit */
+            background: var(--warna-ticker-bg); color: white;
+            overflow: hidden; white-space: nowrap; height: 40px;
+            display: flex; align-items: center; position: relative; z-index: 900;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .ticker-label {
-            /* KITA UBAH INI: Pakai variabel merah kalem (Alizarin) */
-            background: var(--warna-ticker-label);
-            padding: 0 20px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 13px;
-            z-index: 2;
+            background: var(--warna-ticker-label); padding: 0 20px; height: 100%;
+            display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 2;
             box-shadow: 4px 0 10px rgba(0,0,0,0.3);
         }
-        .ticker-wrap {
-            display: inline-block;
-            padding-left: 100%;
-            animation: tickerAnimasi 25s linear infinite;
-        }
+        .ticker-wrap { display: inline-block; padding-left: 100%; animation: tickerAnimasi 25s linear infinite; }
         .ticker-item { display: inline-block; padding: 0 20px; font-size: 14px; }
-        
-        @keyframes tickerAnimasi {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-        .ticker-container:hover .ticker-wrap { animation-play-state: paused; }
+        @keyframes tickerAnimasi { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-        /* --- 4. HERO SECTION (GAMBAR UTAMA) --- */
+        /* --- 4. LOGIC SPA (TAMPILAN HALAMAN) --- */
+        
+        /* Default: Semua halaman sembunyi */
+        .halaman { display: none; padding: 60px 5%; animation: fadeIn 0.5s; flex: 1; }
+        
+        /* Kelas Active: Hanya halaman ini yang muncul */
+        .halaman.active { display: block; }
+        
+        /* Khusus Beranda (Hero) paddingnya 0 biar full */
+        #beranda.halaman.active { display: flex; padding: 0; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO SECTION */
         .hero {
-            /* GANTI URL DI BAWAH INI DENGAN FOTO SEKOLAH */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg');
-            background-size: cover;
-            background-position: center top;
-            height: 80vh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
+            background-size: cover; background-position: center top;
+            height: 80vh; width: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white; padding: 20px;
         }
         .hero h2 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
-        .btn-hero {
-            padding: 12px 30px;
-            background: var(--warna-utama);
-            color: white;
-            font-size: 1rem;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid var(--warna-utama);
-            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
-        }
-        .btn-hero:hover { background: transparent; border-color: white; }
-
-        /* --- 5. INFO KILAT (KARTU) --- */
-        .info-cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: -50px; 
-            padding: 0 5%;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 10;
-        }
+        
+        /* STYLE UMUM KONTEN */
+        .konten-judul { border-left: 5px solid var(--warna-aksen); padding-left: 15px; margin-bottom: 30px; color: var(--warna-utama); font-size: 2rem; }
+        .card-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        
+        /* KARTU PROFIL (INFO CARDS) */
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            flex: 1;
-            min-width: 250px;
-            transition: 0.3s;
+            background: white; padding: 30px; border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-align: center;
+            flex: 1; min-width: 250px; max-width: 350px; transition: 0.3s;
             border-top: 5px solid var(--warna-utama);
         }
         .card:hover { transform: translateY(-10px); }
-        .card h3 { color: var(--warna-utama); margin-bottom: 10px; }
-        .card p { font-size: 14px; color: #666; }
 
-        /* --- 6. SAMBUTAN KEPSEK --- */
-        .sambutan { padding: 80px 10%; display: flex; align-items: center; gap: 50px; background: white; }
-        .foto-kepsek { flex: 1; text-align: center; }
-        .foto-kepsek img { width: 100%; max-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--warna-aksen); }
-        .teks-sambutan { flex: 2; }
-        .teks-sambutan h2 { color: var(--warna-utama); font-size: 2rem; margin-bottom: 20px; }
-        .teks-sambutan p { margin-bottom: 15px; color: #555; text-align: justify; }
-
-        /* --- 7. FOOTER --- */
-        footer { background: #222; color: white; padding: 40px 5%; text-align: center; }
+        /* SAMBUTAN */
+        .sambutan-box { display: flex; gap: 50px; align-items: flex-start; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .sambutan-img { width: 100%; max-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--warna-aksen); }
+        
+        /* --- 5. FOOTER --- */
+        footer { background: #222; color: white; padding: 40px 5%; text-align: center; margin-top: auto; }
         .footer-content { margin-bottom: 20px; }
         .copyright { border-top: 1px solid #444; padding-top: 20px; font-size: 13px; color: #aaa; }
 
         /* --- RESPONSIVE (HP) --- */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 15px; }
-            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .menu-toggle { display: block; } /* Munculkan tombol hamburger */
+            nav ul {
+                display: none; /* Sembunyikan menu desktop */
+                flex-direction: column; width: 100%; position: absolute;
+                top: 70px; left: 0; background: var(--warna-utama);
+                padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            nav ul.tampil { display: flex; } /* Kelas untuk memunculkan menu */
+            nav ul li { width: 100%; }
+            .dropdown-content { position: static; width: 100%; box-shadow: none; background: #223040; display: none; }
+            .dropdown.active .dropdown-content { display: block; }
+            
+            /* Penyesuaian Konten */
             .hero h2 { font-size: 2rem; }
-            .sambutan { flex-direction: column; padding: 40px 5%; }
+            .sambutan-box { flex-direction: column; }
+            .sambutan-img { margin-bottom: 20px; width: 100%; }
             .ticker-label { display: none; }
         }
     </style>
@@ -233,23 +167,28 @@
                 <p>Unggul dalam Prestasi, Santun dalam Perilaku</p>
             </div>
         </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <nav>
-            <ul>
-                <li><a href="#">Beranda</a></li>
+            <ul id="menu-list">
+                <li><a href="#" onclick="bukaHalaman('beranda')">Beranda</a></li>
 
                 <li class="dropdown">
                     <a href="javascript:void(0)">Tentang Kami <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#sambutan">Sambutan Kepala Sekolah</a>
-                        <a href="#profil">Profil Sekolah</a>
+                        <a href="#" onclick="bukaHalaman('profil')">Profil Sekolah</a>
+                        <a href="#" onclick="bukaHalaman('sambutan')">Sambutan Kepala Sekolah</a>
                     </div>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:void(0)">Program <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#kaih">Anak Indonesia Hebat</a>
-                        <a href="#literasi">Literasi</a>
+                        <a href="#" onclick="bukaHalaman('kaih')">Anak Indonesia Hebat</a>
+                        <a href="#" onclick="bukaHalaman('literasi')">Literasi Sekolah</a>
                     </div>
                 </li>
 
@@ -259,85 +198,119 @@
                     </a>
                 </li>
 
-                <li><a href="#berita">Informasi</a></li>
-                
-                <li><a href="#" class="btn-cbt">🔐 UJIAN</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">Informasi <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="bukaHalaman('akademik')">Kegiatan Akademik</a>
+                        <a href="#" onclick="bukaHalaman('non-akademik')">Kegiatan Non-Akademik</a>
+                    </div>
+                </li>
+
+                <li><a href="#" onclick="bukaHalaman('ppdb')" class="btn-ppdb">📢 Info PPDB</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="ticker-container">
         <div class="ticker-label">VISI MISI</div>
-        
         <div class="ticker-wrap">
             <div class="ticker-item">
-                "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan sebagai dasar Karakter Lulusan"
+                🎯 "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan sebagai dasar Karakter Lulusan"
             </div>
         </div>
     </div>
 
-    <section class="hero">
-        <h2>SELAMAT DATANG</h2>
-        <p>Di Website Resmi SMP Negeri 3 Luragung. Media informasi digital dan sarana belajar masa kini.</p>
-        <a href="#" class="btn-hero">Jelajahi Profil Sekolah</a>
-    </section>
-
-    <section class="info-cards" id="profil">
-        <div class="card">
-            <h3>🏫 Profil Sekolah</h3>
-            <p>Mengenal lebih dekat visi, misi, dan sejarah SMPN 3 Luragung.</p>
-        </div>
-        <div class="card">
-            <h3>📚 E-Learning</h3>
-            <p>Akses materi pembelajaran dan tugas siswa secara daring.</p>
-        </div>
-        <div class="card">
-            <h3>📝 Info PPDB</h3>
-            <p>Syarat dan ketentuan pendaftaran peserta didik baru.</p>
+    <section id="beranda" class="halaman active">
+        <div class="hero">
+            <h2>SELAMAT DATANG</h2>
+            <p>Di Website Resmi SMP Negeri 3 Luragung. Media informasi digital dan sarana belajar masa kini.</p>
+            <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Sekolah</button>
         </div>
     </section>
 
-    <section class="sambutan">
-        <div class="foto-kepsek">
-            <img src="https://dummyimage.com/600x800/ccc/000&text=Foto+Kepsek" alt="Kepala Sekolah">
+    <section id="profil" class="halaman">
+        <h2 class="konten-judul">Profil Sekolah</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>🏫 Sejarah Singkat</h3>
+                <p>SMPN 3 Luragung berdiri sejak tahun [Tahun], berkomitmen mencetak generasi unggul.</p>
+            </div>
+            <div class="card">
+                <h3>📚 Visi & Misi</h3>
+                <p>Mewujudkan pendidikan berkarakter profil pelajar Pancasila.</p>
+            </div>
+            <div class="card">
+                <h3>🏆 Fasilitas</h3>
+                <p>Lab Komputer, Perpustakaan, Lapangan Olahraga, Musholla.</p>
+            </div>
         </div>
-        <div class="teks-sambutan">
-            <h2>Sambutan Kepala Sekolah</h2>
-            <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-            <p>Puji syukur kita panjatkan kehadirat Allah SWT atas segala limpahan rahmat-Nya, sehingga kita dapat meluncurkan website resmi SMP Negeri 3 Luragung ini.</p>
-            <p>Di era digital saat ini, website sekolah bukan hanya sebagai media informasi, tetapi juga sebagai sarana interaksi antara sekolah, siswa, dan orang tua. Kami berkomitmen untuk terus berinovasi demi kemajuan pendidikan.</p>
-            <p>Semoga website ini bermanfaat bagi kita semua. Maju terus SMP Negeri 3 Luragung!</p>
-            <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+    </section>
+
+    <section id="sambutan" class="halaman">
+        <div class="sambutan-box">
+            <img src="https://dummyimage.com/600x800/ccc/000&text=Foto+Kepsek" class="sambutan-img" alt="Kepala Sekolah">
+            <div class="teks-sambutan">
+                <h2 style="color: var(--warna-utama); margin-bottom: 20px;">Sambutan Kepala Sekolah</h2>
+                <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+                <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai sarana informasi dan komunikasi sekolah dengan masyarakat.</p>
+                <br>
+                <p>Kami berkomitmen untuk terus berinovasi demi kemajuan pendidikan di SMP Negeri 3 Luragung.</p>
+                <br>
+                <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+                <br>
+                <p style="font-style: italic;">Kepala SMP Negeri 3 Luragung</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kaih" class="halaman">
+        <h2 class="konten-judul">Program Anak Indonesia Hebat</h2>
+        <p>Halaman ini berisi dokumentasi program pembentukan karakter siswa...</p>
+    </section>
+
+    <section id="literasi" class="halaman">
+        <h2 class="konten-judul">Program Literasi Sekolah</h2>
+        <p>Gerakan literasi sekolah dilaksanakan setiap pagi sebelum KBM...</p>
+    </section>
+
+    <section id="akademik" class="halaman">
+        <h2 class="konten-judul">Kegiatan Akademik</h2>
+        <div class="card-container">
+            <div class="card">
+                <div style="background: #2ecc71; color: white; padding: 5px; border-radius: 5px; margin-bottom: 10px;">JADWAL</div>
+                <h3>Penilaian Tengah Semester</h3>
+                <p>Dilaksanakan mulai tanggal 10 - 15 Maret.</p>
+            </div>
+            </div>
+    </section>
+
+    <section id="non-akademik" class="halaman">
+        <h2 class="konten-judul">Kegiatan Non-Akademik</h2>
+        <div class="card-container">
+            <div class="card">
+                <div style="background: #e67e22; color: white; padding: 5px; border-radius: 5px; margin-bottom: 10px;">PRESTASI</div>
+                <h3>Juara 1 Futsal</h3>
+                <p>Tim Futsal Sekolah berhasil meraih juara tingkat Kabupaten.</p>
+            </div>
+            <div class="card">
+                <div style="background: #3498db; color: white; padding: 5px; border-radius: 5px; margin-bottom: 10px;">EKSKUL</div>
+                <h3>Latihan Pramuka</h3>
+                <p>Jadwal rutin setiap hari Jumat sore.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ppdb" class="halaman">
+        <div style="text-align: center; background: white; padding: 40px; border-radius: 10px;">
+            <h2 class="konten-judul" style="border: none;">Penerimaan Peserta Didik Baru (PPDB)</h2>
+            <p>Informasi pendaftaran siswa baru tahun ajaran 2025/2026.</p>
             <br>
-            <p style="font-style: italic;">Kepala SMP Negeri 3 Luragung</p>
-        </div>
-    </section>
-    <section id="berita" style="padding: 60px 5%; background: #f1f2f6;">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <h2 style="color: #2c3e50; font-size: 2rem;">Berita & Kegiatan Sekolah</h2>
-            <p>Update terbaru seputar kegiatan siswa dan prestasi sekolah.</p>
-        </div>
-
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-            
-            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="background: #3498db; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">PRESTASI</div>
-                <h3 style="margin-bottom: 10px; color: #333;">Juara 1 Lomba Futsal</h3>
-                <p style="font-size: 14px; color: #666;">Tim Futsal SMPN 3 Luragung kembali mengharumkan nama sekolah di tingkat kabupaten.</p>
+            <div style="background: #e8f6f3; padding: 20px; display: inline-block; border-radius: 10px; border: 1px solid #27ae60;">
+                <h3>📅 Gelombang 1</h3>
+                <p>Mei - Juni 2025</p>
+                <br>
+                <a href="#" class="btn-ppdb">Formulir Pendaftaran</a>
             </div>
-
-            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="background: #e67e22; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">KEGIATAN</div>
-                <h3 style="margin-bottom: 10px; color: #333;">Peringatan Hari Guru</h3>
-                <p style="font-size: 14px; color: #666;">Upacara bendera dan pentas seni siswa dalam rangka memeriahkan Hari Guru Nasional.</p>
-            </div>
-
-            <div style="background: white; padding: 20px; width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="background: #2ecc71; color: white; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-bottom: 10px;">AKADEMIK</div>
-                <h3 style="margin-bottom: 10px; color: #333;">Persiapan PAS Ganjil</h3>
-                <p style="font-size: 14px; color: #666;">Siswa kelas VII, VIII, dan IX diharapkan mempersiapkan diri menghadapi ujian pekan depan.</p>
-            </div>
-
         </div>
     </section>
 
@@ -345,12 +318,45 @@
         <div class="footer-content">
             <h3>SMP NEGERI 3 LURAGUNG</h3>
             <p>Jl. Abdi Praja No. 01 Desa Gunungkarung - Luragung - Kuningan, Jawa Barat</p>
-            <p>Email: it.smpn3luragung@gmail.com | webSite: https://smpn3luragung.github.io</p>
+            <p>Email: it.smpn3luragung@gmail.com | Website: https://smpn3luragung.github.io</p>
         </div>
         <div class="copyright">
             &copy; 2026 - SMP Negeri 3 Luragung. All Rights Reserved. | Created with ❤️ & TIM IT
         </div>
     </footer>
+
+    <script>
+        // Fungsi ganti halaman (Tab)
+        function bukaHalaman(id) {
+            // 1. Sembunyikan semua halaman
+            const semuaHalaman = document.querySelectorAll('.halaman');
+            semuaHalaman.forEach(hal => hal.classList.remove('active'));
+
+            // 2. Munculkan halaman yang dipilih
+            const tujuan = document.getElementById(id);
+            if(tujuan) tujuan.classList.add('active');
+
+            // 3. Tutup menu di HP setelah klik
+            if(window.innerWidth < 768) {
+                document.getElementById('menu-list').classList.remove('tampil');
+            }
+        }
+
+        // Fungsi Buka/Tutup Menu di HP
+        function toggleMenu() {
+            document.getElementById('menu-list').classList.toggle('tampil');
+        }
+
+        // Fungsi Dropdown di HP (Supaya bisa diklik)
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dd => {
+            dd.addEventListener('click', function() {
+                if(window.innerWidth < 768) {
+                    this.classList.toggle('active');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
