@@ -197,6 +197,45 @@
             .visi-misi-container { flex-direction: column; }
             .box-visi, .box-misi { min-width: 100%; }
         }
+        /* --- GAYA BARU SAMBUTAN (MODEL MENGALIR/WRAPPING) --- */
+        
+        /* 1. Kotak Pembungkus Utama (Sesuai garis biru di sketsa) */
+        .sambutan-box-flow {
+            background: white;
+            padding: 40px; /* Jarak dalam yang lega */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            /* INI KUNCINYA: Agar kotak membungkus elemen yang 'mengambang' (float) */
+            display: flow-root; 
+        }
+
+        /* 2. Pengaturan Foto Kepsek */
+        .sambutan-img-flow {
+            float: left; /* MANTRA AJAIB: Foto 'mengambang' ke kiri */
+            width: 220px; /* Ukuran foto di laptop */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0 var(--warna-aksen);
+            /* Memberi jarak biar teks tidak nempel ke foto */
+            margin-right: 30px;  /* Jarak ke kanan */
+            margin-bottom: 15px; /* Jarak ke bawah */
+        }
+
+        /* 3. Merapikan Teks Sambutan */
+        .sambutan-box-flow p {
+            text-align: justify; /* Teks rata kanan-kiri biar rapi kayak di sketsa */
+            margin-bottom: 15px; /* Jarak antar paragraf */
+        }
+        
+        /* --- RESPONSIVE KHUSUS SAMBUTAN BARU (DI HP) --- */
+        @media (max-width: 768px) {
+            .sambutan-box-flow { padding: 20px; } /* Padding diperkecil */
+            .sambutan-img-flow {
+                width: 130px; /* Foto diperkecil di HP */
+                margin-right: 15px; /* Jarak diperdekat */
+                box-shadow: 3px 3px 0 var(--warna-aksen);
+            }
+        }
     </style>
 </head>
 <body>
@@ -324,29 +363,28 @@
     </section>
 
     <section id="sambutan" class="halaman">
-        <div class="sambutan-box">
-            <img src="https://i.postimg.cc/Y99vgrp6/Deni-N-biru.jpg" class="sambutan-img" alt="Kepala Sekolah">
-            <div class="teks-sambutan">
-                <h2 style="color: var(--warna-utama); margin-bottom: 20px;">Sambutan Kepala Sekolah</h2>
-                <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-                <p>Puji syukur kehadirat Allah SWT atas segala rahmat dan karunia-Nya, sehingga kita masih diberi kesehatan dan kesempatan untuk bersama-sama memajukan dunia pendidikan, khususnya di SMPN 3 Luragung. Kami mengucapkan selamat datang di situs resmi SMPN 3 Luragung, sebuah wadah digital yang menjadi jendela informasi dan komunikasi bagi seluruh keluarga besar sekolah, orang tua, serta masyarakat luas.</p>
-                <p>Di era digital yang serba cepat ini, keberadaan sebuah website sekolah sangatlah penting. Melalui platform ini, kami berharap dapat menyebarluaskan informasi penting, profil sekolah, kegiatan unggulan, prestasi siswa, hingga sarana pembelajaran daring yang dapat diakses oleh siapa saja, kapan saja, dan di mana saja.</p>
-                <p>Kami mengajak seluruh civitas akademika – Guru, Staf Tata Usaha, Siswa, Orang Tua, dan Alumni untuk memanfaatkan website ini sebagai media interaksi positif, berbagi pengetahuan, dan menjalin silaturahmi yang erat. Kami juga terbuka terhadap saran dan kritik membangun demi terus mengembangkan dan memajukan website serta kualitas pendidikan di sekolah kita.</p>
-                <p>Mari kita bersama-sama bergandengan tangan, bekerja dan berkarya dengan ikhlas, demi mencetak generasi penerus bangsa yang cerdas, berkarakter, dan berdaya saing global. Terima kasih atas perhatian dan dukungannya.</p>
-                <br>
-               <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-                <br>
+        <div class="sambutan-box-flow">
+            <h2 style="color: var(--warna-utama); margin-bottom: 25px; font-size: 1.8rem;">Sambutan Kepala Sekolah</h2>
+            
+            <img src="https://dummyimage.com/600x800/ccc/000&text=Foto+Kepsek" class="sambutan-img-flow" alt="Kepala Sekolah">
+            
+            <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+            <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital, sekaligus menjadi jembatan informasi dan komunikasi yang efektif antara sekolah, orang tua, dan masyarakat luas.</p>
+            <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks. Oleh karena itu, SMP Negeri 3 Luragung terus berbenah diri, baik dari segi fasilitas, kualitas pembelajaran, maupun pengembangan karakter peserta didik. Kami bertekad mencetak generasi yang tidak hanya cerdas secara akademis, tetapi juga berakhlak mulia, kreatif, dan peduli terhadap lingkungan.</p>
+            <p>Melalui website ini, kami berharap dapat memberikan layanan informasi yang transparan dan akuntabel. Mari kita bersinergi dan berkolaborasi untuk menghadirkan pendidikan terbaik bagi putra-putri kita tercinta.</p>
+            <p>Terima kasih atas dukungan dan kepercayaan yang telah diberikan kepada kami. Maju terus pendidikan Indonesia!</p>
+            <br>
+            <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+            <br>
+            
+            <div style="clear: both;">
+                <p>Hormat kami,</p>
+                <p style="font-weight: bold;">Kepala SMP Negeri 3 Luragung</p> 
                 
-                <div style="margin-top: 20px;">
-                    <p>Hormat kami,</p>
-                    <p style="font-weight: bold;">Kepala SMPN 3 Luragung</p> 
-                    
-                    <br>
+                <br>
 
-                    <p style="font-weight: bold; font-size: 1.1rem; text-decoration: underline;">H. SAHDIANI, S.Pd., M.Pd.</p>
-                    <p style="font-size: 0.9rem;">NIP. 198xxxxxxx</p>
-                </div>
-
+                <p style="font-weight: bold; font-size: 1.1rem; text-decoration: underline;">H. SAHDIANI, S.Pd., M.Pd.</p>
+                <p style="font-size: 0.9rem;">NIP. 198xxxxxxx</p>
             </div>
         </div>
     </section>
