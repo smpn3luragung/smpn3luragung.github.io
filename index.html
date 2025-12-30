@@ -116,6 +116,31 @@
         }
         .card:hover { transform: translateY(-10px); }
 
+        /* KHUSUS SEJARAH & VISI MISI (BARU) */
+        .box-sejarah {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid #27ae60; /* Garis Hijau di kiri */
+        }
+        .box-sejarah p { text-align: justify; margin-bottom: 15px; line-height: 1.8; }
+
+        .visi-misi-container {
+            display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;
+        }
+        .box-visi, .box-misi {
+            flex: 1; background: white; padding: 30px; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-width: 300px;
+        }
+        .box-visi h3, .box-misi h3 { 
+            color: var(--warna-utama); border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; margin-bottom: 20px;
+        }
+        .list-misi { text-align: left; padding-left: 20px; }
+        .list-misi li { margin-bottom: 10px; list-style-type: decimal; }
+
+        /* SAMBUTAN */
         .sambutan-box { display: flex; gap: 50px; align-items: flex-start; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .sambutan-img { width: 100%; max-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--warna-aksen); }
         
@@ -140,6 +165,7 @@
             .sambutan-box { flex-direction: column; }
             .sambutan-img { margin-bottom: 20px; width: 100%; }
             .ticker-label { display: none; }
+            .visi-misi-container { flex-direction: column; }
         }
     </style>
 </head>
@@ -200,10 +226,10 @@
     </header>
 
     <div class="ticker-container">
-        <div class="ticker-label">VISI MISI</div>
+        <div class="ticker-label">INFO TERKINI</div>
         <div class="ticker-wrap">
             <div class="ticker-item">
-                🎯 "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan sebagai dasar Karakter Lulusan"
+                🎯 "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan"
             </div>
         </div>
     </div>
@@ -212,26 +238,56 @@
         <div class="hero">
             <h2>SELAMAT DATANG</h2>
             <p>Di Website Resmi SMP Negeri 3 Luragung. Media informasi digital dan sarana belajar masa kini.</p>
-            <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Sekolah</button>
+            <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Profil Sekolah</button>
         </div>
     </section>
 
     <section id="profil" class="halaman">
         <h2 class="konten-judul">Profil Sekolah</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>🏫 Sejarah Singkat</h3>
-                <p>SMPN 3 Luragung berdiri sejak tahun 1999, berkomitmen mencetak generasi unggul. SMP Negeri 3 Luragung adalah salah satu sekolah menengah pertama yang berada di wilayah utara Kabupaten Kuningan. Sekolah ini terletak di lingkungan kaki gunung yang masih asri, dengan masyarakat yang memegang kuat nilai-nilai sosial dan budaya lokal. Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan, sekaligus menjadi jawaban atas pentingnya menghadirkan pendidikan bermutu di kawasan dengan kondisi ekonomi masyarakat yang sebagian besar berada pada tingkat menengah ke bawah.
-Mayoritas peserta didik di sekolah ini berasal dari keluarga petani, pedagang tradisional, dan sebagian dari keluarga aparatur sipil negara (ASN) yang bekerja di berbagai instansi pemerintahan lokal. Keterbatasan ekonomi memang menjadi tantangan nyata, namun semangat belajar para peserta didik dan dukungan masyarakat tetap menjadi modal utama. Hal inilah yang membuat sekolah tumbuh dengan suasana pendidikan yang inklusif, partisipatif, dan berkarakter.
-SMP  Negeri 3 Luragung berkomitmen untuk mengimplementasikan Pembelajaran Mendalam dalam setiap proses belajar mengajar. Pendekatan ini bukan sekadar metode, melainkan perubahan paradigma yang menempatkan peserta didik sebagai subjek aktif: berpikir kritis, kreatif, reflektif, serta memiliki daya cipta. Proses belajar diarahkan agar berjalan dengan penuh kesadaran (mindful), bermakna (meaningful), dan menyenangkan (joyful), sehingga setiap pengalaman belajar benar-benar membekas dalam diri peserta didik.
-</p>
+
+        <div class="box-sejarah">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;"><i class="fas fa-landmark"></i> Sejarah Singkat</h3>
+            <p>SMPN 3 Luragung berdiri sejak tahun 1999, berkomitmen mencetak generasi unggul. SMP Negeri 3 Luragung adalah salah satu sekolah menengah pertama yang berada di wilayah utara Kabupaten Kuningan. Sekolah ini terletak di lingkungan kaki gunung yang masih asri, dengan masyarakat yang memegang kuat nilai-nilai sosial dan budaya lokal.</p>
+            <p>Sejak awal berdirinya, sekolah ini hadir untuk melayani kebutuhan pendidikan anak-anak di daerah persawahan, sekaligus menjadi jawaban atas pentingnya menghadirkan pendidikan bermutu di kawasan dengan kondisi ekonomi masyarakat yang sebagian besar berada pada tingkat menengah ke bawah.</p>
+            <p>Mayoritas peserta didik di sekolah ini berasal dari keluarga petani, pedagang tradisional, dan sebagian dari keluarga aparatur sipil negara (ASN). Keterbatasan ekonomi memang menjadi tantangan nyata, namun semangat belajar para peserta didik dan dukungan masyarakat tetap menjadi modal utama. Hal inilah yang membuat sekolah tumbuh dengan suasana pendidikan yang inklusif, partisipatif, dan berkarakter.</p>
+            <p>SMP Negeri 3 Luragung berkomitmen untuk mengimplementasikan Pembelajaran Mendalam dalam setiap proses belajar mengajar. Pendekatan ini bukan sekadar metode, melainkan perubahan paradigma yang menempatkan peserta didik sebagai subjek aktif: berpikir kritis, kreatif, reflektif, serta memiliki daya cipta. Proses belajar diarahkan agar berjalan dengan penuh kesadaran (mindful), bermakna (meaningful), dan menyenangkan (joyful).</p>
+        </div>
+
+        <div class="visi-misi-container">
+            <div class="box-visi">
+                <h3><i class="fas fa-eye"></i> VISI SEKOLAH</h3>
+                <p style="font-weight: bold; font-style: italic; color: #2980b9; margin-bottom: 20px;">
+                    “Terwujudnya peserta didik yang beriman, bertakwa, berakhlak mulia, mandiri, bernalar kritis, kreatif, gotong royong, berkebinekaan global, dan cinta lingkungan sebagai dasar karakter lulusan.”
+                </p>
+                <h4>Indikator:</h4>
+                <ul class="list-misi">
+                    <li>Terwujudnya pembangunan kurikulum yang adaptif dan proaktif.</li>
+                    <li>Terwujudnya proses Pembelajaran yang efektif dan efisien.</li>
+                    <li>Terwujudnya lulusan yang cerdas dan kompetitif.</li>
+                    <li>Terwujudnya sarana dan prasarana pendidikan yang relevan.</li>
+                    <li>Terwujudnya manajemen sekolah yang tangguh.</li>
+                    <li>Terwujudnya pengembangan kehidupan beragama yang optimal.</li>
+                </ul>
             </div>
-            <div class="card">
-                <h3>📚 Visi & Misi</h3>
-                <p>Mewujudkan Pendidikan Berkarakter dan Bermakna Berlandaskan 8 Dimensi Profil Lulusan.</p>
+
+            <div class="box-misi">
+                <h3><i class="fas fa-list-ul"></i> MISI SEKOLAH</h3>
+                <ul class="list-misi">
+                    <li>Membiasakan ibadah serta menanamkan sikap jujur, disiplin, dan tanggung jawab.</li>
+                    <li>Membentuk karakter siswa yang percaya diri, tangguh, dan berdaya juang tinggi.</li>
+                    <li>Mendorong pembelajaran berbasis literasi, numerasi, dan berpikir logis.</li>
+                    <li>Mengembangkan keterampilan seni, budaya, dan teknologi informasi.</li>
+                    <li>Menumbuhkan semangat kerja sama dan kepedulian sosial.</li>
+                    <li>Menanamkan sikap menghargai perbedaan suku, agama, dan budaya.</li>
+                    <li>Membiasakan hidup bersih, sehat, dan peduli lingkungan.</li>
+                    <li>Mengintegrasikan dimensi Profil Pelajar Pancasila dalam budaya sekolah.</li>
+                </ul>
             </div>
+        </div>
+
+        <div class="card-container" style="margin-top: 30px;">
             <div class="card">
-                <h3>🏆 Fasilitas</h3>
+                <h3>🏆 Fasilitas Sekolah</h3>
                 <p>Mushola, Ruang Pojok Baca, Ruang Multimedia, Lab Komputer, Perpustakaan, Lapangan Olahraga.</p>
             </div>
         </div>
@@ -243,9 +299,10 @@ SMP  Negeri 3 Luragung berkomitmen untuk mengimplementasikan Pembelajaran Mendal
             <div class="teks-sambutan">
                 <h2 style="color: var(--warna-utama); margin-bottom: 20px;">Sambutan Kepala Sekolah</h2>
                 <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-                <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai sarana informasi dan komunikasi sekolah dengan masyarakat.</p>
-                <br>
-                <p>Kami berkomitmen untuk terus berinovasi demi kemajuan pendidikan di SMP Negeri 3 Luragung.</p>
+                <p>Puji syukur kehadirat Allah SWT atas segala rahmat dan karunia-Nya, sehingga kita masih diberi kesehatan dan kesempatan untuk bersama-sama memajukan dunia pendidikan, khususnya di [Nama Sekolah]. Kami mengucapkan selamat datang di situs resmi [Nama Sekolah], sebuah wadah digital yang menjadi jendela informasi dan komunikasi bagi seluruh keluarga besar sekolah, orang tua, serta masyarakat luas.</p>
+                <p>Di era digital yang serba cepat ini, keberadaan sebuah website sekolah sangatlah penting. Melalui platform ini, kami berharap dapat menyebarluaskan informasi penting, profil sekolah, kegiatan unggulan, prestasi siswa, hingga sarana pembelajaran daring yang dapat diakses oleh siapa saja, kapan saja, dan di mana saja.</p>
+                <p>Kami mengajak seluruh civitas akademika – guru, staf, siswa, orang tua, dan alumni – untuk memanfaatkan website ini sebagai media interaksi positif, berbagi pengetahuan, dan menjalin silaturahmi yang erat. Kami juga terbuka terhadap saran dan kritik membangun demi terus mengembangkan dan memajukan website serta kualitas pendidikan di sekolah kita.</p>
+                <p>Mari kita bersama-sama bergandengan tangan, bekerja dan berkarya dengan ikhlas, demi mencetak generasi penerus bangsa yang cerdas, berkarakter, dan berdaya saing global. Terima kasih atas perhatian dan dukungannya.</p>
                 <br>
                 <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
                 <br>
@@ -293,7 +350,7 @@ SMP  Negeri 3 Luragung berkomitmen untuk mengimplementasikan Pembelajaran Mendal
         <div class="card-container">
             <div class="card">
                 <h3>🤲 7KAIH dan Keagamaan</h3>
-                <p>Program Sapa Pagi, Program Literasi setiap hari Selas, Senam Sehat setiap hari Rabu, Sholat Dhuha berjamaah, Yasinan setiap Jumat pagi, dan Tadarus Al-Quran.</p>
+                <p>Program Sapa Pagi, Program Literasi setiap hari Selasa, Senam Sehat setiap hari Rabu, Sholat Dhuha berjamaah, Yasinan setiap Jumat pagi, dan Tadarus Al-Quran.</p>
             </div>
             <div class="card">
                 <h3>🧹 Kebersihan & Kedisiplinan</h3>
