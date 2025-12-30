@@ -224,9 +224,17 @@
             /* Sambutan Responsive */
             .sambutan-box-flow { padding: 20px; } 
             .sambutan-img-flow {
-                width: 130px; 
-                margin-right: 15px; 
+                float: none;           /* Hapus posisi kiri */
+                display: block;        /* Jadikan blok sendiri */
+                width: 100%;           /* Lebar menyesuaikan layar */
+                max-width: 300px;      /* Batas maksimal biar tidak terlalu besar */
+                margin: 0 auto 20px;   /* Posisi tengah & jarak bawah 20px */
                 box-shadow: 3px 3px 0 var(--warna-aksen);
+            }
+            
+            /* Tambahan: Agar teks di HP lebih rapi */
+            .sambutan-box-flow p {
+                text-align: left; 
             }
             
             .kontak-container { flex-direction: column; }
