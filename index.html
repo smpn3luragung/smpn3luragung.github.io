@@ -34,7 +34,9 @@
         }
 
         .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 50px; height: 50px; background: white; border-radius: 50%; padding: 2px; } /* Tempat Logo */
+        /* Background putih dan padding dihapus agar logo menyatu */
+.logo-img { width: 55px; height: auto; transition: transform 0.3s; }
+.logo-img:hover { transform: rotate(-10deg) scale(1.1); } /* Efek bonus biar keren pas disorot mouse */
         .nama-sekolah h1 { font-size: 1.2rem; font-weight: 800; margin: 0; letter-spacing: 1px; }
         .nama-sekolah p { font-size: 0.8rem; margin: 0; opacity: 0.9; }
 
