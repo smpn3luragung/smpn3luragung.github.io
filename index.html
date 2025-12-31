@@ -336,20 +336,49 @@
     </marquee>
   </div>
 </div>
-    <section id="berita-sekolah" style="padding: 40px 0; background-color: #f9f9f9; width: 100%;">
-  <div style="max-width: 1100px; margin: 0 auto; padding: 0 15px;">
+<section id="konten-sekolah" style="padding: 40px 0; background-color: #f4f4f4;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
     
-    <div style="text-align: center; margin-bottom: 30px;">
-      <h2 style="font-weight: bold; color: #333; margin: 0;">📰 Berita & Kegiatan Sekolah</h2>
-      <div style="width: 60px; height: 3px; background-color: #0d6efd; margin: 10px auto;"></div>
+    <div style="text-align: left; margin-bottom: 20px; border-bottom: 3px solid #ddd; padding-bottom: 10px;">
+      <h2 style="font-weight: bold; color: #333; display: inline-block; margin: 0; border-bottom: 3px solid #0d6efd; padding-bottom: 10px; margin-bottom: -13px;">
+        🏛️ Kabar Sekolah
+      </h2>
     </div>
 
-    <div id="wadah-berita" style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: center;">
-      <div style="text-align: center; width: 100%; padding: 20px;">
-        <p>⏳ Sedang mengambil berita dari kantor...</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+      
+      <div style="flex: 2;"> <h4 style="margin-bottom: 20px; color: #555;">📰 Berita & Kegiatan Terbaru</h4>
+        
+        <div id="wadah-berita" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+           <p>⏳ Sedang mengambil data...</p>
+        </div>
       </div>
-    </div>
 
+      <div style="background: white; padding: 20px; border-radius: 10px; height: fit-content; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h4 style="border-left: 5px solid #0d6efd; padding-left: 10px; margin-bottom: 20px;">📢 Seputar Info</h4>
+        
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
+            <strong>🗓️ Agenda Rapat</strong><br>
+            <small>Sabtu, 10 Januari 2026</small><br>
+            <span style="color: #666; font-size: 13px;">Rapat awal semester genap di Aula Utama.</span>
+          </li>
+          <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
+             <strong>🎓 Info PPDB</strong><br>
+             <span style="color: #666; font-size: 13px;">Pendaftaran siswa baru akan dibuka bulan Mei 2026.</span>
+          </li>
+          <li style="margin-bottom: 15px;">
+             <strong>📞 Kontak Penting</strong><br>
+             <span style="color: #666; font-size: 13px;">Tata Usaha: 0812-3456-7890</span>
+          </li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#" style="background: #0d6efd; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: block;">Lihat Agenda Lainnya</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
     <div class="ticker-container">
@@ -671,7 +700,7 @@
       })
       .catch(error => console.log('Gagal ambil data:', error));
   }
-// --- FUNGSI LOAD BERITA (VERSI MANDIRI/CARD STYLE) ---
+// --- FUNGSI LOAD BERITA (LAYOUT BARU) ---
   function muatBerita() {
     fetch(urlScript + "?action=getBerita")
       .then(response => response.json())
@@ -680,7 +709,7 @@
         wadah.innerHTML = ""; 
 
         if (data.length === 0) {
-          wadah.innerHTML = '<div style="text-align:center; width:100%;">Belum ada berita terbaru.</div>';
+          wadah.innerHTML = '<div style="width:100%;">Belum ada berita.</div>';
           return;
         }
 
@@ -688,18 +717,18 @@
           var isiPendek = berita.isi.length > 80 ? berita.isi.substring(0, 80) + "..." : berita.isi;
           var gambarLink = berita.gambar ? berita.gambar : "https://via.placeholder.com/400x200?text=No+Image";
 
-          // Kita pasang Style CSS langsung di sini (Inline Style) biar kuat & rapi
+          // STYLE KARTU: Width 100% agar mengikuti kolom grid
           var kartuHTML = `
-            <div style="width: 320px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+            <div style="width: 100%; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
               
-              <div style="height: 180px; overflow: hidden;">
-                 <img src="${gambarLink}" alt="${berita.judul}" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="height: 160px; overflow: hidden;">
+                 <img src="${gambarLink}" alt="${berita.judul}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
               </div>
               
               <div style="padding: 15px; flex-grow: 1;">
-                <small style="color: #888; font-size: 12px; display:block; margin-bottom:5px;">📅 ${berita.tanggal}</small>
-                <h3 style="margin: 0 0 10px 0; font-size: 18px; font-weight: bold; line-height: 1.4; color: #333;">${berita.judul}</h3>
-                <p style="font-size: 14px; color: #666; line-height: 1.5; margin: 0;">${isiPendek}</p>
+                <small style="color: #0d6efd; font-weight:bold; font-size: 11px;">📅 ${berita.tanggal}</small>
+                <h3 style="margin: 5px 0 10px 0; font-size: 16px; font-weight: bold; line-height: 1.4; color: #333;">${berita.judul}</h3>
+                <p style="font-size: 13px; color: #666; line-height: 1.5; margin: 0;">${isiPendek}</p>
               </div>
 
             </div>
@@ -707,12 +736,10 @@
           wadah.innerHTML += kartuHTML;
         });
       })
-      .catch(error => {
-        console.log('Gagal ambil berita:', error);
-      });
+      .catch(error => { console.log(error); });
   }
 
-  // JANGAN LUPA PANGGIL LAGI
+  // JALANKAN
   muatPengumuman();
   muatBerita();
     
