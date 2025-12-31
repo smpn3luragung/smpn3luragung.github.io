@@ -610,6 +610,27 @@
             });
         }
     </script>
+<script>
+  // --- SETTING URL API (HASIL DEPLOY TADI) ---
+  var urlScript = "https://script.google.com/macros/s/AKfycby-Wj0PparIMowgRUG-0CRG3pr1d0oHVCXciMsI77nRJO94IFu2fPpzqhnFFiOhLHBfbw/exec"; 
 
+  // --- FUNGSI LOAD PENGUMUMAN DARI JARAK JAUH ---
+  function muatPengumuman() {
+    // Panggil API dengan action=getPengumuman
+    fetch(urlScript + "?action=getPengumuman")
+      .then(response => response.text())
+      .then(pesan => {
+        // Jika ada pesan (tidak kosong), tampilkan!
+        if (pesan && pesan.trim() !== "") {
+          document.getElementById('teks-berjalan').innerText = pesan;
+          document.getElementById('area-pengumuman').style.display = 'block';
+        }
+      })
+      .catch(error => console.log('Gagal ambil data:', error));
+  }
+
+  // Jalankan saat web dibuka
+  muatPengumuman();
+  </script>
 </body>
 </html>
