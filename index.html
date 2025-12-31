@@ -24,7 +24,7 @@
         header {
             background: var(--warna-utama);
             color: var(--warna-teks-putih);
-            padding: 10px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -34,7 +34,7 @@
 
         .logo-area { display: flex; align-items: center; gap: 15px; }
         
-        /* PERUBAHAN 1: LOGO DIPERBESAR (Jadi 70px) */
+        /* Logo Sekolah */
         .logo-area img { height: 70px; } 
         
         .logo-text h1 { font-size: 18px; font-weight: 700; margin: 0; }
@@ -46,11 +46,11 @@
 
         .btn-ppdb {
             background: #28a745; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 13px;
+            white-space: nowrap; /* Agar tulisan tidak turun baris */
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            /* Gambar Background Sekolah */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
             background-size: cover; background-position: center;
             height: 60vh;
@@ -59,10 +59,8 @@
         }
         .hero h2 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.1em; max-width: 600px; margin-bottom: 20px; }
-        
-        /* (Tombol Jelajahi sudah dihapus dari sini) */
 
-        /* --- KONTEN UTAMA (GRID) --- */
+        /* --- KONTEN UTAMA --- */
         .container {
             max-width: 1200px; margin: 30px auto; padding: 0 20px;
             display: grid; grid-template-columns: 2fr 1fr; gap: 30px;
@@ -82,7 +80,7 @@
         .card-title { font-size: 16px; font-weight: bold; margin-bottom: 8px; color: var(--warna-utama); }
         .card-desc { font-size: 13px; color: #555; line-height: 1.5; }
 
-        /* Bagian Kanan: Sidebar Info */
+        /* Bagian Kanan: Sidebar */
         .sidebar-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
         .sidebar-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--warna-utama); border-left: 4px solid var(--warna-utama); padding-left: 10px; }
         
@@ -98,16 +96,50 @@
             background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 40px; font-size: 13px;
         }
 
-        /* PERUBAHAN 2: TAMPILAN HP (MOBILE) */
+        /* ========================================= */
+        /* PERBAIKAN TAMPILAN KHUSUS HP (MOBILE)    */
+        /* ========================================= */
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            nav ul { display: none; } 
-            header { flex-direction: column; text-align: center; gap: 10px;}
             
-            /* Agar logo di HP tidak terlalu besar, kita batasi sedikit */
-            .logo-area img { height: 60px; } 
+            /* 1. Header disusun ke bawah (Logo -> Menu -> Tombol) */
+            header { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 20px; 
+                padding: 20px;
+            }
 
-            /* Mengecilkan tulisan Selamat Datang di HP */
+            /* 2. Logo dan Teks ditata vertikal supaya rapi */
+            .logo-area { 
+                flex-direction: column; 
+                gap: 10px; 
+            }
+            .logo-area img { height: 80px; } /* Logo diperbesar sedikit agar jelas */
+            .logo-text h1 { font-size: 20px; } /* Nama sekolah diperbesar */
+
+            /* 3. MENU dimunculkan kembali tapi disusun ke bawah */
+            nav ul { 
+                display: flex; 
+                flex-direction: column; /* Menu jadi vertikal */
+                gap: 15px; 
+                padding: 10px 0;
+                width: 100%;
+                border-top: 1px solid rgba(255,255,255,0.2); /* Garis pemisah tipis */
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            nav ul li a { font-size: 16px; display: block; padding: 5px; }
+
+            /* 4. Tombol Info PPDB dibuat lebar agar mudah diklik */
+            .btn-ppdb { 
+                width: 100%; 
+                text-align: center; 
+                padding: 12px;
+            }
+
+            /* 5. Konten Utama jadi 1 kolom */
+            .container { grid-template-columns: 1fr; }
+            
+            /* 6. Hero Text (Selamat Datang) disesuaikan */
             .hero h2 { font-size: 1.8em; } 
             .hero p { font-size: 0.9em; padding: 0 10px; }
         }
@@ -137,7 +169,7 @@
     <div class="hero">
         <h2>SELAMAT DATANG</h2>
         <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
-        </div>
+    </div>
 
     <div class="container">
         
