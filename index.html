@@ -32,8 +32,11 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-area img { height: 40px; }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        
+        /* PERUBAHAN 1: LOGO DIPERBESAR (Jadi 70px) */
+        .logo-area img { height: 70px; } 
+        
         .logo-text h1 { font-size: 18px; font-weight: 700; margin: 0; }
         .logo-text p { font-size: 12px; margin: 0; opacity: 0.9; }
 
@@ -56,10 +59,8 @@
         }
         .hero h2 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.1em; max-width: 600px; margin-bottom: 20px; }
-        .btn-hero {
-            border: 2px solid white; color: white; padding: 10px 25px; border-radius: 30px; transition: 0.3s;
-        }
-        .btn-hero:hover { background: white; color: var(--warna-utama); }
+        
+        /* (Tombol Jelajahi sudah dihapus dari sini) */
 
         /* --- KONTEN UTAMA (GRID) --- */
         .container {
@@ -97,11 +98,18 @@
             background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 40px; font-size: 13px;
         }
 
-        /* Responsif untuk HP */
+        /* PERUBAHAN 2: TAMPILAN HP (MOBILE) */
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; }
-            nav ul { display: none; } /* Menu sederhana disembunyikan dulu */
+            nav ul { display: none; } 
             header { flex-direction: column; text-align: center; gap: 10px;}
+            
+            /* Agar logo di HP tidak terlalu besar, kita batasi sedikit */
+            .logo-area img { height: 60px; } 
+
+            /* Mengecilkan tulisan Selamat Datang di HP */
+            .hero h2 { font-size: 1.8em; } 
+            .hero p { font-size: 0.9em; padding: 0 10px; }
         }
     </style>
 </head>
@@ -129,8 +137,7 @@
     <div class="hero">
         <h2>SELAMAT DATANG</h2>
         <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
-        <a href="#" class="btn-hero">Jelajahi Profil Sekolah</a>
-    </div>
+        </div>
 
     <div class="container">
         
