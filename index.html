@@ -313,11 +313,25 @@
       font-size: 12px !important;  /* Huruf jadi lebih kecil & rapi */
     }
   }
+<style>
+  /* Settingan Standar (Laptop/PC) */
+  .style-pengumuman { 
+    padding: 8px 0; 
+    font-size: 16px; 
+  }
+
+  /* Settingan KHUSUS HP (Layar Kecil) */
+  @media only screen and (max-width: 600px) {
+    .style-pengumuman { 
+      /* Update: Atas-Bawah 4px, Kiri-Kanan 15px (Biar gak mepet) */
+      padding: 4px 15px !important;   
+      font-size: 12px !important;
+    }
+  }
 </style>
 
 <div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; display: none; border-bottom: 2px solid #fbc02d;">
-  <div class="container">
-    <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
+  <div class="container" style="padding: 0; margin: 0;"> <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
       Sedang memuat informasi...
     </marquee>
   </div>
