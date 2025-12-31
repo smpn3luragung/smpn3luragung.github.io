@@ -302,9 +302,22 @@
             </ul>
         </nav>
     </header>
-<div id="area-pengumuman" style="background-color: #ffeb3b; color: #000; padding: 8px 0; display: none; border-bottom: 2px solid #fbc02d;">
+<style>
+  /* Settingan Standar (Laptop/PC) */
+  .style-pengumuman { padding: 8px 0; font-size: 16px; }
+
+  /* Settingan KHUSUS HP (Layar Kecil) */
+  @media only screen and (max-width: 600px) {
+    .style-pengumuman { 
+      padding: 4px 0 !important;   /* Bar kuning jadi lebih tipis */
+      font-size: 12px !important;  /* Huruf jadi lebih kecil & rapi */
+    }
+  }
+</style>
+
+<div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; display: none; border-bottom: 2px solid #fbc02d;">
   <div class="container">
-    <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="7" style="font-weight: bold; font-size: 16px;">
+    <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
       Sedang memuat informasi...
     </marquee>
   </div>
