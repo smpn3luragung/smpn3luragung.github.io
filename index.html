@@ -336,6 +336,20 @@
     </marquee>
   </div>
 </div>
+    <section id="berita-sekolah" style="padding: 40px 0; background-color: #f9f9f9;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="font-weight: bold; color: #333;">📰 Berita & Kegiatan Sekolah</h2>
+      <hr style="width: 60px; border: 2px solid #0d6efd; margin: 10px auto;">
+    </div>
+
+    <div id="wadah-berita" class="row">
+      <div class="col-12 text-center">
+        <p>⏳ Sedang mengambil berita dari kantor...</p>
+      </div>
+    </div>
+  </div>
+</section>
     <div class="ticker-container">
         <div class="ticker-label">Visi</div>
         <div class="ticker-wrap">
@@ -655,7 +669,49 @@
       })
       .catch(error => console.log('Gagal ambil data:', error));
   }
+// --- FUNGSI LOAD BERITA (CARD SYSTEM) ---
+  function muatBerita() {
+    fetch(urlScript + "?action=getBerita")
+      .then(response => response.json())
+      .then(data => {
+        var wadah = document.getElementById('wadah-berita');
+        wadah.innerHTML = ""; 
 
+        if (data.length === 0) {
+          wadah.innerHTML = '<div class="col-12 text-center">Belum ada berita terbaru.</div>';
+          return;
+        }
+
+        data.forEach(berita => {
+          // Potong isi berita biar gak kepanjangan
+          var isiPendek = berita.isi.length > 100 ? berita.isi.substring(0, 100) + "..." : berita.isi;
+          var gambarLink = berita.gambar ? berita.gambar : "https://via.placeholder.com/400x200?text=No+Image";
+
+          var kartuHTML = `
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm" style="border:none; border-radius:10px; overflow:hidden;">
+                <img src="${gambarLink}" class="card-img-top" alt="${berita.judul}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                  <small style="color: #888; font-size: 12px;">📅 ${berita.tanggal}</small>
+                  <h5 class="card-title" style="margin-top:5px; font-weight:bold;">${berita.judul}</h5>
+                  <p class="card-text" style="font-size: 14px; color: #555;">${isiPendek}</p>
+                </div>
+              </div>
+            </div>
+          `;
+          wadah.innerHTML += kartuHTML;
+        });
+      })
+      .catch(error => {
+        console.log('Gagal ambil berita:', error);
+        document.getElementById('wadah-berita').innerHTML = '<div class="col-12 text-center text-danger">Gagal memuat berita.</div>';
+      });
+  }
+
+  // --- JALANKAN SEMUA MESIN (PENTING!) ---
+  // Pastikan kode ini ada di paling bawah script
+  muatPengumuman();
+  muatBerita();
   // Jalankan saat web dibuka
   muatPengumuman();
   </script>
