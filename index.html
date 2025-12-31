@@ -21,7 +21,7 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- HEADER & NAVBAR (Code Sebelumnya) --- */
+        /* --- HEADER & NAVBAR (TETAP) --- */
         header {
             background: var(--warna-utama);
             color: white;
@@ -50,20 +50,32 @@
         }
         .btn-ppdb:hover { transform: scale(1.05); }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (UPDATE RUNNING TEXT) --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
             background-size: cover; background-position: center;
-            height: 70vh; /* Sedikit lebih tinggi biar gagah */
+            height: 70vh;
+            /* Update: Relative agar Running Text bisa nempel di atas */
+            position: relative;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 20px;
         }
-        .hero h2 { font-size: 2.8em; margin-bottom: 15px; text-shadow: 0 3px 6px rgba(0,0,0,0.5); animation: naik 1s ease-out; }
-        .hero p { font-size: 1.1em; max-width: 700px; margin-bottom: 25px; animation: naik 1.2s ease-out; }
-        
-        @keyframes naik { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CONTAINER --- */
+        /* Styling Wadah Teks Berjalan */
+        .running-text-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Hitam transparan */
+            border-bottom: 3px solid var(--warna-sekunder); /* Garis Kuning */
+            padding: 12px 0;
+            z-index: 10;
+        }
+        
+        .running-text-container marquee {
+            color: #fff; font-size: 15px; letter-spacing: 0.5px; font-weight: 500;
+        }
+
+        /* --- CONTAINER (TETAP) --- */
         .container {
             max-width: 1200px; margin: 40px auto; padding: 0 20px;
             display: grid; grid-template-columns: 2.5fr 1fr; gap: 40px;
@@ -99,7 +111,7 @@
         .info-content .label { font-weight: bold; font-size: 14px; display: block; color: #222; }
         .info-content .text { font-size: 13px; color: #666; }
 
-        /* --- FOOTER MEWAH (BARU) --- */
+        /* --- FOOTER (TETAP MEWAH) --- */
         footer {
             background: #1a1a1a; color: #bbb;
             padding: 60px 5% 20px;
@@ -122,7 +134,7 @@
 
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 13px; }
 
-        /* --- TOMBOL WA MELAYANG (BARU) --- */
+        /* --- TOMBOL WA (TETAP) --- */
         .float-wa {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background-color: var(--hijau-wa); color: #FFF; border-radius: 50px;
@@ -132,7 +144,7 @@
         }
         .float-wa:hover { transform: scale(1.1); background-color: #1ebe57; }
 
-        /* --- RESPONSIF HP --- */
+        /* --- RESPONSIF HP (TETAP) --- */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .menu-container {
@@ -150,7 +162,6 @@
             .hero h2 { font-size: 2em; }
             .container { grid-template-columns: 1fr; margin: 20px auto; }
             
-            /* Footer Responsive */
             .footer-content { grid-template-columns: 1fr; gap: 30px; }
             .float-wa { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
         }
@@ -181,8 +192,16 @@
     </header>
 
     <div class="hero">
-        <h2>GENERASI JUARA</h2>
-        <p>Selamat Datang di Portal Digital SMP Negeri 3 Luragung. Membangun masa depan gemilang dengan akhlak mulia.</p>
+        <div class="running-text-container">
+            <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();">
+                📢 Selamat Datang di Portal Digital SMP Negeri 3 Luragung. Membangun masa depan gemilang dengan akhlak mulia.
+            </marquee>
+        </div>
+
+        <div style="z-index: 2; animation: naik 1s ease-out;">
+            <i class="fas fa-graduation-cap" style="font-size: 50px; color: var(--warna-sekunder); margin-bottom: 15px; text-shadow: 0 2px 5px black;"></i>
+            <h2 style="font-size: 3em; font-weight: 800; text-shadow: 0 4px 8px black; letter-spacing: 2px;">SMPN 3 LURAGUNG</h2>
+        </div>
     </div>
 
     <div class="container">
