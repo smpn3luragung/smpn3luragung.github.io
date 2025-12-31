@@ -35,7 +35,7 @@
         header {
             background: var(--warna-utama);
             color: var(--warna-teks-putih);
-            padding: 10px 5%;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -111,7 +111,7 @@
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg');
             background-size: cover; background-position: center top;
-            height: 70vh; 
+            height: 50vh; 
             width: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 20px;
@@ -276,21 +276,19 @@
             </ul>
         </nav>
     </header>
-
+<div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; border-bottom: 2px solid #fbc02d;">
+            <div class="container" style="padding: 0; margin: 0;"> 
+                <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
+                  Sedang memuat informasi...
+                </marquee>
+            </div>
+        </div>
     <section id="beranda" class="halaman active">
         
         <div class="hero">
             <h2>SELAMAT DATANG</h2>
             <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
             <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Profil Sekolah</button>
-        </div>
-
-        <div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; border-bottom: 2px solid #fbc02d;">
-            <div class="container" style="padding: 0; margin: 0;"> 
-                <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
-                  Sedang memuat informasi...
-                </marquee>
-            </div>
         </div>
 
         <section id="konten-sekolah" style="padding: 40px 0; background-color: #f4f4f4;">
