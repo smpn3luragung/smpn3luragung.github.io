@@ -76,7 +76,13 @@
 
         .menu-toggle { display: none; font-size: 22px; cursor: pointer; color: white; }
 
-        /* --- 3. RUNNING TEXT --- */
+        /* --- 3. RUNNING TEXT (PENGUMUMAN KUNING) --- */
+        .style-pengumuman { padding: 8px 0; font-size: 16px; }
+        @media only screen and (max-width: 600px) {
+            .style-pengumuman { padding: 4px 15px !important; font-size: 12px !important; }
+        }
+
+        /* --- TICKER VISI DI BAWAH --- */
         .ticker-container {
             background: var(--warna-ticker-bg); color: white;
             overflow: hidden; white-space: nowrap; height: 35px;
@@ -95,7 +101,9 @@
         /* --- 4. LOGIC HALAMAN --- */
         .halaman { display: none; padding: 40px 5%; animation: fadeIn 0.5s; flex: 1; }
         .halaman.active { display: block; }
-        #beranda.halaman.active { display: flex; padding: 0; }
+        
+        /* KHUSUS BERANDA: Padding 0 biar Hero bisa Full Width */
+        #beranda.halaman.active { display: block; padding: 0; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -131,15 +139,13 @@
             border-left: 5px solid #27ae60;
         }
         
-        /* --- FITUR READ MORE (KUNCI YANG BARU) --- */
+        /* --- FITUR READ MORE --- */
         .baca-container {
             position: relative;
-            max-height: 200px; /* Tinggi awal teks yang terlihat */
+            max-height: 200px; 
             overflow: hidden;
-            transition: max-height 0.8s ease-in-out; /* Animasi halus */
+            transition: max-height 0.8s ease-in-out;
         }
-        
-        /* Efek bayangan putih pudar di bawah */
         .baca-container::after {
             content: "";
             position: absolute;
@@ -148,30 +154,17 @@
             pointer-events: none;
             transition: opacity 0.3s;
         }
+        .baca-container.terbuka { max-height: 2000px; }
+        .baca-container.terbuka::after { opacity: 0; }
 
-        /* Kelas saat tombol diklik (Terbuka Penuh) */
-        .baca-container.terbuka {
-            max-height: 2000px; /* Nilai besar agar semua teks muat */
-        }
-        .baca-container.terbuka::after {
-            opacity: 0; /* Hilangkan bayangan pudar */
-        }
-
-        /* Tombol Baca Selengkapnya */
         .btn-toggle-baca {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--warna-aksen);
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.95rem;
-            text-decoration: underline;
-            transition: 0.3s;
+            display: inline-block; margin-top: 15px; color: var(--warna-aksen);
+            font-weight: bold; cursor: pointer; font-size: 0.95rem;
+            text-decoration: underline; transition: 0.3s;
         }
         .btn-toggle-baca:hover { color: #1565c0; }
 
-        /* ----------------------------------------- */
-
+        /* VISI MISI */
         .visi-misi-container { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
         .box-visi, .box-misi { flex: 1; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-width: 300px; }
         .list-misi { text-align: left; padding-left: 20px; }
@@ -179,20 +172,13 @@
 
         /* GAYA SAMBUTAN MENGALIR */
         .sambutan-box-flow {
-            background: white;
-            padding: 40px; 
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            display: flow-root; 
+            background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flow-root; 
         }
         .sambutan-img-flow {
-            float: left; 
-            width: 220px; 
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 5px 5px 0 var(--warna-aksen);
-            margin-right: 30px;  
-            margin-bottom: 15px; 
+            float: left; width: 220px; height: auto;
+            border-radius: 10px; box-shadow: 5px 5px 0 var(--warna-aksen);
+            margin-right: 30px; margin-bottom: 15px; 
         }
         .sambutan-box-flow p { text-align: justify; margin-bottom: 15px; }
 
@@ -223,23 +209,12 @@
 
             /* Sambutan Responsive */
             .sambutan-box-flow { padding: 20px; } 
-            /* Masukkan ini menggantikan .sambutan-img-flow yang lama di area responsive */
             .sambutan-img-flow {
-                float: left !important; /* Paksa gambar di kiri */
-                width: 100px !important; /* Ukuran KECIL (Pas Foto) */
-                height: auto;
-                margin-right: 15px;    /* Jarak ke teks di kanan */
-                margin-bottom: 5px;
-                margin-left: 0;
-                box-shadow: 2px 2px 0 var(--warna-aksen);
-                display: block;
+                float: left !important; width: 100px !important; height: auto;
+                margin-right: 15px; margin-bottom: 5px; margin-left: 0;
+                box-shadow: 2px 2px 0 var(--warna-aksen); display: block;
             }
-
-            /* Tambahan: Pastikan teks di HP tidak terlalu mepet */
-            .sambutan-box-flow p {
-                text-align: left; 
-                margin-bottom: 10px;
-            }
+            .sambutan-box-flow p { text-align: left; margin-bottom: 10px; }
             .baca-container { max-height: unset !important; }
             .kontak-container { flex-direction: column; }
         }
@@ -297,91 +272,75 @@
                 </li>
 
                 <li><a href="#" onclick="bukaHalaman('kontak')">Hubungi Kami</a></li>
-
                 <li><a href="#" onclick="bukaHalaman('ppdb')" class="btn-ppdb">📢 Info PPDB</a></li>
             </ul>
         </nav>
     </header>
-<style>
-  /* Settingan Standar (Laptop/PC) */
-  .style-pengumuman { padding: 8px 0; font-size: 16px; }
 
-  /* Settingan KHUSUS HP (Layar Kecil) */
-  @media only screen and (max-width: 600px) {
-    .style-pengumuman { 
-      padding: 4px 0 !important;   /* Bar kuning jadi lebih tipis */
-      font-size: 12px !important;  /* Huruf jadi lebih kecil & rapi */
-    }
-  }
-<style>
-  /* Settingan Standar (Laptop/PC) */
-  .style-pengumuman { 
-    padding: 8px 0; 
-    font-size: 16px; 
-  }
-
-  /* Settingan KHUSUS HP (Layar Kecil) */
-  @media only screen and (max-width: 600px) {
-    .style-pengumuman { 
-      /* Update: Atas-Bawah 4px, Kiri-Kanan 15px (Biar gak mepet) */
-      padding: 4px 15px !important;   
-      font-size: 12px !important;
-    }
-  }
-</style>
-
-<div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; display: none; border-bottom: 2px solid #fbc02d;">
-  <div class="container" style="padding: 0; margin: 0;"> <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
-      Sedang memuat informasi...
-    </marquee>
-  </div>
-</div>
-<section id="konten-sekolah" style="padding: 40px 0; background-color: #f4f4f4;">
-  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
-    
-    <div style="text-align: left; margin-bottom: 20px; border-bottom: 3px solid #ddd; padding-bottom: 10px;">
-      <h2 style="font-weight: bold; color: #333; display: inline-block; margin: 0; border-bottom: 3px solid #0d6efd; padding-bottom: 10px; margin-bottom: -13px;">
-        🏛️ Kabar Sekolah
-      </h2>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-      
-      <div style="flex: 2;"> <h4 style="margin-bottom: 20px; color: #555;">📰 Berita & Kegiatan Terbaru</h4>
+    <section id="beranda" class="halaman active">
         
-        <div id="wadah-berita" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
-           <p>⏳ Sedang mengambil data...</p>
+        <div class="hero">
+            <h2>SELAMAT DATANG</h2>
+            <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
+            <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Profil Sekolah</button>
         </div>
-      </div>
 
-      <div style="background: white; padding: 20px; border-radius: 10px; height: fit-content; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h4 style="border-left: 5px solid #0d6efd; padding-left: 10px; margin-bottom: 20px;">📢 Seputar Info</h4>
-        
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
-            <strong>🗓️ Agenda Rapat</strong><br>
-            <small>Sabtu, 10 Januari 2026</small><br>
-            <span style="color: #666; font-size: 13px;">Rapat awal semester genap di Aula Utama.</span>
-          </li>
-          <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
-             <strong>🎓 Info PPDB</strong><br>
-             <span style="color: #666; font-size: 13px;">Pendaftaran siswa baru akan dibuka bulan Mei 2026.</span>
-          </li>
-          <li style="margin-bottom: 15px;">
-             <strong>📞 Kontak Penting</strong><br>
-             <span style="color: #666; font-size: 13px;">Tata Usaha: 0812-3456-7890</span>
-          </li>
-        </ul>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <a href="#" style="background: #0d6efd; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: block;">Lihat Agenda Lainnya</a>
+        <div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; border-bottom: 2px solid #fbc02d;">
+            <div class="container" style="padding: 0; margin: 0;"> 
+                <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
+                  Sedang memuat informasi...
+                </marquee>
+            </div>
         </div>
-      </div>
 
-    </div>
-  </div>
-</section>
-    <div class="ticker-container">
+        <section id="konten-sekolah" style="padding: 40px 0; background-color: #f4f4f4;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+              
+              <div style="text-align: left; margin-bottom: 20px; border-bottom: 3px solid #ddd; padding-bottom: 10px;">
+                <h2 style="font-weight: bold; color: #333; display: inline-block; margin: 0; border-bottom: 3px solid #0d6efd; padding-bottom: 10px; margin-bottom: -13px;">
+                  🏛️ Kabar Sekolah
+                </h2>
+              </div>
+          
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <div style="flex: 2;"> 
+                   <h4 style="margin-bottom: 20px; color: #555;">📰 Berita & Kegiatan Terbaru</h4>
+                  
+                   <div id="wadah-berita" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                      <p>⏳ Sedang mengambil data...</p>
+                   </div>
+                </div>
+          
+                <div style="background: white; padding: 20px; border-radius: 10px; height: fit-content; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                  <h4 style="border-left: 5px solid #0d6efd; padding-left: 10px; margin-bottom: 20px;">📢 Seputar Info</h4>
+                  
+                  <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
+                      <strong>🗓️ Agenda Rapat</strong><br>
+                      <small>Sabtu, 10 Januari 2026</small><br>
+                      <span style="color: #666; font-size: 13px;">Rapat awal semester genap di Aula Utama.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 10px;">
+                       <strong>🎓 Info PPDB</strong><br>
+                       <span style="color: #666; font-size: 13px;">Pendaftaran siswa baru akan dibuka bulan Mei 2026.</span>
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                       <strong>📞 Kontak Penting</strong><br>
+                       <span style="color: #666; font-size: 13px;">Tata Usaha: 0812-3456-7890</span>
+                    </li>
+                  </ul>
+          
+                  <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" style="background: #0d6efd; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: block;">Lihat Agenda Lainnya</a>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          </section>
+
+    </section> <div class="ticker-container">
         <div class="ticker-label">Visi</div>
         <div class="ticker-wrap">
             <div class="ticker-item">
@@ -389,14 +348,6 @@
             </div>
         </div>
     </div>
-
-    <section id="beranda" class="halaman active">
-        <div class="hero">
-            <h2>SELAMAT DATANG</h2>
-            <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
-            <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Profil Sekolah</button>
-        </div>
-    </section>
 
     <section id="profil" class="halaman">
         <h2 class="konten-judul">Profil Sekolah</h2>
@@ -442,16 +393,16 @@
         <div class="sambutan-box-flow">
             <h2 style="color: var(--warna-utama); margin-bottom: 15px; font-size: 1.8rem;">Sambutan Kepala Sekolah</h2>
             
-            <div id="text-sambutan" class="baca-container" style="max-height: 500px;"> <img src="https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg" class="sambutan-img-flow" alt="H. SAHDIANI, S.Pd., M.Pd.">
+            <div id="text-sambutan" class="baca-container" style="max-height: 500px;"> 
+                <img src="https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg" class="sambutan-img-flow" alt="Kepala Sekolah">
                 
                 <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
                 <p>Puji syukur kita panjatkan kehadirat Allah SWT. Website ini hadir sebagai wujud komitmen kami dalam memajukan pendidikan di era digital, sekaligus menjadi jembatan informasi dan komunikasi yang efektif antara sekolah, orang tua, dan masyarakat luas.</p>
                 <p>Kami menyadari bahwa tantangan pendidikan ke depan semakin kompleks. Oleh karena itu, SMP Negeri 3 Luragung terus berbenah diri, baik dari segi fasilitas, kualitas pembelajaran, maupun pengembangan karakter peserta didik. Kami bertekad mencetak generasi yang tidak hanya cerdas secara akademis, tetapi juga berakhlak mulia, kreatif, dan peduli terhadap lingkungan.</p>
                 <p>Melalui website ini, kami berharap dapat memberikan layanan informasi yang transparan dan akuntabel. Mari kita bersinergi dan berkolaborasi untuk menghadirkan pendidikan terbaik bagi putra-putri kita tercinta.</p>
                 <p>Terima kasih atas dukungan dan kepercayaan yang telah diberikan kepada kami. Maju terus pendidikan Indonesia!</p>
-            <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
-            <br>
-            
+                <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</strong></p>
+                <br>
             </div> 
             <div style="clear: both; margin-top: 10px;">
                 <p>Hormat kami,</p>
@@ -611,14 +562,19 @@
     </footer>
 
     <script>
-        // SCRIPT NAVIGASI HALAMAN
+        // --- 1. SETUP URL GOOGLE SCRIPT ---
+        // GANTI LINK DI BAWAH INI DENGAN LINK SCRIPT APP NDAN YANG ASLI!
+        const urlScript = "https://script.google.com/macros/s/AKfycby-Wj0PparIMowgRUG-0CRG3pr1d0oHVCXciMsI77nRJO94IFu2fPpzqhnFFiOhLHBfbw/exec"; 
+
+        // --- 2. SCRIPT NAVIGASI HALAMAN ---
         function bukaHalaman(id) {
             const semuaHalaman = document.querySelectorAll('.halaman');
             semuaHalaman.forEach(hal => hal.classList.remove('active'));
 
             const tujuan = document.getElementById(id);
             if(tujuan) tujuan.classList.add('active');
-
+            
+            // Tutup menu di HP setelah klik
             if(window.innerWidth < 768) {
                 document.getElementById('menu-list').classList.remove('tampil');
             }
@@ -637,114 +593,116 @@
             });
         });
 
-        // --- FUNGSI BACA SELENGKAPNYA (BARU) ---
-        function toggleBaca(idElement, btn) {
-            const container = document.getElementById(idElement);
-            container.classList.toggle('terbuka');
-            
-            if (container.classList.contains('terbuka')) {
-                btn.innerHTML = "Sembunyikan ⇧";
+        // --- 3. FUNGSI BACA SELENGKAPNYA ---
+        function toggleBaca(idElemen, tombol) {
+            var elemen = document.getElementById(idElemen);
+            elemen.classList.toggle("terbuka");
+
+            if (elemen.classList.contains("terbuka")) {
+                tombol.innerHTML = "Tutup ⇧";
             } else {
-                btn.innerHTML = "Baca Selengkapnya ⇩";
-                // Scroll sedikit ke atas agar user tidak bingung saat menutup
-                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                tombol.innerHTML = "Baca Selengkapnya ⇩";
             }
         }
 
-        // SCRIPT PENGIRIM PESAN
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyGCcXoJ9CySCs_LPGn3thXtvvBnigpKQRZe4_iAgw3MAoCX9pqyhxAZC1NeIm5qpC2MQ/exec';
+        // --- 4. LOAD PENGUMUMAN (Teks Berjalan) ---
+        function muatPengumuman() {
+          fetch(urlScript + "?action=getPengumuman")
+            .then(res => res.json())
+            .then(data => {
+              var marquee = document.getElementById('teks-berjalan');
+              var container = document.getElementById('area-pengumuman');
+              
+              if(data.length > 0) {
+                 container.style.display = 'block';
+                 // Gabungkan semua pengumuman dengan pemisah " | "
+                 var teksGabungan = data.map(item => `📢 ${item.isi}`).join(" &nbsp;&nbsp;|&nbsp;&nbsp; ");
+                 marquee.innerHTML = teksGabungan;
+              } else {
+                 container.style.display = 'none';
+              }
+            })
+            .catch(err => console.log('Gagal ambil pengumuman:', err));
+        }
+
+        // --- 5. LOAD BERITA (Card Style) ---
+        function muatBerita() {
+            fetch(urlScript + "?action=getBerita")
+            .then(response => response.json())
+            .then(data => {
+                var wadah = document.getElementById('wadah-berita');
+                wadah.innerHTML = ""; 
+
+                if (data.length === 0) {
+                wadah.innerHTML = '<div style="width:100%;">Belum ada berita.</div>';
+                return;
+                }
+
+                data.forEach(berita => {
+                var isiPendek = berita.isi.length > 80 ? berita.isi.substring(0, 80) + "..." : berita.isi;
+                var gambarLink = berita.gambar ? berita.gambar : "https://via.placeholder.com/400x200?text=No+Image";
+
+                // STYLE KARTU: Width 100% agar mengikuti kolom grid
+                var kartuHTML = `
+                    <div style="width: 100%; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                    
+                    <div style="height: 160px; overflow: hidden;">
+                        <img src="${gambarLink}" alt="${berita.judul}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+                    </div>
+                    
+                    <div style="padding: 15px; flex-grow: 1;">
+                        <small style="color: #0d6efd; font-weight:bold; font-size: 11px;">📅 ${berita.tanggal}</small>
+                        <h3 style="margin: 5px 0 10px 0; font-size: 16px; font-weight: bold; line-height: 1.4; color: #333;">${berita.judul}</h3>
+                        <p style="font-size: 13px; color: #666; line-height: 1.5; margin: 0;">${isiPendek}</p>
+                    </div>
+
+                    </div>
+                `;
+                wadah.innerHTML += kartuHTML;
+                });
+            })
+            .catch(error => { console.log(error); });
+        }
+
+        // --- 6. KIRIM PESAN (Contact Form) ---
+        const scriptURL = urlScript; // Pakai variabel yang sama
         const form = document.forms['submit-to-google-sheet'];
         const btnKirim = document.querySelector('.btn-kirim');
-        const myAlert = document.querySelector('.my-alert');
         const myLoading = document.querySelector('.my-loading');
+        const myAlert = document.querySelector('.my-alert');
 
         if(form) {
             form.addEventListener('submit', e => {
                 e.preventDefault();
-                myLoading.style.display = 'block';
                 btnKirim.style.display = 'none';
-                
+                myLoading.style.display = 'block';
+
                 fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                     .then(response => {
+                        console.log('Success!', response);
                         myLoading.style.display = 'none';
-                        btnKirim.style.display = 'block';
                         myAlert.style.display = 'block';
                         form.reset();
-                        setTimeout(() => { myAlert.style.display = 'none'; }, 3000);
-                        console.log('Success!', response);
+                        setTimeout(() => { 
+                             myAlert.style.display = 'none'; 
+                             btnKirim.style.display = 'block';
+                        }, 3000);
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
                         myLoading.style.display = 'none';
                         btnKirim.style.display = 'block';
-                        alert("Gagal mengirim pesan. Coba periksa koneksi internet.");
+                        alert('Gagal mengirim pesan. Cek koneksi internet!');
                     });
             });
         }
-    </script>
-<script>
-  // --- SETTING URL API (HASIL DEPLOY TADI) ---
-  var urlScript = "https://script.google.com/macros/s/AKfycby-Wj0PparIMowgRUG-0CRG3pr1d0oHVCXciMsI77nRJO94IFu2fPpzqhnFFiOhLHBfbw/exec"; 
 
-  // --- FUNGSI LOAD PENGUMUMAN DARI JARAK JAUH ---
-  function muatPengumuman() {
-    // Panggil API dengan action=getPengumuman
-    fetch(urlScript + "?action=getPengumuman")
-      .then(response => response.text())
-      .then(pesan => {
-        // Jika ada pesan (tidak kosong), tampilkan!
-        if (pesan && pesan.trim() !== "") {
-          document.getElementById('teks-berjalan').innerText = pesan;
-          document.getElementById('area-pengumuman').style.display = 'block';
-        }
-      })
-      .catch(error => console.log('Gagal ambil data:', error));
-  }
-// --- FUNGSI LOAD BERITA (LAYOUT BARU) ---
-  function muatBerita() {
-    fetch(urlScript + "?action=getBerita")
-      .then(response => response.json())
-      .then(data => {
-        var wadah = document.getElementById('wadah-berita');
-        wadah.innerHTML = ""; 
-
-        if (data.length === 0) {
-          wadah.innerHTML = '<div style="width:100%;">Belum ada berita.</div>';
-          return;
-        }
-
-        data.forEach(berita => {
-          var isiPendek = berita.isi.length > 80 ? berita.isi.substring(0, 80) + "..." : berita.isi;
-          var gambarLink = berita.gambar ? berita.gambar : "https://via.placeholder.com/400x200?text=No+Image";
-
-          // STYLE KARTU: Width 100% agar mengikuti kolom grid
-          var kartuHTML = `
-            <div style="width: 100%; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
-              
-              <div style="height: 160px; overflow: hidden;">
-                 <img src="${gambarLink}" alt="${berita.judul}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
-              </div>
-              
-              <div style="padding: 15px; flex-grow: 1;">
-                <small style="color: #0d6efd; font-weight:bold; font-size: 11px;">📅 ${berita.tanggal}</small>
-                <h3 style="margin: 5px 0 10px 0; font-size: 16px; font-weight: bold; line-height: 1.4; color: #333;">${berita.judul}</h3>
-                <p style="font-size: 13px; color: #666; line-height: 1.5; margin: 0;">${isiPendek}</p>
-              </div>
-
-            </div>
-          `;
-          wadah.innerHTML += kartuHTML;
+        // JALANKAN SAAT WEBSITE DIBUKA
+        window.addEventListener('load', function() {
+            muatPengumuman();
+            muatBerita();
         });
-      })
-      .catch(error => { console.log(error); });
-  }
 
-  // JALANKAN
-  muatPengumuman();
-  muatBerita();
-    
-  // Jalankan saat web dibuka
-  muatPengumuman();
-  </script>
+    </script>
 </body>
 </html>
