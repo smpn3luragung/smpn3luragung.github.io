@@ -76,7 +76,7 @@
 
         .menu-toggle { display: none; font-size: 22px; cursor: pointer; color: white; }
 
-        /* --- 3. RUNNING TEXT (PENGUMUMAN KUNING) --- */
+        /* --- 3. RUNNING TEXT (PENGUMUMAN) --- */
         .style-pengumuman { padding: 8px 0; font-size: 16px; }
         @media only screen and (max-width: 600px) {
             .style-pengumuman { padding: 4px 15px !important; font-size: 12px !important; }
@@ -111,7 +111,8 @@
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.postimg.cc/bNvRBs76/Sekolah-tampak-depan.jpg');
             background-size: cover; background-position: center top;
-            height: 50vh; 
+            /* PERBAIKAN: Tinggi diganti jadi 380px biar pas (tidak 30px) */
+            height: 380px; 
             width: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 20px;
@@ -276,19 +277,31 @@
             </ul>
         </nav>
     </header>
-<div id="area-pengumuman" class="style-pengumuman" style="background-color: #ffeb3b; color: #000; border-bottom: 2px solid #fbc02d;">
-            <div class="container" style="padding: 0; margin: 0;"> 
-                <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
-                  Sedang memuat informasi...
-                </marquee>
+
+    <div class="ticker-container">
+        <div class="ticker-label">Visi</div>
+        <div class="ticker-wrap">
+            <div class="ticker-item">
+                🎯 "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan"
             </div>
         </div>
+    </div>
+
     <section id="beranda" class="halaman active">
         
         <div class="hero">
             <h2>SELAMAT DATANG</h2>
             <p>Di Website Resmi SMP Negeri 3 Luragung. Media Informasi Digital dan Sarana Belajar Masa Kini.</p>
             <button onclick="bukaHalaman('profil')" style="padding: 12px 30px; background: transparent; color: white; border: 2px solid white; border-radius: 50px; font-weight: bold; cursor: pointer;">Jelajahi Profil Sekolah</button>
+            
+            <div id="area-pengumuman" style="display: none; width: 100%; max-width: 800px; margin-top: 20px; background: rgba(0,0,0,0.6); color: white; border-radius: 5px; padding: 5px;">
+                <div class="container" style="padding: 0; margin: 0;"> 
+                    <marquee id="teks-berjalan" behavior="scroll" direction="left" scrollamount="6" style="font-weight: bold;">
+                      Sedang memuat informasi...
+                    </marquee>
+                </div>
+            </div>
+
         </div>
 
         <section id="konten-sekolah" style="padding: 40px 0; background-color: #f4f4f4;">
@@ -337,15 +350,6 @@
               </div>
             </div>
           </section>
-
-    </section> <div class="ticker-container">
-        <div class="ticker-label">Visi</div>
-        <div class="ticker-wrap">
-            <div class="ticker-item">
-                🎯 "Terwujudnya Insan yang Beriman, Bertakwa, Berakhlak Mulia, Mandiri, Bernalar Kritis, Kreatif, Gotong Royong, Berkebinekaan Global, dan Cinta Lingkungan"
-            </div>
-        </div>
-    </div>
 
     <section id="profil" class="halaman">
         <h2 class="konten-judul">Profil Sekolah</h2>
@@ -605,102 +609,59 @@
 
         // --- 4. LOAD PENGUMUMAN (Teks Berjalan) ---
         function muatPengumuman() {
+          const areaPengumuman = document.getElementById('area-pengumuman');
+          const marquee = document.getElementById('teks-berjalan');
+
+          // Cek kalau ada Script Google (ambil dari sana)
           fetch(urlScript + "?action=getPengumuman")
-            .then(res => res.json())
-            .then(data => {
-              var marquee = document.getElementById('teks-berjalan');
-              var container = document.getElementById('area-pengumuman');
-              
-              if(data.length > 0) {
-                 container.style.display = 'block';
-                 // Gabungkan semua pengumuman dengan pemisah " | "
-                 var teksGabungan = data.map(item => `📢 ${item.isi}`).join(" &nbsp;&nbsp;|&nbsp;&nbsp; ");
-                 marquee.innerHTML = teksGabungan;
-              } else {
-                 container.style.display = 'none';
-              }
-            })
-            .catch(err => console.log('Gagal ambil pengumuman:', err));
+          .then(response => response.json())
+          .then(data => {
+            if (data.teks && data.teks !== "") {
+               marquee.innerHTML = data.teks;
+               areaPengumuman.style.display = 'block'; // Tampilkan jika ada pesan
+            } else {
+               areaPengumuman.style.display = 'none'; // Sembunyikan jika kosong
+            }
+          })
+          .catch(error => {
+            // Jika error atau belum ada script, pakai default ini:
+            marquee.innerHTML = "Selamat Datang di Website Resmi SMP Negeri 3 Luragung - Unggul dalam Prestasi!";
+            areaPengumuman.style.display = 'block';
+          });
         }
 
-        // --- 5. LOAD BERITA (Card Style) ---
-        function muatBerita() {
-            fetch(urlScript + "?action=getBerita")
-            .then(response => response.json())
-            .then(data => {
-                var wadah = document.getElementById('wadah-berita');
-                wadah.innerHTML = ""; 
+        // Jalankan fungsi muat pengumuman saat web dibuka
+        window.addEventListener('load', muatPengumuman);
 
-                if (data.length === 0) {
-                wadah.innerHTML = '<div style="width:100%;">Belum ada berita.</div>';
-                return;
-                }
-
-                data.forEach(berita => {
-                var isiPendek = berita.isi.length > 80 ? berita.isi.substring(0, 80) + "..." : berita.isi;
-                var gambarLink = berita.gambar ? berita.gambar : "https://via.placeholder.com/400x200?text=No+Image";
-
-                // STYLE KARTU: Width 100% agar mengikuti kolom grid
-                var kartuHTML = `
-                    <div style="width: 100%; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
-                    
-                    <div style="height: 160px; overflow: hidden;">
-                        <img src="${gambarLink}" alt="${berita.judul}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
-                    </div>
-                    
-                    <div style="padding: 15px; flex-grow: 1;">
-                        <small style="color: #0d6efd; font-weight:bold; font-size: 11px;">📅 ${berita.tanggal}</small>
-                        <h3 style="margin: 5px 0 10px 0; font-size: 16px; font-weight: bold; line-height: 1.4; color: #333;">${berita.judul}</h3>
-                        <p style="font-size: 13px; color: #666; line-height: 1.5; margin: 0;">${isiPendek}</p>
-                    </div>
-
-                    </div>
-                `;
-                wadah.innerHTML += kartuHTML;
-                });
-            })
-            .catch(error => { console.log(error); });
-        }
-
-        // --- 6. KIRIM PESAN (Contact Form) ---
-        const scriptURL = urlScript; // Pakai variabel yang sama
+        // --- 5. LOGIKA FORM KONTAK ---
+        const scriptURL = urlScript;
         const form = document.forms['submit-to-google-sheet'];
         const btnKirim = document.querySelector('.btn-kirim');
-        const myLoading = document.querySelector('.my-loading');
         const myAlert = document.querySelector('.my-alert');
+        const myLoading = document.querySelector('.my-loading');
 
         if(form) {
             form.addEventListener('submit', e => {
                 e.preventDefault();
-                btnKirim.style.display = 'none';
                 myLoading.style.display = 'block';
+                btnKirim.style.display = 'none';
 
                 fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                     .then(response => {
-                        console.log('Success!', response);
                         myLoading.style.display = 'none';
+                        btnKirim.style.display = 'block';
                         myAlert.style.display = 'block';
                         form.reset();
-                        setTimeout(() => { 
-                             myAlert.style.display = 'none'; 
-                             btnKirim.style.display = 'block';
-                        }, 3000);
+                        setTimeout(() => { myAlert.style.display = 'none'; }, 3000);
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
                         myLoading.style.display = 'none';
                         btnKirim.style.display = 'block';
-                        alert('Gagal mengirim pesan. Cek koneksi internet!');
+                        alert('Gagal mengirim pesan. Cek koneksi internet.');
                     });
             });
         }
-
-        // JALANKAN SAAT WEBSITE DIBUKA
-        window.addEventListener('load', function() {
-            muatPengumuman();
-            muatBerita();
-        });
-
     </script>
 </body>
 </html>
