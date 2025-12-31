@@ -70,9 +70,32 @@
         }
         .running-text-container marquee { color: #fff; font-size: 15px; letter-spacing: 0.5px; font-weight: 500; }
 
+        /* --- STATISTIK SEKOLAH (BARU) --- */
+        .stats-section {
+            background: var(--warna-utama);
+            color: white;
+            padding: 40px 5%;
+            margin-top: -5px; /* Nempel sama Hero */
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .stats-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px; text-align: center;
+        }
+        .stat-item {
+            padding: 10px; border-right: 1px solid rgba(255,255,255,0.2);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-icon { font-size: 40px; color: var(--warna-sekunder); margin-bottom: 15px; }
+        .stat-number { font-size: 3em; font-weight: 700; margin: 0; line-height: 1; }
+        .stat-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-top: 5px; }
+
         /* --- CONTAINER --- */
         .container {
-            max-width: 1200px; margin: 40px auto; padding: 0 20px;
+            max-width: 1200px; margin: 50px auto; padding: 0 20px;
             display: grid; grid-template-columns: 2.5fr 1fr; gap: 40px;
         }
 
@@ -106,7 +129,6 @@
         .info-content .label { font-weight: bold; font-size: 14px; display: block; color: #222; }
         .info-content .text { font-size: 13px; color: #666; }
 
-        /* STYLE KEPSEK (BARU) */
         .kepsek-img {
             width: 120px; height: 120px; border-radius: 50%; 
             border: 4px solid var(--warna-sekunder); 
@@ -135,7 +157,6 @@
         .contact-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 14px; }
         .contact-row i { color: var(--warna-sekunder); width: 20px; }
 
-        /* STYLE MAPS (BARU) */
         .map-container {
             width: 100%; height: 150px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #444;
         }
@@ -167,7 +188,8 @@
             .hero h2 { font-size: 2em; }
             .container { grid-template-columns: 1fr; margin: 20px auto; }
             .footer-content { grid-template-columns: 1fr; gap: 30px; }
-            .float-wa { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+            .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; }
+            .stat-item:last-child { border-bottom: none; }
         }
     </style>
 </head>
@@ -207,6 +229,36 @@
         </div>
     </div>
 
+    <section class="stats-section">
+        <div class="stats-grid">
+            
+            <div class="stat-item">
+                <i class="fas fa-user-graduate stat-icon"></i>
+                <h3 class="stat-number" data-target="560">0</h3>
+                <p class="stat-label">Siswa Aktif</p>
+            </div>
+
+            <div class="stat-item">
+                <i class="fas fa-chalkboard-teacher stat-icon"></i>
+                <h3 class="stat-number" data-target="35">0</h3>
+                <p class="stat-label">Guru & Staf</p>
+            </div>
+
+            <div class="stat-item">
+                <i class="fas fa-trophy stat-icon"></i>
+                <h3 class="stat-number" data-target="42">0</h3>
+                <p class="stat-label">Prestasi</p>
+            </div>
+
+            <div class="stat-item">
+                <i class="fas fa-school stat-icon"></i>
+                <h3 class="stat-number" data-target="12">0</h3>
+                <p class="stat-label">Ekstrakurikuler</p>
+            </div>
+
+        </div>
+    </section>
+
     <div class="container">
         <main>
             <div class="section-title">
@@ -235,7 +287,6 @@
         </main>
 
         <aside>
-            
             <div class="sidebar-card" style="text-align: center;">
                 <h3 style="font-size: 18px; color: var(--warna-utama); margin-bottom: 15px; font-weight: bold;">Kepala Sekolah</h3>
                 <img src="https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" alt="Kepsek" class="kepsek-img">
@@ -312,7 +363,6 @@
                     <i class="fas fa-phone"></i>
                     <span>(0232) 876543</span>
                 </div>
-
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.286337267493!2d108.61863531477324!3d-6.975485994960359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f112e84704043%3A0x600257771765c977!2sSMP%20Negeri%203%20Luragung!5e0!3m2!1sen!2sid!4v1646276000000!5m2!1sen!2sid" 
                             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -321,11 +371,12 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 SMP Negeri 3 Luragung. Created with 🔥 & Kode Sakti.</p>
+            <p>© Berkesadaran (mindful), Bermakna (meaningful), dan Menggembirakan (joyful).</p>
         </div>
     </footer>
 
     <script>
+        // 1. Toggle Menu
         function toggleMenu() {
             const menu = document.getElementById("menuNav");
             const icon = document.querySelector(".hamburger i");
@@ -338,6 +389,24 @@
                 icon.classList.add("fa-bars");
             }
         }
+
+        // 2. Animasi Angka Statistik (Counter)
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / 200; // Kecepatan hitung
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
     </script>
 </body>
 </html>
