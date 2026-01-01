@@ -404,51 +404,63 @@
         }, 5000);
     </script>
     <script>
-    // --- AREA EDIT DATA GURU DI SINI ---
-    // Cukup ganti tulisan di dalam tanda kutip "..."
-    const dataGuru = [
-        { nama: "H. Sahdiani, M.Pd", mapel: "Kepala Sekolah", foto: "https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" },
-        { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
-        { nama: "H. Enzen Zaini, S.Ag., M.M", mapel: "PAIdBP", foto: "" },
-        { nama: "Hj. Aam Syamsiah, M.Pd", mapel: "IPA", foto: "" },
-        { nama: "Fatimah, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
-        { nama: "Momon, S.Pd", mapel: "IPS", foto: "" },
-        { nama: "Deni Nurdani, S.Pd", mapel: "PJOK", foto: "" },
-        { nama: "Ubad Badruddin, S.Pd. I", mapel: "Bhs. Inggris", foto: "" },
-        { nama: "Lia Nur Amallia, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
-        { nama: "Yuliawati, S.Pd", mapel: "Matematika", foto: "" },
-        { nama: "Herman Hermayana, S.Pd", mapel: "PJOK", foto: "" },
-        { nama: "Rukmini, S.Pd", mapel: "Matematika", foto: "" },
-        { nama: "Sri Siti Nurhaliza, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
-        { nama: "Asep Kurnaepi, S.Pd", mapel: "Bhs. Inggris", foto: "" },
-        { nama: "Yeti Sri Maryati, S.Pd", mapel: "Bhs. Inggris", foto: "" },
-        { nama: "Mochamad Irsan, S.Pd", mapel: "IPA", foto: "" },
-        { nama: "Mayamunah, S.Pd", mapel: "IPS", foto: "" },
-        { nama: "Neni Juharni, S.Pd", mapel: "Bhs. Sunda", foto: "" },
-        { nama: "H. Makmur, S.Pd", mapel: "PAIdBP, foto: "" },
-        { nama: "Irfan Faturohman, S.Pd", mapel: "Pendidikan Pancasila", foto: "" },
-        { nama: "Herawati Dwi Astuti, S.Pd", mapel: "SBdBP", foto: "" },
-        { nama: "Nama Guru 22", mapel: "Tata Usaha", foto: "" },
-        { nama: "Nama Guru 23", mapel: "Penjaga Sekolah", foto: "" }
-    ];
+    console.log("Script Guru Dimulai..."); // Cek apakah script jalan
 
-    // --- JANGAN UBAH KODE DI BAWAH INI (INI MESINNYA) ---
-    const wadahGuru = document.querySelector('.guru-grid');
-    if (wadahGuru) {
-        wadahGuru.innerHTML = ""; // Bersihkan wadah
-        dataGuru.forEach(guru => {
-            // Kalau foto kosong, pakai gambar kartun default
-            const gambar = guru.foto === "" ? "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" : guru.foto;
+    try {
+        // === DATABASE GURU ===
+        const dataGuru = [
+            { nama: "H. Sahdiani, M.Pd", mapel: "Kepala Sekolah", foto: "https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" },
+            { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
+            { nama: "H. Enzen Zaini, S.Ag., M.M", mapel: "PAIdBP", foto: "" },
+            { nama: "Hj. Aam Syamsiah, M.Pd", mapel: "IPA", foto: "" },
+            { nama: "Fatimah, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+            { nama: "Momon, S.Pd", mapel: "IPS", foto: "" },
+            { nama: "Deni Nurdani, S.Pd", mapel: "PJOK", foto: "" },
+            { nama: "Ubad Badruddin, S.Pd. I", mapel: "Bhs. Inggris", foto: "" },
+            { nama: "Lia Nur Amallia, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+            { nama: "Yuliawati, S.Pd", mapel: "Matematika", foto: "" },
+            { nama: "Herman Hermayana, S.Pd", mapel: "PJOK", foto: "" },
+            { nama: "Rukmini, S.Pd", mapel: "Matematika", foto: "" },
+            { nama: "Sri Siti Nurhaliza, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+            { nama: "Asep Kurnaepi, S.Pd", mapel: "Bhs. Inggris", foto: "" },
+            { nama: "Yeti Sri Maryati, S.Pd", mapel: "Bhs. Inggris", foto: "" },
+            { nama: "Mochamad Irsan, S.Pd", mapel: "IPA", foto: "" },
+            { nama: "Mayamunah, S.Pd", mapel: "IPS", foto: "" },
+            { nama: "Neni Juharni, S.Pd", mapel: "Bhs. Sunda", foto: "" },
+            { nama: "Nama Guru 19", mapel: "Wali Kelas 7", foto: "" },
+            { nama: "Nama Guru 20", mapel: "Wali Kelas 8", foto: "" },
+            { nama: "Nama Guru 21", mapel: "Wali Kelas 9", foto: "" },
+            { nama: "Nama Guru 22", mapel: "Tata Usaha", foto: "" },
+            { nama: "Nama Guru 23", mapel: "Penjaga Sekolah", foto: "" }
+        ];
+
+        // === MESIN PENCETAK ===
+        const wadahGuru = document.querySelector('.guru-grid');
+        
+        if (wadahGuru) {
+            wadahGuru.innerHTML = ""; // Bersihkan wadah
             
-            const kotakHTML = `
-                <div class="guru-card">
-                    <img src="${gambar}" class="guru-img" alt="${guru.nama}">
-                    <h4 class="guru-nama">${guru.nama}</h4>
-                    <span class="guru-mapel">${guru.mapel}</span>
-                </div>
-            `;
-            wadahGuru.innerHTML += kotakHTML;
-        });
+            dataGuru.forEach(guru => {
+                const gambar = guru.foto === "" ? "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" : guru.foto;
+                
+                const kotakHTML = `
+                    <div class="guru-card">
+                        <img src="${gambar}" class="guru-img" alt="${guru.nama}">
+                        <h4 class="guru-nama">${guru.nama}</h4>
+                        <span class="guru-mapel">${guru.mapel}</span>
+                    </div>
+                `;
+                wadahGuru.innerHTML += kotakHTML;
+            });
+            console.log("BERHASIL: Data guru sudah ditempel!"); 
+        } else {
+            console.error("GAGAL: Wadah .guru-grid tidak ditemukan!");
+            alert("Error: Wadah guru tidak ketemu. Cek HTML div class='guru-grid'");
+        }
+
+    } catch (error) {
+        console.error("ADA ERROR DI SCRIPT:", error);
+        alert("Ada error di kodingan script: " + error.message);
     }
 </script>
 </body>
