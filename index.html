@@ -45,6 +45,8 @@
         nav ul { display: flex; gap: 20px; }
         /* Style Link Menu */
         nav ul li a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); cursor: pointer; position: relative; }
+        
+        /* WARNA KUNING AKTIF */
         nav ul li a:hover, nav ul li a.active-link { color: var(--warna-sekunder); }
         nav ul li a.active-link::after {
             content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--warna-sekunder);
@@ -58,9 +60,7 @@
         .btn-ppdb:hover { transform: scale(1.05); }
 
         /* --- SISTEM HALAMAN (PENTING) --- */
-        /* Semua halaman disembunyikan dulu */
         .halaman { display: none; animation: fadeIn 0.5s ease; padding-bottom: 40px; }
-        /* Hanya yang punya class 'active' yang muncul */
         .halaman.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -84,7 +84,7 @@
         .slider-btn:hover { background: var(--warna-sekunder); color: var(--warna-utama); }
         .prev-btn { left: 20px; } .next-btn { right: 20px; }
 
-        /* INFO TERKINI (Desain Baru: Grid Horizontal) */
+        /* INFO TERKINI */
         .info-section { padding: 40px 5%; background: white; text-align: center; }
         .info-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto 0;
@@ -172,7 +172,7 @@
             .btn-ppdb { margin-top: 15px; width: 100%; text-align: center; }
             
             .hero-slider { height: 40vh; }
-            .info-grid { grid-template-columns: 1fr; gap: 15px; } /* Info Terkini jadi susun bawah di HP */
+            .info-grid { grid-template-columns: 1fr; gap: 15px; } 
             .info-box { display: flex; align-items: center; gap: 15px; text-align: left; padding: 15px; }
             .info-icon-big { margin: 0; width: 50px; height: 50px; font-size: 20px; }
             
@@ -196,9 +196,9 @@
             <div class="menu-container" id="menuNav">
                 <nav>
                     <ul>
-                        <li><a onclick="bukaHalaman('beranda')" class="active-link" id="link-beranda">Beranda</a></li>
-                        <li><a onclick="bukaHalaman('kabar')">Kabar Kampus</a></li>
-                        <li><a onclick="bukaHalaman('guru')">Data Guru</a></li>
+                        <li><a onclick="bukaHalaman('beranda', this)" class="active-link">Beranda</a></li>
+                        <li><a onclick="bukaHalaman('kabar', this)">Kabar Kampus</a></li>
+                        <li><a onclick="bukaHalaman('guru', this)">Data Guru</a></li>
                         <li><a onclick="alert('Fitur ini akan segera hadir!')">Prestasi</a></li>
                     </ul>
                 </nav>
@@ -213,7 +213,6 @@
     </div>
 
     <div id="beranda" class="halaman active">
-        
         <div class="hero-slider">
             <div class="slide active">
                 <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Sekolah">
@@ -296,9 +295,7 @@
             <div class="section-title">
                 <h3><i class="fas fa-chalkboard-teacher" style="color:var(--warna-utama)"></i> Dewan Guru</h3>
             </div>
-            
             <div class="guru-grid"></div> 
-            
         </div>
     </div>
 
@@ -343,28 +340,41 @@
     </footer>
 
     <script>
-        // 1. FUNGSI GANTI HALAMAN (MAGIC NYA DI SINI)
-        function bukaHalaman(idHalaman) {
-            // Sembunyikan semua halaman
+        // === 1. FUNGSI GANTI HALAMAN (MAGIC WARNA KUNING DI SINI) ===
+        // Ada parameter baru: 'tombolYangDiklik'
+        function bukaHalaman(idHalaman, tombolYangDiklik) {
+            
+            // A. LOGIKA PINDAH HALAMAN
             const semuaHalaman = document.querySelectorAll('.halaman');
             semuaHalaman.forEach(halaman => {
                 halaman.classList.remove('active');
             });
 
-            // Munculkan halaman yang dipilih
             const halamanTujuan = document.getElementById(idHalaman);
             if(halamanTujuan) {
                 halamanTujuan.classList.add('active');
             }
 
-            // Tutup menu di HP otomatis kalau diklik
+            // B. LOGIKA PINDAH WARNA KUNING (ACTIVE-LINK)
+            // Hanya jalankan ini kalau tombol diklik dari menu atas (tombolYangDiklik ada isinya)
+            if (tombolYangDiklik) {
+                // 1. Hapus kelas 'active-link' dari SEMUA tombol menu
+                const semuaLink = document.querySelectorAll('nav ul li a');
+                semuaLink.forEach(link => {
+                    link.classList.remove('active-link');
+                });
+
+                // 2. Tambahkan kelas 'active-link' ke tombol yang BARUSAN DIKLIK
+                tombolYangDiklik.classList.add('active-link');
+            }
+
+            // C. LOGIKA LAIN (Tutup Menu HP & Scroll)
             const menu = document.getElementById("menuNav");
             const icon = document.querySelector(".hamburger i");
             menu.classList.remove("active");
             icon.classList.remove("fa-times");
             icon.classList.add("fa-bars");
 
-            // Scroll ke atas biar enak
             window.scrollTo(0, 0);
         }
 
@@ -403,11 +413,13 @@
             moveSlide(1);
         }, 5000);
     </script>
+
     <script>
-    console.log("Script Guru Dimulai..."); // Cek apakah script jalan
+    console.log("Script Guru Dimulai..."); 
 
     try {
         // === DATABASE GURU ===
+        // CATATAN: Ganti "img/saya.jpg" sesuai file foto asli di laptop Kakak
         const dataGuru = [
             { nama: "H. Sahdiani, M.Pd", mapel: "Kepala Sekolah", foto: "https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" },
             { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
