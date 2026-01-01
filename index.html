@@ -296,28 +296,9 @@
             <div class="section-title">
                 <h3><i class="fas fa-chalkboard-teacher" style="color:var(--warna-utama)"></i> Dewan Guru</h3>
             </div>
-            <div class="guru-grid">
-                <div class="guru-card">
-                    <img src="https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" class="guru-img" alt="Foto Guru">
-                    <h4 class="guru-nama">H. Sahdiani, M.Pd</h4>
-                    <span class="guru-mapel">Kepala Sekolah</span>
-                </div>
-                <div class="guru-card">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="guru-img" alt="Foto Guru">
-                    <h4 class="guru-nama">Budi Santoso, S.Pd</h4>
-                    <span class="guru-mapel">Matematika</span>
-                </div>
-                <div class="guru-card">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="guru-img" alt="Foto Guru">
-                    <h4 class="guru-nama">Siti Aminah, S.Ag</h4>
-                    <span class="guru-mapel">PAI</span>
-                </div>
-                <div class="guru-card">
-                    <img src="https://randomuser.me/api/portraits/men/85.jpg" class="guru-img" alt="Foto Guru">
-                    <h4 class="guru-nama">Dedi Kurnia, S.Or</h4>
-                    <span class="guru-mapel">PJOK</span>
-                </div>
-            </div>
+            
+            <div class="guru-grid"></div>
+
         </div>
     </div>
 
@@ -422,5 +403,53 @@
             moveSlide(1);
         }, 5000);
     </script>
+    <script>
+    // --- AREA EDIT DATA GURU DI SINI ---
+    // Cukup ganti tulisan di dalam tanda kutip "..."
+    const dataGuru = [
+        { nama: "H. Sahdiani, M.Pd", mapel: "Kepala Sekolah", foto: "https://img.freepik.com/free-photo/portrait-smiling-senior-man-glasses_171337-3343.jpg" },
+        { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
+        { nama: "H. Enzen Zaini, S.Ag., M.M", mapel: "PAIdBP", foto: "" },
+        { nama: "Hj. Aam Syamsiah, M.Pd", mapel: "IPA", foto: "" },
+        { nama: "Fatimah, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+        { nama: "Momon, S.Pd", mapel: "IPS", foto: "" },
+        { nama: "Deni Nurdani, S.Pd", mapel: "PJOK", foto: "" },
+        { nama: "Ubad Badruddin, S.Pd. I", mapel: "Bhs. Inggris", foto: "" },
+        { nama: "Lia Nur Amallia, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+        { nama: "Yuliawati, S.Pd", mapel: "Matematika", foto: "" },
+        { nama: "Herman Hermayana, S.Pd", mapel: "PJOK", foto: "" },
+        { nama: "Rukmini, S.Pd", mapel: "Matematika", foto: "" },
+        { nama: "Sri Siti Nurhaliza, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
+        { nama: "Asep Kurnaepi, S.Pd", mapel: "Bhs. Inggris", foto: "" },
+        { nama: "Yeti Sri Maryati, S.Pd", mapel: "Bhs. Inggris", foto: "" },
+        { nama: "Mochamad Irsan, S.Pd", mapel: "IPA", foto: "" },
+        { nama: "Mayamunah, S.Pd", mapel: "IPS", foto: "" },
+        { nama: "Neni Juharni, S.Pd", mapel: "Bhs. Sunda", foto: "" },
+        { nama: "H. Makmur, S.Pd", mapel: "PAIdBP, foto: "" },
+        { nama: "Irfan Faturohman, S.Pd", mapel: "Pendidikan Pancasila", foto: "" },
+        { nama: "Herawati Dwi Astuti, S.Pd", mapel: "SBdBP", foto: "" },
+        { nama: "Nama Guru 22", mapel: "Tata Usaha", foto: "" },
+        { nama: "Nama Guru 23", mapel: "Penjaga Sekolah", foto: "" }
+    ];
+
+    // --- JANGAN UBAH KODE DI BAWAH INI (INI MESINNYA) ---
+    const wadahGuru = document.querySelector('.guru-grid');
+    if (wadahGuru) {
+        wadahGuru.innerHTML = ""; // Bersihkan wadah
+        dataGuru.forEach(guru => {
+            // Kalau foto kosong, pakai gambar kartun default
+            const gambar = guru.foto === "" ? "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" : guru.foto;
+            
+            const kotakHTML = `
+                <div class="guru-card">
+                    <img src="${gambar}" class="guru-img" alt="${guru.nama}">
+                    <h4 class="guru-nama">${guru.nama}</h4>
+                    <span class="guru-mapel">${guru.mapel}</span>
+                </div>
+            `;
+            wadahGuru.innerHTML += kotakHTML;
+        });
+    }
+</script>
 </body>
 </html>
