@@ -43,10 +43,8 @@
 
         .menu-container { display: flex; align-items: center; gap: 20px; }
         nav ul { display: flex; gap: 20px; }
-        /* Style Link Menu */
         nav ul li a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); cursor: pointer; position: relative; }
         
-        /* WARNA KUNING AKTIF */
         nav ul li a:hover, nav ul li a.active-link { color: var(--warna-sekunder); }
         nav ul li a.active-link::after {
             content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--warna-sekunder);
@@ -59,12 +57,12 @@
         }
         .btn-ppdb:hover { transform: scale(1.05); }
 
-        /* --- SISTEM HALAMAN (PENTING) --- */
+        /* --- SISTEM HALAMAN --- */
         .halaman { display: none; animation: fadeIn 0.5s ease; padding-bottom: 40px; }
         .halaman.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 2. HALAMAN BERANDA (SLIDER + INFO) --- */
+        /* --- 2. HALAMAN BERANDA --- */
         .hero-slider { position: relative; width: 100%; height: 60vh; overflow: hidden; background: #000; }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -72,10 +70,6 @@
         }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
-        .slide-caption {
-            position: absolute; bottom: 20%; left: 5%; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); z-index: 10; max-width: 600px;
-        }
-        .slide-caption h2 { font-size: 2.5em; font-weight: 800; margin-bottom: 10px; }
         .slider-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px;
@@ -84,7 +78,6 @@
         .slider-btn:hover { background: var(--warna-sekunder); color: var(--warna-utama); }
         .prev-btn { left: 20px; } .next-btn { right: 20px; }
 
-        /* INFO TERKINI */
         .info-section { padding: 40px 5%; background: white; text-align: center; }
         .info-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto 0;
@@ -102,8 +95,8 @@
         .info-box h4 { font-size: 16px; margin-bottom: 5px; color: var(--warna-utama); }
         .info-box p { font-size: 14px; color: #666; font-weight: 600; }
 
-        /* --- 3. HALAMAN LAIN (GURU & BERITA) --- */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        /* --- 3. CONTAINER UMUM --- */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; } /* Ukuran dikecilkan biar fokus */
         
         .section-title { 
             border-left: 5px solid var(--warna-utama); padding-left: 15px; margin-bottom: 25px; 
@@ -111,18 +104,59 @@
         }
         .section-title h3 { font-size: 22px; color: #222; font-weight: 700; }
 
-        /* Grid Berita */
-        .berita-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { 
-            background: white; border-radius: 12px; overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee;
+        /* --- [UPDATE] LAYOUT BERITA HORIZONTAL (LIST) --- */
+        .berita-list { display: flex; flex-direction: column; gap: 20px; }
+        
+        .berita-card { 
+            display: flex; background: white; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s;
+            height: 180px; /* Tinggi kartu dikunci biar rapi */
         }
-        .card:hover { transform: translateY(-7px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-date { font-size: 12px; color: #888; margin-bottom: 8px; display: block; }
-        .card-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: var(--warna-utama); display: block; }
-        .card-desc { font-size: 14px; color: #555; line-height: 1.6; }
+        
+        .berita-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: var(--warna-sekunder); }
+        
+        /* Gambar Berita (Kiri) */
+        .berita-img-box { width: 35%; min-width: 120px; position: relative; overflow: hidden; }
+        .berita-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .berita-card:hover .berita-img-box img { transform: scale(1.1); }
+        
+        /* Konten Berita (Kanan) */
+        .berita-content { padding: 15px 20px; width: 65%; display: flex; flex-direction: column; justify-content: center; }
+        .berita-date { font-size: 11px; color: #888; margin-bottom: 5px; display: block; }
+        .berita-title { font-size: 16px; font-weight: bold; color: var(--warna-utama); margin-bottom: 8px; line-height: 1.3; }
+        .berita-desc { 
+            font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 15px;
+            /* Trik memotong teks panjang jadi ... */
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .btn-baca {
+            font-size: 12px; font-weight: bold; color: var(--warna-utama); 
+            text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .btn-baca:hover { color: #d32f2f; }
+
+        /* --- MODAL (POP UP BERITA) --- */
+        .modal {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background-color: #fff; width: 100%; max-width: 600px; max-height: 80vh; overflow-y: auto;
+            border-radius: 15px; position: relative; animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal-header { position: relative; height: 250px; }
+        .modal-header img { width: 100%; height: 100%; object-fit: cover; }
+        .close-btn {
+            position: absolute; top: 15px; right: 15px; background: white; width: 35px; height: 35px;
+            border-radius: 50%; border: none; font-size: 18px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .modal-body { padding: 25px; }
+        .modal-date { color: #888; font-size: 13px; margin-bottom: 5px; display: block;}
+        .modal-title { font-size: 22px; font-weight: bold; color: var(--warna-utama); margin-bottom: 20px; line-height: 1.3; }
+        .modal-text { font-size: 15px; line-height: 1.8; color: #333; text-align: justify; }
 
         /* Grid Guru */
         .guru-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
@@ -138,7 +172,7 @@
         .guru-nama { font-size: 13px; font-weight: 700; color: var(--warna-utama); margin-bottom: 4px; line-height: 1.3; }
         .guru-mapel { font-size: 11px; color: #666; background-color: #f0f0f0; padding: 3px 8px; border-radius: 20px; display: inline-block; }
 
-        /* --- STYLING KHUSUS ALUMNI --- */
+        /* Alumni */
         .alumni-card {
             background: white; padding: 30px; border-radius: 15px; text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s;
@@ -150,7 +184,7 @@
             font-weight: bold; margin-top: 15px; color: white; transition: 0.3s;
         }
 
-        /* --- FOOTER --- */
+        /* Footer */
         footer { background: #1a1a1a; color: #bbb; padding: 60px 5% 20px; margin-top: auto; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; padding-bottom: 40px; border-bottom: 1px solid #333; }
         .footer-col h4 { color: white; margin-bottom: 20px; font-size: 18px; position: relative; padding-bottom: 10px; }
@@ -158,7 +192,6 @@
         .footer-links li { margin-bottom: 10px; } .footer-links a { font-size: 14px; color: #bbb; }
         .contact-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 14px; }
         .contact-row i { color: var(--warna-sekunder); width: 20px; }
-        .map-container { width: 100%; height: 150px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #444; }
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 13px; }
         
         .float-wa {
@@ -168,7 +201,7 @@
             z-index: 1000; display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
 
-        /* === RESPONSIVE HP === */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .menu-container {
@@ -181,15 +214,17 @@
             nav ul { flex-direction: column; width: 100%; gap: 0; }
             nav ul li { border-bottom: 1px solid rgba(255,255,255,0.1); width: 100%; }
             nav ul li a { display: block; padding: 12px 0; }
-            .btn-ppdb { margin-top: 15px; width: 100%; text-align: center; }
             
             .hero-slider { height: 40vh; }
             .info-grid { grid-template-columns: 1fr; gap: 15px; } 
             .info-box { display: flex; align-items: center; gap: 15px; text-align: left; padding: 15px; }
-            .info-icon-big { margin: 0; width: 50px; height: 50px; font-size: 20px; }
             
             .guru-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            .guru-img { width: 60px; height: 60px; }
+            
+            /* Pada HP, Kartu Berita tetap rapi (Gambar di atas, tapi pendek) */
+            .berita-card { height: auto; flex-direction: column; }
+            .berita-img-box { width: 100%; height: 180px; }
+            .berita-content { width: 100%; padding: 15px; }
         }
     </style>
 </head>
@@ -219,7 +254,7 @@
             </div>
         </header>
         <div class="running-text-container">
-            <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();">
+            <marquee behavior="scroll" direction="left" scrollamount="7">
                 📢 Selamat Datang di Portal Digital SMP Negeri 3 Luragung. Membangun masa depan gemilang dengan akhlak mulia. | Info PPDB: Gelombang 1 Dibuka!
             </marquee>
         </div>
@@ -227,59 +262,26 @@
 
     <div id="beranda" class="halaman active">
         <div class="hero-slider">
-            
-            <div class="slide active">
-                <img src="img/gedung.jpeg" alt="Gedung Sekolah">
-            </div>
-
-            <div class="slide">
-                <img src="img/slide2.jpeg" alt="Kegiatan Siswa">
-            </div>
-
-            <div class="slide">
-                <img src="img/slide3.jpeg" alt="Prestasi">
-            </div>
-
-            <div class="slide">
-                <img src="img/siswa.jpg" alt="Prestasi">
-            </div>
-
+            <div class="slide active"><img src="img/gedung.jpeg" alt="Gedung"></div>
+            <div class="slide"><img src="img/slide2.jpeg" alt="Kegiatan"></div>
+            <div class="slide"><img src="img/slide3.jpeg" alt="Prestasi"></div>
+            <div class="slide"><img src="img/siswa.jpg" alt="Siswa"></div>
             <button class="slider-btn prev-btn" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-btn next-btn" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
 
         <section id="sambutan" style="padding: 40px 0; background-color: #f9f9f9;">
           <div class="container">
-            
             <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-              
-              <img src="img/kepsek.png" alt="Kepala Sekolah" 
-                   style="float: left; width: 150px; margin-right: 25px; margin-bottom: 5px; border-radius: 8px; border: 3px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-
-              <h5 style="color: #003366; font-weight: bold; margin-top: 0; margin-bottom: 15px;">
-                Sambutan Kepala Sekolah
-              </h5>
-
+              <img src="img/kepsek.png" alt="Kepala Sekolah" style="float: left; width: 150px; margin-right: 25px; margin-bottom: 5px; border-radius: 8px; border: 3px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+              <h5 style="color: #003366; font-weight: bold; margin-top: 0; margin-bottom: 15px;">Sambutan Kepala Sekolah</h5>
               <p style="text-align: justify; font-size: 14px; line-height: 1.6; color: #333;">
                 Assalamu’alaikum Warahmatullahi Wabarakatuh.<br>
-                Selamat datang di website resmi SMP Negeri 3 Luragung. Di era digital ini, website menjadi wahana vital untuk menyebarkan informasi dan menjalin komunikasi. Kami berharap website ini menjadi sarana interaksi positif, tempat berbagi ilmu, dan ajang kolaborasi antara guru, siswa, orang tua, dan alumni.
-                <br>
-                Mari bersama-sama manfaatkan platform ini untuk membangun sekolah kita menjadi lebih baik. Terima kasih atas dukungan Anda.
-                <br><br>
-                
-                Wasalamu'alaikum Warahmatullahi Wabarakatuh.
-                <br><br>
-
-                <strong style="color: #000; font-size: 15px;">Dery Daryaman, S.Pd</strong>
-                <br>
-                
-                <span style="font-size: 13px; color: #555; font-weight: bold;">
-                    NIP. 19670714 199512 1 001
-                </span>
+                Selamat datang di website resmi SMP Negeri 3 Luragung. Mari bersama-sama manfaatkan platform ini untuk membangun sekolah kita menjadi lebih baik.<br><br>
+                <strong style="color: #000; font-size: 15px;">Dery Daryaman, S.Pd</strong><br>
+                <span style="font-size: 13px; color: #555; font-weight: bold;">NIP. 19670714 199512 1 001</span>
               </p>
-
               <div style="clear: both;"></div>
-
             </div>
           </div>
         </section>        
@@ -288,29 +290,18 @@
             <div class="section-title" style="justify-content: center; border: none; margin-bottom: 10px;">
                 <h3><i class="fas fa-bullhorn" style="color:var(--warna-utama)"></i> Info Terkini</h3>
             </div>
-            <p style="text-align: center; color: #666; font-size: 14px;">Update informasi terbaru seputar kegiatan sekolah.</p>
-            
             <div class="info-grid">
                 <div class="info-box">
                     <div class="info-icon-big"><i class="far fa-calendar-check"></i></div>
-                    <div>
-                        <h4>Masuk Sekolah Semester Genap</h4>
-                        <p>Senin, 12 Januari 2026</p>
-                    </div>
+                    <div><h4>Masuk Sekolah</h4><p>12 Januari 2026</p></div>
                 </div>
                 <div class="info-box">
                     <div class="info-icon-big"><i class="fas fa-graduation-cap"></i></div>
-                    <div>
-                        <h4>Status PPDB</h4>
-                        <p>Gelombang 1 Dibuka</p>
-                    </div>
+                    <div><h4>Status PPDB</h4><p>Gelombang 1 Dibuka</p></div>
                 </div>
                 <div class="info-box">
                     <div class="info-icon-big"><i class="fas fa-phone-alt"></i></div>
-                    <div>
-                        <h4>Hotline TU</h4>
-                        <p>0812-3456-7890</p>
-                    </div>
+                    <div><h4>Hotline TU</h4><p>0812-3456-7890</p></div>
                 </div>
             </div>
         </section>
@@ -321,24 +312,7 @@
             <div class="section-title">
                 <h3><i class="fas fa-newspaper" style="color:var(--warna-utama)"></i> Kabar Kampus</h3>
             </div>
-            <div class="berita-grid">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rapat">
-                    <div class="card-body">
-                        <span class="card-date">10 Januari 2026</span>
-                        <a href="#" class="card-title">Persiapan Semester Genap</a>
-                        <p class="card-desc">Guru dan staf mengadakan rapat koordinasi untuk meningkatkan mutu pembelajaran.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Juara">
-                    <div class="card-body">
-                        <span class="card-date">01 Januari 2026</span>
-                        <a href="#" class="card-title">Prestasi Awal Tahun</a>
-                        <p class="card-desc">Siswa SMPN 3 Luragung berhasil menyabet medali emas dalam Olimpiade Sains.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="berita-list"></div>
         </div>
     </div>
 
@@ -356,168 +330,114 @@
             <div class="section-title">
                 <h3><i class="fas fa-user-graduate" style="color:var(--warna-utama)"></i> Pojok Alumni</h3>
             </div>
-            
-            <p style="text-align: center; color: #555; margin-bottom: 30px;">
-                "Jarak boleh memisahkan, tapi kenangan dan persaudaraan tetap menyatukan."<br>
-                Mari sambung kembali tali silaturahmi dengan guru dan teman seperjuangan.
-            </p>
-
             <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                
                 <div style="flex: 1; min-width: 300px; max-width: 400px;" class="alumni-card">
-                    <div class="alumni-icon">
-                        <i class="fab fa-whatsapp" style="color: #25d366;"></i>
-                    </div>
+                    <div class="alumni-icon"><i class="fab fa-whatsapp" style="color: #25d366;"></i></div>
                     <h4 style="font-weight: bold; margin-bottom: 10px;">Forum Diskusi Alumni</h4>
-                    <p style="font-size: 14px; color: #666;">Bergabunglah dengan grup WhatsApp resmi alumni untuk diskusi dan info reuni.</p>
-                    <a href="https://chat.whatsapp.com/..." target="_blank" class="btn-alumni" style="background-color: #25d366;">
-                        Gabung Grup WA <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <a href="#" class="btn-alumni" style="background-color: #25d366;">Gabung Grup WA <i class="fas fa-arrow-right"></i></a>
                 </div>
-
                 <div style="flex: 1; min-width: 300px; max-width: 400px;" class="alumni-card">
-                    <div class="alumni-icon">
-                        <i class="fas fa-edit" style="color: #003366;"></i>
-                    </div>
+                    <div class="alumni-icon"><i class="fas fa-edit" style="color: #003366;"></i></div>
                     <h4 style="font-weight: bold; margin-bottom: 10px;">Pendataan Alumni</h4>
-                    <p style="font-size: 14px; color: #666;">Isi data diri agar tercatat di database sekolah dan memudahkan komunikasi.</p>
-                    <a href="https://forms.gle/Q13RbLyeTn2WNbnWA" target="_blank" class="btn-alumni" style="background-color: #003366;">
-                        Isi Data Alumni <i class="fas fa-edit"></i>
-                    </a>
+                    <a href="#" class="btn-alumni" style="background-color: #003366;">Isi Data Alumni <i class="fas fa-edit"></i></a>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <a href="https://wa.me/6281234567890" class="float-wa" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/6281234567890" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <footer>
         <div class="footer-content">
             <div class="footer-col">
-                <div style="margin-bottom: 10px;">
-                    <i class="fab fa-facebook-f"></i>
-                    <span style="margin-left: 10px;">spen_galur</span>
-                </div>
-
-                <div style="margin-bottom: 10px;">
-                    <i class="fab fa-instagram"></i>
-                    <span style="margin-left: 10px;">smpn3_luragung</span>
-                </div>
-
-                <div style="margin-bottom: 10px;">
-                    <i class="fab fa-youtube"></i>
-                    <span style="margin-left: 10px;">belum ada😁</span>
-                </div>
+                <h4>SMPN 3 LURAGUNG</h4>
+                <p>Mencetak generasi cerdas dan berkarakter.</p>
             </div>
             <div class="footer-col">
                 <h4>Akses Cepat</h4>
                 <ul class="footer-links">
                     <li><a onclick="bukaHalaman('beranda', document.querySelectorAll('nav ul li a')[0])" style="cursor:pointer">🏠 Beranda</a></li>
                     <li><a onclick="bukaHalaman('guru', document.querySelectorAll('nav ul li a')[2])" style="cursor:pointer">👨‍🏫 Data Guru</a></li>
-                    <li><a onclick="bukaHalaman('kabar', document.querySelectorAll('nav ul li a')[1])" style="cursor:pointer">📰 Kabar Kampus</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Lokasi & Kontak</h4>
-                <div class="contact-row">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Jl. Abdi Praja No. 01, Luragung</span>
-                </div>
-                <div class="contact-row">
-                    <i class="fas fa-phone"></i>
-                    <span>(0232) 000000</span>
-                </div>
+                <h4>Kontak</h4>
+                <div class="contact-row"><i class="fas fa-map-marker-alt"></i><span>Jl. Abdi Praja No. 01</span></div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© Berkesadaran (mindful), Bermakna (meaningful), dan Menggembirakan (joyful).</p>
+            <p>© 2026 SMP Negeri 3 Luragung. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <div id="modalBerita" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="tutupModal()">&times;</button>
+            <div class="modal-header">
+                <img id="popup-img" src="" alt="Detail">
+            </div>
+            <div class="modal-body">
+                <span id="popup-date" class="modal-date"></span>
+                <h2 id="popup-title" class="modal-title"></h2>
+                <div id="popup-text" class="modal-text"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // === 1. FUNGSI GANTI HALAMAN (MAGIC WARNA KUNING DI SINI) ===
-        // Ada parameter baru: 'tombolYangDiklik'
-        function bukaHalaman(idHalaman, tombolYangDiklik) {
-            
-            // A. LOGIKA PINDAH HALAMAN
-            const semuaHalaman = document.querySelectorAll('.halaman');
-            semuaHalaman.forEach(halaman => {
-                halaman.classList.remove('active');
-            });
-
-            const halamanTujuan = document.getElementById(idHalaman);
-            if(halamanTujuan) {
-                halamanTujuan.classList.add('active');
+        // === 1. FUNGSI NAVIGASI ===
+        function bukaHalaman(idHalaman, tombol) {
+            document.querySelectorAll('.halaman').forEach(h => h.classList.remove('active'));
+            document.getElementById(idHalaman).classList.add('active');
+            if (tombol) {
+                document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active-link'));
+                tombol.classList.add('active-link');
             }
-
-            // B. LOGIKA PINDAH WARNA KUNING (ACTIVE-LINK)
-            // Hanya jalankan ini kalau tombol diklik dari menu atas (tombolYangDiklik ada isinya)
-            if (tombolYangDiklik) {
-                // 1. Hapus kelas 'active-link' dari SEMUA tombol menu
-                const semuaLink = document.querySelectorAll('nav ul li a');
-                semuaLink.forEach(link => {
-                    link.classList.remove('active-link');
-                });
-
-                // 2. Tambahkan kelas 'active-link' ke tombol yang BARUSAN DIKLIK
-                tombolYangDiklik.classList.add('active-link');
-            }
-
-            // C. LOGIKA LAIN (Tutup Menu HP & Scroll)
-            const menu = document.getElementById("menuNav");
-            const icon = document.querySelector(".hamburger i");
-            menu.classList.remove("active");
-            icon.classList.remove("fa-times");
-            icon.classList.add("fa-bars");
-
+            document.getElementById("menuNav").classList.remove("active");
             window.scrollTo(0, 0);
         }
 
-        // 2. Toggle Menu Hamburger
-        function toggleMenu() {
-            const menu = document.getElementById("menuNav");
-            const icon = document.querySelector(".hamburger i");
-            menu.classList.toggle("active");
+        function toggleMenu() { document.getElementById("menuNav").classList.toggle("active"); }
+
+        // === 2. FUNGSI SLIDER ===
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        function moveSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            slideIndex += n;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            slides[slideIndex].classList.add('active');
+        }
+        setInterval(() => moveSlide(1), 5000);
+
+        // === 3. FUNGSI MODAL BERITA (POPUP) ===
+        function bukaModal(index) {
+            const data = dataBerita[index];
+            document.getElementById('popup-img').src = data.gambar;
+            document.getElementById('popup-date').innerText = data.tanggal;
+            document.getElementById('popup-title').innerText = data.judul;
+            // Ubah \n jadi <br> biar paragraf turun
+            document.getElementById('popup-text').innerHTML = data.isi.replace(/\n/g, "<br>"); 
             
-            if (menu.classList.contains("active")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-times");
-            } else {
-                icon.classList.remove("fa-times");
-                icon.classList.add("fa-bars");
+            document.getElementById('modalBerita').style.display = "flex";
+        }
+
+        function tutupModal() {
+            document.getElementById('modalBerita').style.display = "none";
+        }
+
+        // Klik di luar kotak untuk tutup
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalBerita');
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
 
-        // 3. Script Slider
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            if (n >= slides.length) slideIndex = 0;
-            if (n < 0) slideIndex = slides.length - 1;
-            slides[slideIndex].classList.add('active');
-        }
-
-        function moveSlide(n) {
-            slideIndex += n;
-            showSlide(slideIndex);
-        }
-
-        setInterval(() => {
-            moveSlide(1);
-        }, 5000);
-    </script>
-
-    <script>
-    console.log("Script Guru Dimulai..."); 
-
-    try {
-        // === DATABASE GURU ===
-        // CATATAN: Ganti "img/saya.jpg" sesuai file foto asli di laptop Kakak
+        // ==========================================
+        //  DATABASE GURU & BERITA
+        // ==========================================
         const dataGuru = [
             { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
             { nama: "H. Enzen Zaini, S.Ag., M.M", mapel: "PAIdBP", foto: "" },
@@ -525,52 +445,66 @@
             { nama: "Fatimah, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
             { nama: "Momon, S.Pd", mapel: "IPS", foto: "img/momon.png" },
             { nama: "Deni Nurdani, S.Pd", mapel: "PJOK", foto: "img/aku.png" },
-            { nama: "Ubad Badruddin, S.Pd. I", mapel: "Bhs. Inggris", foto: "" },
-            { nama: "Lia Nur Amallia, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
-            { nama: "Yuliawati, S.Pd", mapel: "Matematika", foto: "" },
             { nama: "Herman Hermayana, S.Pd", mapel: "PJOK", foto: "img/herman.png" },
-            { nama: "Rukmini, S.Pd", mapel: "Matematika", foto: "" },
-            { nama: "Sri Siti Nurhaliza, S.Pd", mapel: "Bhs. Indonesia", foto: "" },
-            { nama: "Asep Kurnaepi, S.Pd", mapel: "Bhs. Inggris", foto: "" },
-            { nama: "Yeti Sri Maryati, S.Pd", mapel: "Bhs. Inggris", foto: "" },
-            { nama: "Mochamad Irsan, S.Pd", mapel: "IPA", foto: "" },
-            { nama: "Mayamunah, S.Pd", mapel: "IPS", foto: "" },
-            { nama: "Neni Juharni, S.Pd", mapel: "Bhs. Sunda", foto: "" },
-            { nama: "H. Makmur, S.Pd", mapel: "PAIdBP", foto: "" },
-            { nama: "Irfan Faturohman, S.Pd", mapel: "Pendidikan Pancasila", foto: "" },
-            { nama: "Nama Guru 21", mapel: "Wali Kelas 9", foto: "" },
-            { nama: "Nama Guru 22", mapel: "Tata Usaha", foto: "" },
-            { nama: "Nama Guru 23", mapel: "Penjaga Sekolah", foto: "" }
+            { nama: "Ubad Badruddin, S.Pd. I", mapel: "Bhs. Inggris", foto: "" }
         ];
 
-        // === MESIN PENCETAK ===
         const wadahGuru = document.querySelector('.guru-grid');
-        
         if (wadahGuru) {
-            wadahGuru.innerHTML = ""; // Bersihkan wadah
-            
+            wadahGuru.innerHTML = "";
             dataGuru.forEach(guru => {
-                const gambar = guru.foto === "" ? "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" : guru.foto;
-                
-                const kotakHTML = `
+                const img = guru.foto || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+                wadahGuru.innerHTML += `
                     <div class="guru-card">
-                        <img src="${gambar}" class="guru-img" alt="${guru.nama}">
+                        <img src="${img}" class="guru-img">
                         <h4 class="guru-nama">${guru.nama}</h4>
                         <span class="guru-mapel">${guru.mapel}</span>
-                    </div>
-                `;
-                wadahGuru.innerHTML += kotakHTML;
+                    </div>`;
             });
-            console.log("BERHASIL: Data guru sudah ditempel!"); 
-        } else {
-            console.error("GAGAL: Wadah .guru-grid tidak ditemukan!");
-            alert("Error: Wadah guru tidak ketemu. Cek HTML div class='guru-grid'");
         }
 
-    } catch (error) {
-        console.error("ADA ERROR DI SCRIPT:", error);
-        alert("Ada error di kodingan script: " + error.message);
-    }
-</script>
+        // --- BERITA ---
+        const dataBerita = [
+            { 
+                judul: "Persiapan Semester Genap 2026", 
+                tanggal: "10 Januari 2026", 
+                gambar: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800", 
+                isi: "Menghadapi semester genap, seluruh guru mengadakan rapat kerja untuk menyusun strategi pembelajaran terbaru. Fokus utama adalah peningkatan literasi digital siswa dan penguatan karakter disiplin.\n\nSelain itu, sekolah juga mempersiapkan sarana prasarana penunjang kegiatan ekstrakurikuler yang akan aktif kembali minggu depan." 
+            },
+            { 
+                judul: "Prestasi Emas Olimpiade Sains", 
+                tanggal: "01 Januari 2026", 
+                gambar: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=800", 
+                isi: "Selamat kepada tim IPA SMPN 3 Luragung yang berhasil menyabet Medali Emas tingkat Kabupaten. Prestasi ini menjadi kado indah di awal tahun." 
+            },
+            { 
+                judul: "Kegiatan Pramuka Wajib", 
+                tanggal: "15 Januari 2026", 
+                gambar: "https://images.unsplash.com/photo-1472653431158-6364773b2a56?w=800", 
+                isi: "Pemberitahuan bagi seluruh siswa kelas 7 dan 8, kegiatan Pramuka Wajib akan dilaksanakan setiap hari Jumat sore. Harap mengenakan seragam pramuka lengkap." 
+            }
+        ];
+
+        const wadahBerita = document.querySelector('.berita-list');
+        if (wadahBerita) {
+            wadahBerita.innerHTML = "";
+            dataBerita.forEach((berita, index) => {
+                wadahBerita.innerHTML += `
+                <div class="berita-card">
+                    <div class="berita-img-box">
+                        <img src="${berita.gambar}" alt="${berita.judul}">
+                    </div>
+                    <div class="berita-content">
+                        <span class="berita-date"><i class="far fa-clock"></i> ${berita.tanggal}</span>
+                        <h3 class="berita-title">${berita.judul}</h3>
+                        <p class="berita-desc">${berita.isi}</p>
+                        <div class="btn-baca" onclick="bukaModal(${index})">
+                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>`;
+            });
+        }
+    </script>
 </body>
 </html>
