@@ -44,11 +44,11 @@
         .halaman.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- BERANDA (SLIDER FADE - AMAN) --- */
+        /* --- BERANDA (SLIDER FADE - ANTI PUSING) --- */
         .hero-slider { position: relative; width: 100%; height: 60vh; overflow: hidden; background: #000; }
         .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            opacity: 0; transition: opacity 1.5s ease-in-out; 
+            opacity: 0; transition: opacity 1.5s ease-in-out; /* Efek Fade Halus */
             display: flex; justify-content: center; align-items: center;
         }
         .slide.active { opacity: 1; }
@@ -102,7 +102,7 @@
         .alumni-icon { font-size: 50px; margin-bottom: 20px; display: inline-block; }
         .btn-alumni { display: inline-block; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 15px; color: white; transition: 0.3s; }
 
-        /* --- KOMENTAR ALUMNI STYLE (BARU) --- */
+        /* --- KOMENTAR ALUMNI STYLE --- */
         .komentar-section { margin-top: 50px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .chat-box { max-height: 400px; overflow-y: auto; margin-bottom: 20px; padding-right: 10px; }
         .chat-item { display: flex; gap: 15px; margin-bottom: 20px; animation: slideIn 0.3s ease; }
@@ -115,7 +115,6 @@
         .chat-text { font-size: 14px; color: #333; line-height: 1.5; }
         .btn-reply { font-size: 11px; color: var(--warna-utama); cursor: pointer; margin-top: 5px; display: inline-block; font-weight: 600; }
         .btn-reply:hover { text-decoration: underline; }
-        
         .form-komentar { display: flex; gap: 10px; flex-direction: column; border-top: 1px solid #eee; padding-top: 20px; }
         .input-row { display: flex; gap: 10px; }
         .input-komen { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; transition: 0.3s; }
@@ -134,7 +133,7 @@
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 13px; }
         .float-wa { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--hijau-wa); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 1000; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
 
-        /* --- MODAL (POPUP BERITA) --- */
+        /* --- MODAL (POPUP BERITA & OSIS) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.7); z-index: 2000;
@@ -161,6 +160,13 @@
         .modal-title { font-size: 24px; color: var(--warna-utama); font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
         .modal-body { font-size: 15px; color: #444; line-height: 1.8; text-align: justify; }
         .modal-body p { margin-bottom: 15px; }
+
+        /* FORM INPUT OSIS STYLE */
+        .osis-form-group { margin-bottom: 15px; }
+        .osis-label { font-weight: bold; display: block; margin-bottom: 5px; color: #333; }
+        .osis-input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .btn-osis-post { background: var(--warna-utama); color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-osis-post:hover { background: var(--warna-sekunder); color: var(--warna-utama); }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -273,7 +279,8 @@
             <div class="section-title">
                 <h3><i class="fas fa-newspaper" style="color:var(--warna-utama)"></i> Kabar Kampus</h3>
             </div>
-            <div class="berita-grid">
+            
+            <div class="berita-grid" id="wadahBerita">
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1577896335452-fa0e235248a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Upacara">
                     <div class="card-body">
@@ -328,6 +335,32 @@
         </div>
     </div>
 
+    <div id="modalOSIS" class="modal-overlay" style="z-index: 2005;">
+        <div class="modal-box" style="max-width: 500px;">
+            <div class="modal-content">
+                <h3 style="text-align:center; color:var(--warna-utama); margin-bottom:20px;">📢 Posting Berita OSIS</h3>
+                <div class="osis-form-group">
+                    <label class="osis-label">Judul Kegiatan:</label>
+                    <input type="text" id="osisJudul" class="osis-input" placeholder="Contoh: Rapat Persiapan Pensi">
+                </div>
+                <div class="osis-form-group">
+                    <label class="osis-label">Tanggal:</label>
+                    <input type="date" id="osisTanggal" class="osis-input">
+                </div>
+                <div class="osis-form-group">
+                    <label class="osis-label">Upload Foto:</label>
+                    <input type="file" id="osisFoto" class="osis-input" accept="image/*">
+                </div>
+                <div class="osis-form-group">
+                    <label class="osis-label">Deskripsi/Berita:</label>
+                    <textarea id="osisDeskripsi" class="osis-input" rows="4" placeholder="Tulis detail kegiatan di sini..."></textarea>
+                </div>
+                <button onclick="simpanBeritaOSIS()" class="btn-osis-post">Posting Berita</button>
+                <button onclick="document.getElementById('modalOSIS').style.display='none'" style="margin-top:10px; background:#ddd; color:#333; border:none; padding:10px; width:100%; border-radius:5px; cursor:pointer;">Batal</button>
+            </div>
+        </div>
+    </div>
+
     <div id="guru" class="halaman">
         <div class="container">
             <div class="section-title">
@@ -364,15 +397,11 @@
                 <div class="section-title" style="margin-top:0;">
                     <h3><i class="fas fa-comments" style="color:var(--warna-utama)"></i> Sapa Mantan (Teman)</h3>
                 </div>
-                
                 <div class="chat-box" id="wadahKomentar">
                     <div class="chat-item">
                         <div class="chat-avatar">AD</div>
                         <div class="chat-content">
-                            <div class="chat-header">
-                                <span class="chat-name">Andi Dermawan (2015)</span>
-                                <span class="chat-time">Baru saja</span>
-                            </div>
+                            <div class="chat-header"><span class="chat-name">Andi Dermawan (2015)</span><span class="chat-time">Baru saja</span></div>
                             <p class="chat-text">Assalamualaikum, kangen banget sama baso Mang Udin di kantin belakang. Masih ada gak ya?</p>
                             <span class="btn-reply" onclick="balasKomentar('Andi Dermawan')">Balas</span>
                         </div>
@@ -380,25 +409,18 @@
                     <div class="chat-item">
                         <div class="chat-avatar" style="background:#ffeb3b; color:#1e3a8a;">SN</div>
                         <div class="chat-content">
-                            <div class="chat-header">
-                                <span class="chat-name">Siti Nurhaliza (2018)</span>
-                                <span class="chat-time">5 menit lalu</span>
-                            </div>
+                            <div class="chat-header"><span class="chat-name">Siti Nurhaliza (2018)</span><span class="chat-time">5 menit lalu</span></div>
                             <p class="chat-text">Waalaikumsalam Kang Andi, masih ada kok! Malah makin enak sekarang hehe.</p>
                             <span class="btn-reply" onclick="balasKomentar('Siti Nurhaliza')">Balas</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-komentar">
-                    <div class="input-row">
-                        <input type="text" id="namaPengirim" class="input-komen" placeholder="Nama & Angkatan (Cth: Budi 2010)" style="flex:1;">
-                    </div>
+                    <div class="input-row"><input type="text" id="namaPengirim" class="input-komen" placeholder="Nama & Angkatan (Cth: Budi 2010)" style="flex:1;"></div>
                     <textarea id="isiPesan" class="input-komen" rows="3" placeholder="Tulis pesan sapaan atau kenangan di sini..."></textarea>
                     <button onclick="kirimPesan()" class="btn-kirim"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -416,6 +438,7 @@
                     <li><a onclick="bukaHalaman('beranda', document.querySelectorAll('nav ul li a')[0])" style="cursor:pointer">🏠 Beranda</a></li>
                     <li><a onclick="bukaHalaman('guru', document.querySelectorAll('nav ul li a')[2])" style="cursor:pointer">👨‍🏫 Data Guru</a></li>
                     <li><a onclick="bukaHalaman('kabar', document.querySelectorAll('nav ul li a')[1])" style="cursor:pointer">📰 Kabar Kampus</a></li>
+                    <li><a onclick="document.getElementById('modalOSIS').style.display='flex'" style="cursor:pointer; color:#ffeb3b;">🔐 Login OSIS</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -440,7 +463,6 @@
                 document.querySelectorAll('nav ul li a').forEach(link => { link.classList.remove('active-link'); });
                 tombolYangDiklik.classList.add('active-link');
             }
-            // Auto tutup menu di HP
             const menu = document.getElementById("menuNav");
             if(menu.classList.contains('active')) toggleMenu();
             window.scrollTo(0, 0);
@@ -454,7 +476,7 @@
             icon.classList.toggle("fa-bars");
         }
 
-        // === 2. SLIDER BERANDA (FADE EFFECT - AMAN) ===
+        // === 2. SLIDER BERANDA (FADE EFFECT) ===
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         function showSlide(n) {
@@ -466,7 +488,7 @@
         function moveSlide(n) { slideIndex += n; showSlide(slideIndex); }
         setInterval(() => { moveSlide(1); }, 5000);
 
-        // === 3. LOGIC BERITA (MODAL POPUP) ===
+        // === 3. LOGIC BERITA (DATABASE DIKEMBALIKAN KE VERSI AMAN) ===
         const databaseBerita = {
             'upacara': {
                 judul: "Upacara Bendera Perdana Semester Genap",
@@ -480,7 +502,7 @@
             'literasi': {
                 judul: "Gerakan Literasi Sekolah Kembali Digalakkan",
                 tanggal: "15 Januari 2026",
-                gambar: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                gambar: "img/kuningan.png",
                 isi: `<p>Untuk meningkatkan minat baca di kalangan siswa, Tim Kurikulum SMPN 3 Luragung kembali mengaktifkan program "15 Menit Membaca" sebelum jam pelajaran pertama dimulai.</p>
                       <p>Siswa diperbolehkan membawa buku bacaan non-pelajaran seperti novel, biografi, atau komik edukasi dari rumah, atau meminjam dari perpustakaan sekolah. Program ini bertujuan untuk memperluas wawasan siswa di luar materi akademik.</p>
                       <p>"Buku adalah jendela dunia. Dengan membaca 15 menit setiap hari, setidaknya kita membuka jendela itu sedikit demi sedikit," ujar Ibu Fatimah, S.Pd selaku koordinator literasi.</p>`
@@ -502,9 +524,7 @@
                 document.getElementById('mTanggal').innerText = data.tanggal;
                 document.getElementById('mJudul').innerText = data.judul;
                 document.getElementById('mIsi').innerHTML = data.isi;
-                
-                const modal = document.getElementById('modalBerita');
-                modal.style.display = 'flex';
+                document.getElementById('modalBerita').style.display = 'flex';
             }
         }
 
@@ -514,7 +534,65 @@
             }
         }
 
-        // === 4. LOAD DATA GURU ===
+        // === 4. FITUR OSIS: POSTING BERITA (SIMULASI) ===
+        function simpanBeritaOSIS() {
+            const judul = document.getElementById('osisJudul').value;
+            const tanggal = document.getElementById('osisTanggal').value;
+            const deskripsi = document.getElementById('osisDeskripsi').value;
+            const fotoInput = document.getElementById('osisFoto');
+
+            if(judul === "" || tanggal === "" || deskripsi === "") {
+                alert("Harap lengkapi semua data!"); return;
+            }
+
+            // Membaca Foto yang Diupload (Preview Lokal)
+            const file = fotoInput.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const fotoURL = reader.result; // Ini jadi link gambar base64
+                const idBaru = 'osis_' + Date.now(); // Bikin ID unik
+
+                // 1. Simpan ke Database Sementara
+                databaseBerita[idBaru] = {
+                    judul: judul,
+                    tanggal: tanggal,
+                    gambar: fotoURL,
+                    isi: `<p>${deskripsi.replace(/\n/g, "<br>")}</p><p><em>(Berita ini diposting oleh Tim OSIS)</em></p>`
+                };
+
+                // 2. Buat Kartu HTML Baru
+                const kartuBaru = `
+                <div class="card" style="border: 2px solid var(--warna-sekunder);">
+                    <div style="position:absolute; top:10px; right:10px; background:var(--warna-sekunder); padding:2px 8px; border-radius:10px; font-size:10px; font-weight:bold;">INFO OSIS</div>
+                    <img src="${fotoURL}" alt="${judul}">
+                    <div class="card-body">
+                        <span class="card-date">${tanggal}</span>
+                        <a onclick="bacaBerita('${idBaru}')" class="card-title">${judul}</a>
+                        <p class="card-desc">${deskripsi.substring(0, 100)}...</p>
+                        <button onclick="bacaBerita('${idBaru}')" class="btn-baca">Baca Selengkapnya</button>
+                    </div>
+                </div>`;
+
+                // 3. Masukkan ke Paling Atas Grid
+                const wadah = document.getElementById('wadahBerita');
+                wadah.insertAdjacentHTML('afterbegin', kartuBaru);
+
+                // 4. Tutup Modal & Reset
+                alert("Berita OSIS berhasil diterbitkan!");
+                document.getElementById('modalOSIS').style.display = 'none';
+                document.getElementById('osisJudul').value = "";
+                document.getElementById('osisDeskripsi').value = "";
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                alert("Jangan lupa upload foto kegiatan ya!");
+            }
+        }
+
+        // === 5. LOAD DATA GURU ===
         const dataGuru = [
             { nama: "Oriza Nusifera, S.Pd", mapel: "Matematika", foto: "" },
             { nama: "H. Enzen Zaini, S.Ag., M.M", mapel: "PAIdBP", foto: "" },
@@ -552,42 +630,26 @@
             });
         }
 
-        // === 5. LOGIC KOMENTAR (SIMULASI) ===
+        // === 6. LOGIC KOMENTAR (SIMULASI) ===
         function kirimPesan() {
             const nama = document.getElementById('namaPengirim').value;
             const pesan = document.getElementById('isiPesan').value;
             const wadah = document.getElementById('wadahKomentar');
 
-            if (nama === "" || pesan === "") {
-                alert("Harap isi nama dan pesan terlebih dahulu!");
-                return;
-            }
-
-            // Buat inisial nama
+            if (nama === "" || pesan === "") { alert("Harap isi nama dan pesan terlebih dahulu!"); return; }
             const inisial = nama.substring(0, 2).toUpperCase();
-
-            // Buat elemen chat baru
             const chatBaru = `
             <div class="chat-item">
                 <div class="chat-avatar" style="background:#1e3a8a; color:white;">${inisial}</div>
                 <div class="chat-content">
-                    <div class="chat-header">
-                        <span class="chat-name">${nama}</span>
-                        <span class="chat-time">Baru saja</span>
-                    </div>
+                    <div class="chat-header"><span class="chat-name">${nama}</span><span class="chat-time">Baru saja</span></div>
                     <p class="chat-text">${pesan}</p>
                     <span class="btn-reply" onclick="balasKomentar('${nama}')">Balas</span>
                 </div>
             </div>`;
-
-            // Masukkan ke wadah
             wadah.innerHTML += chatBaru;
-
-            // Reset input
             document.getElementById('namaPengirim').value = "";
             document.getElementById('isiPesan').value = "";
-            
-            // Scroll ke bawah otomatis
             wadah.scrollTop = wadah.scrollHeight;
         }
 
