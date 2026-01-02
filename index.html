@@ -44,11 +44,11 @@
         .halaman.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- BERANDA (SLIDER FADE - ANTI PUSING) --- */
+        /* --- BERANDA (SLIDER FADE - AMAN) --- */
         .hero-slider { position: relative; width: 100%; height: 60vh; overflow: hidden; background: #000; }
         .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            opacity: 0; transition: opacity 1.5s ease-in-out; /* Efek Fade Halus */
+            opacity: 0; transition: opacity 1.5s ease-in-out; 
             display: flex; justify-content: center; align-items: center;
         }
         .slide.active { opacity: 1; }
@@ -87,6 +87,17 @@
         .btn-nav { padding: 10px 20px; border: 1px solid #ddd; background: white; color: #333; cursor: pointer; border-radius: 50px; font-weight: 600; transition: 0.3s; font-size: 14px; }
         .btn-nav:hover { border-color: var(--warna-utama); color: var(--warna-utama); transform: translateY(-2px); }
         .btn-nav.active { background: var(--warna-utama); color: white; border-color: var(--warna-utama); box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3); }
+
+        /* --- DOWNLOAD FILE STYLE (BARU & MANTAP) --- */
+        .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .download-card { background: white; padding: 20px; border-radius: 10px; display: flex; align-items: center; gap: 15px; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.05); transition:0.3s; }
+        .download-card:hover { transform: translateY(-5px); border-color: var(--warna-sekunder); }
+        .file-icon { font-size: 30px; }
+        .file-info { flex-grow: 1; }
+        .file-info h4 { font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--warna-utama); }
+        .file-info p { font-size: 11px; color: #888; }
+        .btn-download { background: var(--bg-abu); color: var(--warna-utama); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .btn-download:hover { background: var(--warna-utama); color: white; }
 
         /* --- GURU GRID --- */
         .guru-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
@@ -204,6 +215,7 @@
                     <ul>
                         <li><a onclick="bukaHalaman('beranda', this)" class="active-link">Beranda</a></li>
                         <li><a onclick="bukaHalaman('kabar', this)">Kabar Kampus</a></li>
+                        <li><a onclick="bukaHalaman('download', this)">Download</a></li>
                         <li><a onclick="bukaHalaman('guru', this)">Data Guru</a></li>
                         <li><a onclick="bukaHalaman('alumni', this)">Alumni</a></li>
                         <li><a onclick="alert('Fitur ini akan segera hadir!')">Prestasi</a></li>
@@ -279,7 +291,6 @@
             <div class="section-title">
                 <h3><i class="fas fa-newspaper" style="color:var(--warna-utama)"></i> Kabar Kampus</h3>
             </div>
-            
             <div class="berita-grid" id="wadahBerita">
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1577896335452-fa0e235248a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Upacara">
@@ -317,6 +328,53 @@
                 <button class="btn-nav" onclick="alert('Halaman berita selanjutnya belum tersedia di demo ini ya!')">
                     Next <i class="fas fa-chevron-right" style="margin-left:5px;"></i>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="download" class="halaman">
+        <div class="container">
+            <div class="section-title">
+                <h3><i class="fas fa-cloud-download-alt" style="color:var(--warna-utama)"></i> Dokumen Akademik</h3>
+            </div>
+            <p style="margin-bottom:20px; color:#555;">Silakan unduh dokumen penting terkait kegiatan akademik sekolah di bawah ini.</p>
+            
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="file-icon"><i class="fas fa-file-pdf" style="color:#e74c3c;"></i></div>
+                    <div class="file-info">
+                        <h4>Jadwal Pelajaran Smt. Genap</h4>
+                        <p>Diperbarui: 10 Jan 2026 | PDF</p>
+                    </div>
+                    <a href="#" onclick="alert('Maaf, file ini belum diupload oleh admin.')" class="btn-download"><i class="fas fa-download"></i></a>
+                </div>
+                
+                <div class="download-card">
+                    <div class="file-icon"><i class="fas fa-file-alt" style="color:#3498db;"></i></div>
+                    <div class="file-info">
+                        <h4>Kalender Akademik 2025/2026</h4>
+                        <p>Diperbarui: 01 Juli 2025 | DOCX</p>
+                    </div>
+                    <a href="#" onclick="alert('Maaf, file ini belum diupload oleh admin.')" class="btn-download"><i class="fas fa-download"></i></a>
+                </div>
+
+                <div class="download-card">
+                    <div class="file-icon"><i class="fas fa-file-excel" style="color:#27ae60;"></i></div>
+                    <div class="file-info">
+                        <h4>Jadwal Piket Guru & TU</h4>
+                        <p>Diperbarui: 12 Jan 2026 | XLSX</p>
+                    </div>
+                    <a href="#" onclick="alert('Maaf, file ini belum diupload oleh admin.')" class="btn-download"><i class="fas fa-download"></i></a>
+                </div>
+
+                <div class="download-card">
+                    <div class="file-icon"><i class="fas fa-file-pdf" style="color:#e74c3c;"></i></div>
+                    <div class="file-info">
+                        <h4>Permendikdasmen-11-2025</h4>
+                        <p>Tahun 2025 | PDF</p>
+                    </div>
+                    <a href="dokumen/permen11.pdf" class="btn-download"><i class="fas fa-download"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -488,7 +546,8 @@
         function moveSlide(n) { slideIndex += n; showSlide(slideIndex); }
         setInterval(() => { moveSlide(1); }, 5000);
 
-        // === 3. LOGIC BERITA (DATABASE DIKEMBALIKAN KE VERSI AMAN) ===
+        // === 3. LOGIC BERITA (MODAL POPUP) ===
+        // DATABASE BERITA DIKEMBALIKAN KE FILE ASLI KAKAK (IMG LAMA)
         const databaseBerita = {
             'upacara': {
                 judul: "Upacara Bendera Perdana Semester Genap",
