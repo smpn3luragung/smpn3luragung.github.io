@@ -219,7 +219,7 @@
                         <li><a onclick="bukaHalaman('download', this)">Download</a></li>
                         <li><a onclick="bukaHalaman('guru', this)">Data Guru</a></li>
                         <li><a onclick="bukaHalaman('alumni', this)">Alumni</a></li>
-                        <li><a onclick="alert('Fitur ini akan segera hadir!')">Prestasi</a></li>
+                        
                     </ul>
                 </nav>
                 <a href="#" class="btn-ppdb"><i class="fas fa-user-plus"></i> PPDB 2026</a>
@@ -234,12 +234,15 @@
 
     <div id="beranda" class="halaman active">
         <div class="hero-slider">
-            <div class="slide active"><img src="img/gedung.jpeg" alt="Gedung Sekolah"></div>
             <div class="slide"><img src="img/pramuka.png" alt="Kegiatan Siswa"></div>
             <div class="slide"><img src="img/prestasi.png" alt="Prestasi"></div>
             <div class="slide"><img src="img/slide3.jpeg" alt="Siswa"></div>
             <div class="slide"><img src="img/slide2.jpeg" alt="Siswa"></div>
             <div class="slide"><img src="img/stop.png" alt="Stop"></div>
+	<div class="slide"><img src="img/juara1.png" alt="Juara"></div>
+	<div class="slide"><img src="img/juara2.png" alt="Juara"></div>
+	<div class="slide"><img src="img/juara3.png" alt="Juara"></div>
+	<div class="slide"><img src="img/juara4.png" alt="Juara"></div>
             <button class="slider-btn prev-btn" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-btn next-btn" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
@@ -690,183 +693,5 @@
             inputPesan.focus();
         }
     </script>
-<style>
-/* CSS Khusus biar Tampilannya Kece */
-.box-ekstra {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-    text-align: center;
-}
-.judul-section {
-    color: #2c3e50;
-    font-weight: bold;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 16px;
-    letter-spacing: 1px;
-}
-
-/* Gaya Kartu OSIS */
-.osis-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-.osis-card {
-    background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
-    border: 1px solid #d1d9e6;
-    border-radius: 12px;
-    padding: 15px;
-    width: 140px; /* Ukuran kartu */
-    transition: transform 0.3s;
-}
-.osis-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-.osis-avatar {
-    width: 60px;
-    height: 60px;
-    background: #3b82f6; /* Warna biru */
-    color: white;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border: 3px solid white;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-.osis-nama {
-    font-weight: bold;
-    font-size: 13px;
-    color: #333;
-    margin-bottom: 2px;
-}
-.osis-jabatan {
-    font-size: 10px;
-    color: #666;
-    background: #fff;
-    padding: 2px 8px;
-    border-radius: 10px;
-    display: inline-block;
-    border: 1px solid #ddd;
-}
-
-/* Gaya List Prestasi */
-.prestasi-item {
-    display: flex;
-    align-items: center;
-    background: #fffdf0; /* Agak kekuningan dikit biar kayak kertas sertifikat */
-    border: 1px solid #f0e68c;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    text-align: left;
-
-/* Tambahan baru biar kursor berubah jadi jari tunjuk */
-    cursor: pointer; 
-    transition: all 0.2s;
-}
-
-/* Efek saat ditekan/disentuh */
-.prestasi-item:active {
-    transform: scale(0.98); /* Efek membal sedikit */
-    background-color: #fcf4c5;
-}
-.icon-piala {
-    width: 40px;
-    height: 40px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-</style>
-
-<div class="box-ekstra">
-    <div class="judul-section">
-        <i class="fas fa-users" style="color: #3b82f6;"></i> Pengurus OSIS 2026
-    </div>
-    
-    <div class="osis-container">
-        <div class="osis-card">
-            <div class="osis-avatar">AD</div> 
-            <div class="osis-nama">Harun Padilah</div>
-            <div class="osis-jabatan">Ketua OSIS</div>
-        </div>
-
-        <div class="osis-card">
-            <div class="osis-avatar" style="background: #ef4444;">SN</div>
-            <div class="osis-nama">Dinar Aulia Nurjanah</div>
-            <div class="osis-jabatan">Wakil Ketua</div>
-        </div>
-
-        <div class="osis-card">
-            <div class="osis-avatar" style="background: #10b981;">NH</div>
-            <div class="osis-nama">Nabila Hauladina Alifah.</div>
-            <div class="osis-jabatan">Sekretaris I</div>
-        </div>
-
-        <div class="osis-card">
-            <div class="osis-avatar" style="background: #10b981;">S2</div>
-            <div class="osis-nama">Nuri Nuralifah</div>
-            <div class="osis-jabatan">Sekretaris II</div>
-        </div>
-        
-         <div class="osis-card">
-            <div class="osis-avatar" style="background: #f59e0b;">DL</div>
-            <div class="osis-nama">Luthfi Aqmara Adzhani</div>
-            <div class="osis-jabatan">Bendahara I</div>
-        </div>
-
-        <div class="osis-card">
-            <div class="osis-avatar" style="background: #f59e0b;">B2</div>
-            <div class="osis-nama">Naira Sakila</div>
-            <div class="osis-jabatan">Bendahara II</div>
-        </div>
-    </div>
-</div>
-
-<div class="box-ekstra">
-    <div class="judul-section">
-        <i class="fas fa-trophy" style="color: #f59e0b;"></i> Hall of Fame
-    </div>
-
-    <div class="prestasi-item" onclick="alert('🚧 Sabar ya! Foto dokumentasi Lomba Coding sedang dicari admin.')">
-        <div class="icon-piala" style="color: gold;"><i class="fas fa-trophy"></i></div>
-        <div>
-            <div style="font-weight:bold; font-size:14px;">Juara 1 Lomba Coding</div>
-            <div style="font-size:11px; color:#666;">Klik untuk lihat detail</div>
-        </div>
-    </div>
-
-    <div class="prestasi-item" onclick="alert('🚧 Sabar ya! Foto tim Futsal belum di-upload.')">
-        <div class="icon-piala" style="color: silver;"><i class="fas fa-medal"></i></div>
-        <div>
-            <div style="font-weight:bold; font-size:14px;">Juara 2 Futsal Cup</div>
-            <div style="font-size:11px; color:#666;">Klik untuk lihat detail</div>
-        </div>
-    </div>
-    
-    <div class="prestasi-item" onclick="alert('🌱 Sekolah kita sekolah Adiwiyata lho! Jagalah kebersihan.')">
-        <div class="icon-piala" style="color: #cd7f32;"><i class="fas fa-star"></i></div>
-        <div>
-            <div style="font-weight:bold; font-size:14px;">Sekolah Adiwiyata</div>
-            <div style="font-size:11px; color:#666;">Penghargaan Nasional</div>
-        </div>
-    </div>
-</div>
 </body>
 </html>
