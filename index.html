@@ -142,6 +142,70 @@
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
+/* STYLE UNTUK MODAL POP-UP */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Latar gelap transparan */
+    display: none; /* Sembunyi dulu */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Paling depan */
+    backdrop-filter: blur(3px); /* Efek blur di belakang */
+    animation: fadeIn 0.3s;
+}
+
+.modal-box {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform: scale(0.8);
+    animation: popUp 0.3s forwards;
+}
+
+@keyframes popUp {
+    to { transform: scale(1); }
+}
+
+.modal-header {
+    background: var(--warna-utama); /* Biru Sekolah */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn { font-size: 24px; cursor: pointer; font-weight: bold; }
+.close-btn:hover { color: var(--warna-sekunder); }
+
+.modal-body { padding: 25px; line-height: 1.6; color: #444; font-size: 15px; }
+
+.modal-footer {
+    padding: 15px 20px;
+    background: #f9f9f9;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
+
+.btn-tutup {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Ganti Kursor Info Terkini jadi Tangan (biar tau bisa diklik) */
+.info-list li { cursor: pointer; transition: 0.2s; }
+.info-list li:hover { transform: translateX(5px); box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+
 /* 6. Responsif (Tampilan HP) */
 @media (max-width: 768px) {
     .kepsek-card {
@@ -417,16 +481,24 @@
         <div class="sidebar-box">
             <h3><i class="fas fa-bullhorn"></i> Info Terkini</h3>
             <ul class="info-list">
-                <li>Masuk Sekolah: 12 Januari 2026</li>
-                <li>Status PPDB: Gelombang 1 Dibuka</li>
-                <li>Jadwal Ujian Tengah Semester</li>
-            </ul>
+    <li onclick="bukaInfo(1)">
+        <i class="fas fa-calendar-alt" style="margin-right:8px;"></i> Masuk Sekolah: 12 Januari 2026
+    </li>
+    
+    <li onclick="bukaInfo(2)">
+        <i class="fas fa-bullhorn" style="margin-right:8px;"></i> PPDB Gelombang 1 Dibuka
+    </li>
+    
+    <li onclick="bukaInfo(3)">
+        <i class="fas fa-edit" style="margin-right:8px;"></i> Pelaksanaan TKA
+    </li>
+</ul>
         </div>
 
         <div class="sidebar-box kontak-box">
             <h3>Info Kontak</h3>
             <p><i class="fas fa-phone-alt"></i> Hotline TU: 0821-2111-9101</p>
-            <p><i class="fas fa-map-marker-alt"></i> Jl. Abdi Praja No. 01</p>
+            <p><i class="fas fa-map-marker-alt"></i> Jl. Abdi Praja No. 01 Desa Gunungkarung - Luragung - Kab. Kuningan</p>
         </div>
 
     </div>
@@ -449,7 +521,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/kuningan.png" alt="Literasi">
+                    <img src="img/literasi.png" alt="Literasi">
                     <div class="card-body">
                         <span class="card-date">15 Januari 2026</span>
                         <a onclick="bacaBerita('literasi')" class="card-title">Gerakan Literasi Sekolah</a>
@@ -679,7 +751,7 @@
             'literasi': {
                 judul: "Gerakan Literasi Sekolah Kembali Digalakkan",
                 tanggal: "15 Januari 2026",
-                gambar: "img/kuningan.png",
+                gambar: "img/literasi.png",
                 isi: `<p>Untuk meningkatkan minat baca di kalangan siswa, Tim Kurikulum SMPN 3 Luragung kembali mengaktifkan program "15 Menit Membaca" sebelum jam pelajaran pertama dimulai.</p>
                       <p>Siswa diperbolehkan membawa buku bacaan non-pelajaran seperti novel, biografi, atau komik edukasi dari rumah, atau meminjam dari perpustakaan sekolah. Program ini bertujuan untuk memperluas wawasan siswa di luar materi akademik.</p>
                       <p>"Buku adalah jendela dunia. Dengan membaca 15 menit setiap hari, setidaknya kita membuka jendela itu sedikit demi sedikit," ujar Ibu Fatimah, S.Pd selaku koordinator literasi.</p>`
@@ -923,8 +995,60 @@
                 // Kalau diblokir browser, biarkan user klik manual tombol musik
                 console.log("Autoplay diblokir, menunggu klik manual.");
             });
+
+// =========================================
+// SCRIPT LOGIKA POP-UP INFO TERKINI
+// =========================================
+
+// 1. Data "Wajah" Info (Isi detailnya di sini Kak)
+const dataInfo = {
+    1: {
+        judul: "📢 Pengumuman Masuk Sekolah",
+        isi: "Berdasarkan kalender pendidikan, kegiatan belajar mengajar (KBM) Semester Genap akan dimulai kembali pada hari <strong>Senin, 12 Januari 2026</strong>. Siswa diharapkan hadir tepat waktu pukul 06.15 WIB menggunakan seragam lengkap hari Senin dan melaksanakan Kegiatan Sapa Pagi."
+    },
+    2: {
+        judul: "🎓 Info PPDB 2026",
+        isi: "Penerimaan Peserta Didik Baru (PPDB) Gelombang 1 resmi dibuka mulai tanggal 1 Januari s.d 30 Maret 2026. <br><br>Syarat pendaftaran:<br>1. FC Akta Kelahiran<br>2. FC Kartu Keluarga<br>3. Pas Foto 3x4 (2 lembar).<br><br>Silakan hubungi Panitia di ruang Tata Usaha."
+    },
+    3: {
+        judul: "📝 Pelaksanaan TKA",
+        isi: "Pelaksanaan Tes Kemampuan Akademik (TKA) dijadwalkan akan dilaksanakan pada pertengahan Maret 2026. Dimohon semua murid kelas IX untuk mempersiapkan dari sekarang, adapaun jadwal lengkapnya akan disampaikan kemudian. Persiapkan diri kalian dengan belajar yang rajin!"
+    }
+};
+
+// 2. Fungsi Buka Jendela
+function bukaInfo(nomor) {
+    const info = dataInfo[nomor];
+    if(info) {
+        document.getElementById("judulInfo").innerHTML = info.judul;
+        document.getElementById("isiInfo").innerHTML = info.isi;
+        document.getElementById("modalInfo").style.display = "flex";
+    }
+}
+
+// 3. Fungsi Tutup Jendela
+function tutupInfo(event) {
+    // Tutup kalau klik tombol X, tombol Tutup, atau klik area gelap di luar kotak
+    if (event === 'tombol' || event.target.id === 'modalInfo') {
+        document.getElementById("modalInfo").style.display = "none";
+    }
+}
         }
     }, { once: true }); // Hanya jalan sekali saja
 </script>
+<div id="modalInfo" class="modal-overlay" onclick="tutupInfo(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 id="judulInfo">Judul Info</h3>
+            <span class="close-btn" onclick="tutupInfo('tombol')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p id="isiInfo">Isi detail informasi akan muncul di sini...</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-tutup" onclick="tutupInfo('tombol')">Tutup</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
