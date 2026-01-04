@@ -1035,6 +1035,44 @@ function tutupInfo(event) {
 }
         }
     }, { once: true }); // Hanya jalan sekali saja
+
+// =========================================
+// SCRIPT LOGIKA POP-UP (PASTE DI SINI)
+// =========================================
+
+// 1. Data "Wajah" Info
+const dataInfo = {
+    1: {
+        judul: "📢 Pengumuman Masuk Sekolah",
+        isi: "Berdasarkan kalender pendidikan, kegiatan belajar mengajar (KBM) Semester Genap akan dimulai kembali pada hari <strong>Senin, 12 Januari 2026</strong>. Siswa diharapkan hadir tepat waktu."
+    },
+    2: {
+        judul: "🎓 Info PPDB 2026",
+        isi: "Penerimaan Peserta Didik Baru (PPDB) Gelombang 1 resmi dibuka mulai tanggal 1 Januari s.d 30 Maret 2026. Silakan hubungi Tata Usaha untuk formulir."
+    },
+    3: {
+        judul: "📝 Pelaksanaan TKA",
+        isi: "Pelaksanaan Tes Kemampuan Akademik (TKA) dijadwalkan akan dilaksanakan pada pertengahan Maret 2026. Jadwal detail menyusul."
+    }
+};
+
+// 2. Fungsi Buka Jendela
+function bukaInfo(nomor) {
+    const info = dataInfo[nomor];
+    if(info) {
+        document.getElementById("judulInfo").innerHTML = info.judul;
+        document.getElementById("isiInfo").innerHTML = info.isi;
+        document.getElementById("modalInfo").style.display = "flex";
+    }
+}
+
+// 3. Fungsi Tutup Jendela
+function tutupInfo(event) {
+    if (event === 'tombol' || event.target.id === 'modalInfo') {
+        document.getElementById("modalInfo").style.display = "none";
+    }
+}
+
 </script>
 <div id="modalInfo" class="modal-overlay" onclick="tutupInfo(event)">
     <div class="modal-box">
