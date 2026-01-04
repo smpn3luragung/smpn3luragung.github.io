@@ -405,6 +405,103 @@
             .guru-img { width: 60px; height: 60px; }
             .input-row { flex-direction: column; }
         }
+
+/* =========================================
+   GAYA AREA DOWNLOAD (GRID SYSTEM)
+   ========================================= */
+
+/* 1. Wadah Grid (Biar rapi otomatis) */
+.download-grid {
+    display: grid;
+    /* Trik Magic: Otomatis ngatur jumlah kolom sesuai lebar layar */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px; /* Jarak antar kartu */
+    margin-top: 20px;
+}
+
+/* 2. Kartu File */
+.download-card {
+    background: #ffffff;
+    border-radius: 12px; /* Sudut membulat */
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Bayangan tipis */
+    display: flex; /* Biar ikon, teks, dan tombol sejajar ke samping */
+    align-items: center;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek saat mouse nyorot kartu */
+.download-card:hover {
+    transform: translateY(-5px); /* Naik sedikit */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--warna-utama);
+}
+
+/* 3. Ikon File (Kiri) */
+.file-icon {
+    font-size: 32px;
+    margin-right: 15px;
+    width: 50px;
+    text-align: center;
+}
+
+/* 4. Teks Info (Tengah) */
+.file-info {
+    flex: 1; /* Ambil sisa ruang kosong */
+}
+
+.file-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.file-info p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #888;
+}
+
+/* 5. Tombol Download (Kanan) */
+.btn-download {
+    background: #f0f2f5;
+    color: #555;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Bulat sempurna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efek saat tombol disorot */
+.btn-download:hover {
+    background: var(--warna-utama); /* Ikut warna tema website */
+    color: #fff;
+    transform: rotate(360deg); /* Muter dikit biar asik */
+}
+
+/* GAYA PETA SEKOLAH */
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* Rasio 16:9 biar kayak bioskop */
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 0;
+}
+
     </style>
 </head>
 <body>
@@ -674,6 +771,29 @@
 
     <a href="https://wa.me/6285722007005" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+<div class="lokasi-section" style="margin: 40px 0; text-align: center;">
+    <div class="container">
+        <div class="section-title">
+            <h3><i class="fas fa-map-marked-alt" style="color:var(--warna-utama)"></i> Lokasi Sekolah</h3>
+            <p>Kunjungi kami di Kampus SMP Negeri 3 Luragung.</p>
+        </div>
+
+        <div class="map-responsive" style="margin-top:20px; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow:hidden;">
+            
+<iframe 
+    width="100%" 
+    height="400" 
+    frameborder="0" 
+    scrolling="no" 
+    marginheight="0" 
+    marginwidth="0" 
+    src="https://maps.google.com/maps?q=SMP%20Negeri%203%20Luragung&t=&z=15&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+            </div>
+    </div>
+</div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -691,7 +811,7 @@
             </div>
             <div class="footer-col">
                 <h4>Lokasi & Kontak</h4>
-                <div class="contact-row"><i class="fas fa-map-marker-alt"></i><span>Jl. Abdi Praja No. 01, Luragung</span></div>
+                <div class="contact-row"><i class="fas fa-map-marker-alt"></i><span>Jl. Abdi Praja No. 01, Desa Gunugkarung - Luragung Kab. Kuningan</span></div>
                 <div class="contact-row"><i class="fas fa-phone"></i><span>(0232) 000000</span></div>
             </div>
         </div>
