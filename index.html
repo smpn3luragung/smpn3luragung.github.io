@@ -775,9 +775,9 @@
 
 <div class="lokasi-section" style="margin: 40px 0; text-align: center;">
     <div class="container">
-        <div class="section-title">
-            <h3><i class="fas fa-map-marked-alt" style="color:var(--warna-utama)"></i> Lokasi Sekolah</h3>
-            <p>Kunjungi kami di Kampus SMP Negeri 3 Luragung.</p>
+<div class="lokasi-header-mobile">
+            <i class="fas fa-map-marked-alt"></i>
+            <h2>Lokasi Sekolah</h2>
         </div>
 
         <div class="map-responsive" style="margin-top:20px; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow:hidden;">
@@ -1175,6 +1175,39 @@
         
         footer p {
             margin-bottom: 5px !important;
+        }
+    }
+
+/* GAYA LOKASI SEKOLAH (TEMPEL INI DI ATAS </style>) */
+    @media (max-width: 768px) {
+        /* Merapatkan Jarak */
+        section#lokasi, .section-lokasi, .lokasi-section {
+            margin-top: 10px !important;
+            padding-top: 10px !important;
+        }
+
+        /* Gaya Judul Baru */
+        .lokasi-header-mobile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+
+        .lokasi-header-mobile i {
+            font-size: 24px;
+            color: #f39c12;
+        }
+
+        .lokasi-header-mobile h2 {
+            margin: 0 !important;
+            font-size: 22px !important;
+            font-weight: bold !important;
+            text-transform: uppercase;
+            border: none !important;
+            padding: 0 !important;
         }
     }
 
