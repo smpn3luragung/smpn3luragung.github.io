@@ -14,6 +14,60 @@
     display: block !important;
 }
 
+/* === GAYA GALERI FOTO & VIDEO === */
+.gallery-grid {
+    display: grid;
+    /* Ini membuat kolom otomatis (Responsive): minimal lebar 250px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; /* Jarak antar kotak */
+    margin-top: 10px;
+}
+
+.gallery-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    border: 1px solid #eee;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px); /* Efek naik saat disentuh */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px; /* Tinggi foto disamakan */
+    object-fit: cover; /* Agar foto tidak gepeng */
+    display: block;
+}
+
+.caption {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+    background: #f9f9f9;
+}
+
+/* Khusus Video agar Responsif */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Rasio 16:9 Youtube */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 /* =========================================
    STYLE BARU: LAYOUT 2 KOLOM & WARNA-WARNI
    ========================================= */
@@ -820,7 +874,66 @@
     </a>
 
             </div>
+<div id="foto" class="halaman">
+    <div class="main-layout-container fade-in-up">
+        
+        <h3 style="color: #003366; border-bottom: 3px solid #f39c12; display: inline-block; padding-bottom: 5px; margin-bottom: 20px;">
+            <i class="fas fa-camera"></i> Dokumentasi Kegiatan
+        </h3>
 
+        <div class="gallery-grid">
+            
+            <div class="gallery-item">
+                <img src="img/juara1.png" alt="Kegiatan 1" onclick="alert('Ini Foto 1')">
+                <div class="caption">Penyerahan hadiah kepada murid berprestasi</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img/juara4.png" alt="Kegiatan 2">
+                <div class="caption">Penyerahan hadiah kepada murid berprestasi</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img/pramuka.png" alt="Kegiatan 3">
+                <div class="caption">Ekstrakurikuler Pramuka</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img/prestasi.png" alt="Contoh">
+                <div class="caption">Juara Cabor Sepak Bola-GSI</div>
+            </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div id="video" class="halaman">
+    <div class="main-layout-container fade-in-up">
+        
+        <h3 style="color: #003366; border-bottom: 3px solid #f39c12; display: inline-block; padding-bottom: 5px; margin-bottom: 20px;">
+            <i class="fas fa-video"></i> Video Sekolah
+        </h3>
+
+        <div class="gallery-grid">
+            
+            <div class="gallery-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="caption">Profil Sekolah</div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="caption">Kegiatan Ekstrakurikuler</div>
+            </div>
+
+        </div>
+    </div>
+</div>
     <footer>
         <div class="footer-content">
             <div class="footer-col">
