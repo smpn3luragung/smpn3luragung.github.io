@@ -532,7 +532,7 @@
         </header>
         <div class="running-text-container">
             <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();">
-                📢 Selamat Datang di Portal Digital SMP Negeri 3 Luragung. Membangun masa depan gemilang dengan akhlak mulia. | Info PPDB: Gelombang 1 Dibuka!
+                📢 Selamat Datang di Portal Digital SMP Negeri 3 Luragung. Membangun masa depan gemilang dengan akhlak mulia. | Berkesadaran (mindful), Bermakna (meaningful), dan Menggembirakan (joyful).
             </marquee>
         </div>
     </div>
@@ -816,7 +816,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© Berkesadaran (mindful), Bermakna (meaningful), dan Menggembirakan (joyful).</p>
+            <p>2026 &copy; SMPN 3 Luragung. All Rights Reserved</p>
         </div>
     </footer>
 
@@ -1075,6 +1075,23 @@
     /* Animasi Putar piringan saat lagu nyala */
     .putar-terus { animation: muter 3s linear infinite; }
     @keyframes muter { 100% { transform: rotate(360deg); } }
+
+/* =========================================
+       PERBAIKAN TAMPILAN BERITA (POP-UP) DI HP
+       ========================================= */
+    @media (max-width: 768px) {
+        .swal2-popup, .modal-content, .popup-content {
+            padding: 10px !important; 
+            width: 90% !important;
+        }
+        .swal2-html-container {
+            margin: 5px !important;
+            padding: 0 !important;
+            text-align: justify;
+            font-size: 14px;
+        }
+    }
+
 </style>
 
 <script>
