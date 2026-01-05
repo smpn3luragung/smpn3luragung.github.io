@@ -801,13 +801,14 @@
                 <div style="margin-bottom: 10px;"><i class="fab fa-instagram"></i><span style="margin-left: 10px;">smpn3_luragung</span></div>
             </div>
             <div class="footer-col">
-                <h4>Akses Cepat</h4>
-                <ul class="footer-links">
-                    <li><a onclick="bukaHalaman('beranda', document.querySelectorAll('nav ul li a')[0])" style="cursor:pointer">🏠 Beranda</a></li>
-                    <li><a onclick="bukaHalaman('guru', document.querySelectorAll('nav ul li a')[2])" style="cursor:pointer">👨‍🏫 Data Guru</a></li>
-                    <li><a onclick="bukaHalaman('kabar', document.querySelectorAll('nav ul li a')[1])" style="cursor:pointer">📰 Kabar Kampus</a></li>
-                    <li><a onclick="document.getElementById('modalOSIS').style.display='flex'" style="cursor:pointer; color:#ffeb3b;">🔐 Login OSIS</a></li>
-                </ul>
+                <h3>Akses Cepat</h3>
+            <div class="line-bottom"></div> <div class="akses-cepat-grid">
+                <a href="#home">🏠 Beranda</a>
+                <a href="#kabar">📰 Kabar Kampus</a>
+
+                <a href="#guru">👨‍🏫 Data Guru</a>
+                <a href="#osis">🔐 Login OSIS</a>
+            </div>
             </div>
             <div class="footer-col">
                 <h4>Lokasi & Kontak</h4>
@@ -1096,6 +1097,53 @@
             padding: 0 !important;
             text-align: justify;
             font-size: 14px;
+        }
+    }
+
+/* =========================================
+       PERBAIKAN FOOTER (BAGIAN BAWAH) COMPACT
+       ========================================= */
+    .akses-cepat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Membagi jadi 2 kolom sama rata */
+        gap: 10px; /* Jarak antar tombol */
+        margin-bottom: 15px;
+    }
+    
+    .akses-cepat-grid a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white; /* Sesuaikan warna teks footer kakak */
+        font-size: 14px;
+    }
+    
+    .akses-cepat-grid a i, .akses-cepat-grid a img {
+        margin-right: 8px; /* Jarak ikon ke teks */
+        width: 16px; /* Ukuran ikon biar rapi */
+        text-align: center;
+    }
+
+    /* KHUSUS TAMPILAN HP: RAPATKAN JARAK */
+    @media (max-width: 768px) {
+        footer {
+            padding-top: 20px !important;
+            padding-bottom: 100px !important; /* Dikasih bantalan bawah biar teks Copyright GAK KETUTUPAN tombol WA */
+            text-align: left !important;
+        }
+        
+        .footer-section, .footer-col {
+            margin-bottom: 15px !important; /* Mengurangi jarak panah merah kakak */
+        }
+        
+        footer h3, footer h4 {
+            margin-bottom: 10px !important;
+            font-size: 16px !important;
+            margin-top: 0 !important;
+        }
+        
+        footer p {
+            margin-bottom: 5px !important;
         }
     }
 
