@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+/* TEMPEL DI BAGIAN STYLE PALING ATAS */
+.menu-item-has-children:hover .sub-menu {
+    display: block !important;
+}
 
 /* =========================================
    STYLE BARU: LAYOUT 2 KOLOM & WARNA-WARNI
@@ -523,6 +527,18 @@
                         <li><a onclick="bukaHalaman('kabar', this)">Kabar Kampus</a></li>
                         <li><a onclick="bukaHalaman('download', this)">Download</a></li>
                         <li><a onclick="bukaHalaman('guru', this)">Data Guru</a></li>
+			<li class="menu-item-has-children" style="position: relative; display: inline-block;">
+    			<a href="#" style="cursor: pointer;">Galeri ▼</a>
+    
+    			<ul class="sub-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 150px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); list-style: none; padding: 10px; border-radius: 4px; z-index: 999;">
+        			<li style="margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+             			<a onclick="bukaHalaman('foto', this)" style="color: #333; display: block; padding: 5px;">Kumpulan Foto</a>
+        		</li>
+        		<li>
+             			<a onclick="bukaHalaman('video', this)" style="color: #333; display: block; padding: 5px;">Kumpulan Video</a>
+        		</li>
+    		</ul>
+	</li>
                         <li><a onclick="bukaHalaman('alumni', this)">Alumni</a></li>
                         
                     </ul>
@@ -538,19 +554,13 @@
     </div>
 
     <div id="beranda" class="halaman active">
-        <div class="hero-slider">
-            <div class="slide"><img src="img/pramuka.png" alt="Kegiatan Siswa"></div>
-            <div class="slide"><img src="img/prestasi.png" alt="Prestasi"></div>
-            <div class="slide"><img src="img/slide3.jpeg" alt="Siswa"></div>
-            <div class="slide"><img src="img/slide2.jpeg" alt="Siswa"></div>
-            <div class="slide"><img src="img/stop.png" alt="Stop"></div>
-	<div class="slide"><img src="img/juara1.png" alt="Juara"></div>
-	<div class="slide"><img src="img/juara2.png" alt="Juara"></div>
-	<div class="slide"><img src="img/juara3.png" alt="Juara"></div>
-	<div class="slide"><img src="img/juara4.png" alt="Juara"></div>
-            <button class="slider-btn prev-btn" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-btn next-btn" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-        </div>
+    <div class="static-banner-container" style="max-width: 1156px; width: 100%; margin: 0 auto 20px auto; overflow: hidden; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    
+    <img src="img/gambar.png" 
+         alt="Spanduk Sekolah" 
+         style="width: 100%; height: auto; display: block;">
+
+</div>
 
         <div class="main-layout-container fade-in-up">
 	<div class="content-left">
