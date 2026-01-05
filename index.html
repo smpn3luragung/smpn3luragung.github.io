@@ -661,24 +661,24 @@
 
             <div style="text-align: justify; line-height: 1.6; font-size: 15px; color: #333;">
                 
-                <p style="font-weight: bold; margin-bottom: 15px;">
+                <p style="font-weight: bold; margin-bottom: 14px;">
                     Bismillahirrahmanirrohim<br>
                     Assalamualaikum Warahmatullahi Wabarakatuh.
                 </p>
 
-                <p style="margin-bottom: 15px;">
-                    Alhamdulillahi robbil alamin kami panjatkan kehadlirat Allah SWT, bahwasannya dengan rahmat dan karunia-Nya lah akhirnya Website sekolah ini dengan alamat <strong>www.smpn3luragung.sch.id</strong> dapat kami perbaharui. Kami mengucapkan selamat datang di Website kami Sekolah Menengah Pertama Negeri <strong>(SMPN) 3 Luragung</strong> yang saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta khalayak umum guna dapat mengakses seluruh informasi tentang segala profil, aktifitas/kegiatan serta fasilitas sekolah kami.
+                <p style="margin-bottom: 14px;">
+                    Alhamdulillahi robbil alamin kami panjatkan kehadlirat Allah SWT, bahwasannya dengan rahmat dan karunia-Nya lah akhirnya Website sekolah ini dengan alamat smpn3luragung.github.io/ dapat kami perbaharui. Kami mengucapkan selamat datang di Website kami SMP Negeri 3 Luragung yang saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta khalayak umum guna dapat mengakses seluruh informasi tentang segala profil, aktifitas/kegiatan serta fasilitas sekolah kami.
                 </p>
 
-                <p style="margin-bottom: 15px;">
+                <p style="margin-bottom: 14px;">
                     Kami selaku pimpinan sekolah mengucapkan terima kasih kepada tim pembuat Website ini yang telah berusaha untuk dapat lebih memperkenalkan segala perihal yang dimiliki oleh sekolah. Dan tentunya Website sekolah kami masih terdapat banyak kekurangan, oleh karena itu kepada seluruh civitas akademika dan masyarakat umum dapat memberikan saran dan kritik yang membangun demi kemajuan Website ini lebih lanjut.
                 </p>
 
-                <p style="margin-bottom: 15px;">
+                <p style="margin-bottom: 14px;">
                     Saya berharap Website ini dapat dijadikan wahana interaksi yang positif baik antar civitas akademika maupun masyarakat pada umumnya sehingga dapat menjalin silaturahmi yang erat disegala unsur. Mari kita bekerja dan berkarya dengan mengharap ridho sang Kuasa dan keikhlasan yang tulus dijiwa demi anak bangsa.
                 </p>
 
-                <p style="font-weight: bold; margin-bottom: 20px;">
+                <p style="font-weight: bold; margin-bottom: 14px;">
                     Wassalamu’alaikum Warahmatullahi Wabarakatuh.
                 </p>
                 
@@ -993,11 +993,11 @@
                 <h3>Link Terkait</h3>
 
             <div class="akses-cepat-grid">
-                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbybpIBZ1WHizhjFz3rM49b4qWBnyRLxlKYnAHlfHZyTwlhOWIdHoUYTfONWcKKu4wmreg/exec" target="_blank">
+                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbybpIBZ1WHizhjFz3rM49b4qWBnyRLxlKYnAHlfHZyTwlhOWIdHoUYTfONWcKKu4wmreg/exec" target="_blank onclick="matikanMusik()">
                     📊 SI-CAKAP
                 </a>
                 
-                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbyTQmj7RGBibXeUmB9sHKRqa8751lCpaaWE9B_Rka7HiiEHvkOZ0V2IUr_lCXBI231ATw/exec?page=guru" target="_blank">
+                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbyTQmj7RGBibXeUmB9sHKRqa8751lCpaaWE9B_Rka7HiiEHvkOZ0V2IUr_lCXBI231ATw/exec?page=guru" target="_blank onclick="matikanMusik()">
                     🎓 Portal Guru
                 </a>
 
@@ -1225,9 +1225,8 @@
             inputPesan.focus();
         }
     </script>
-<audio id="laguWebsite" loop>
+<audio id="audio-sekolah" autoplay loop>
     <source src="img/kecapi.mp3" type="audio/mp3">
-    Browser Anda tidak mendukung elemen audio.
 </audio>
 
 <div class="music-btn" onclick="putarMusik()">
@@ -1576,6 +1575,21 @@ function tutupInfo(event) {
     document.addEventListener("DOMContentLoaded", function() {
         updateGaleri();
     });
+
+/* === FUNGSI MATIKAN MUSIK (VERSI FINAL & AKURAT) === */
+function matikanMusik() {
+    // Kita panggil dia pakai nama khususnya "audio-sekolah"
+    var lagu = document.getElementById("audio-sekolah"); 
+    
+    if (lagu) {
+        lagu.pause(); // Perintah: DIAM!
+        lagu.currentTime = 0; // (Opsional) Kembalikan ke menit 0
+        console.log("Musik berhasil dimatikan!");
+    } else {
+        alert("Waduh, musiknya tidak ketemu!");
+    }
+}
+
 </script>
 </body>
 </html>
