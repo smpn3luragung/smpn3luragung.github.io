@@ -1077,18 +1077,27 @@
     @keyframes muter { 100% { transform: rotate(360deg); } }
 
 /* =========================================
-       PERBAIKAN TAMPILAN BERITA (POP-UP) DI HP
+       PERBAIKAN TAMPILAN BERITA (POP-UP) DI HP - VERSI MEPET KANAN-KIRI
        ========================================= */
     @media (max-width: 768px) {
+        /* 1. Pengaturan Wadah Utama */
         .swal2-popup, .modal-content, .popup-content {
-            padding: 10px !important; 
-            width: 90% !important;
+            /* RAHASIANYA DI SINI:
+               15px = Jarak Atas & Bawah (biar tidak terlalu dempet atas)
+               2px  = Jarak KIRI & KANAN (Ini yang bikin mepet banget) */
+            padding: 15px 2px !important;
+            
+            width: 96% !important; /* Lebarkan wadahnya hampir semayar */
         }
-        .swal2-html-container {
-            margin: 5px !important;
+
+        /* 2. Pengaturan Teks di dalamnya */
+        .swal2-html-container, .modal-body {
+            /* Hilangkan margin kiri-kanan */
+            margin: 10px 0 !important;
             padding: 0 !important;
-            text-align: justify;
-            font-size: 14px;
+            
+            text-align: justify; /* Rata Kiri-Kanan */
+            font-size: 14px;     /* Ukuran huruf */
         }
     }
 
