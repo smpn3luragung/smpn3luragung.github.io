@@ -773,35 +773,42 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-<div class="lokasi-section" style="margin: 40px 0; text-align: center;">
-    <div class="container">
-<div class="lokasi-header-mobile">
-            <i class="fas fa-map-marked-alt"></i>
-            <h2>Lokasi Sekolah</h2>
-        </div>
-
-        <div class="map-responsive" style="margin-top:20px; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow:hidden;">
-            
-<iframe 
-    width="100%" 
-    height="400" 
-    frameborder="0" 
-    scrolling="no" 
-    marginheight="0" 
-    marginwidth="0" 
-    src="https://maps.google.com/maps?q=SMP%20Negeri%203%20Luragung&t=&z=15&ie=UTF8&iwloc=&output=embed">
-</iframe>
-
             </div>
-    </div>
-</div>
 
     <footer>
         <div class="footer-content">
             <div class="footer-col">
-                <div style="margin-bottom: 10px;"><i class="fab fa-facebook-f"></i><span style="margin-left: 10px;">spen_galur</span></div>
-                <div style="margin-bottom: 10px;"><i class="fab fa-instagram"></i><span style="margin-left: 10px;">smpn3_luragung</span></div>
-            </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        
+        <div style="margin-bottom: 10px; display: flex; align-items: center;">
+            <i class="fab fa-facebook-f" style="width: 20px;"></i>
+            <span style="margin-left: 10px;">spen_galur</span>
+        </div>
+
+        <div style="margin-bottom: 10px; display: flex; align-items: center;">
+            <i class="fab fa-instagram" style="width: 20px;"></i>
+            <span style="margin-left: 10px;">smpn3_luragung</span>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <a href="https://maps.app.goo.gl/ZfDuNza44YVfvRH6A" target="_blank" 
+               style="background-color: #f39c12; 
+                      color: white; 
+                      padding: 8px 20px; 
+                      border-radius: 30px; 
+                      text-decoration: none; 
+                      font-weight: bold; 
+                      font-size: 14px; 
+                      display: inline-flex; 
+                      align-items: center; 
+                      gap: 8px; 
+                      box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                <i class="fas fa-map-marker-alt"></i> Cek Lokasi
+            </a>
+        </div>
+
+    </div>
+</div>
             <div class="footer-col">
                 <h3>Link Terkait</h3>
 
@@ -826,7 +833,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>2026 &copy; SMPN 3 Luragung. All Rights Reserved</p>
+            <p>&copy Copyright 2026, All Rights Reserved | ❤️ SMP Negeri 3 Luragung.</p>
         </div>
     </footer>
 
@@ -1178,36 +1185,35 @@
         }
     }
 
-/* GAYA LOKASI SEKOLAH (TEMPEL INI DI ATAS </style>) */
+/* =========================================
+       FIX JARAK PETA & LOKASI (JURUS PAKSA)
+       ========================================= */
     @media (max-width: 768px) {
-        /* Merapatkan Jarak */
-        section#lokasi, .section-lokasi, .lokasi-section {
-            margin-top: 10px !important;
-            padding-top: 10px !important;
+        /* 1. Paksa wadah utama Lokasi untuk naik MENTOK ke atas */
+        section#lokasi, 
+        .section-lokasi, 
+        .lokasi-section,
+        #lokasi { 
+            margin-top: 0px !important; 
+            padding-top: 0px !important; 
+            transform: translateY(-20px); /* Tarik paksa naik 20 pixel lagi */
         }
 
-        /* Gaya Judul Baru */
+        /* 2. Tarik Judul & Ikon agar nempel */
         .lokasi-header-mobile {
+            margin-top: 0px !important;
+            margin-bottom: 10px !important;
+            padding-top: 0 !important;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 15px;
-            color: #003366;
         }
-
-        .lokasi-header-mobile i {
-            font-size: 24px;
-            color: #f39c12;
-        }
-
-        .lokasi-header-mobile h2 {
-            margin: 0 !important;
-            font-size: 22px !important;
-            font-weight: bold !important;
-            text-transform: uppercase;
-            border: none !important;
-            padding: 0 !important;
+        
+        /* 3. Pastikan Peta muncul penuh */
+        .map-responsive {
+            display: block !important;
+            margin-top: 0 !important;
         }
     }
 
