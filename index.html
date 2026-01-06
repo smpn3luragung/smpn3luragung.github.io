@@ -1399,6 +1399,48 @@
      }
 }
 
+/* === 📱 FINISHING: PERKECIL SEMUA TAMPILAN DI HP 📱 === */
+@media screen and (max-width: 768px) {
+
+    /* 1. KECILKAN TEKS ISI (Paragraf, List, Link) */
+    body, p, li, a, span {
+        font-size: 13px !important; /* Ukuran manis untuk baca di HP */
+        line-height: 1.5 !important; /* Jarak antar baris biar tidak sumpek */
+    }
+
+    /* 2. KECILKAN JUDUL BESAR */
+    h1 { font-size: 20px !important; margin-bottom: 10px !important; }
+    h2 { font-size: 18px !important; margin-bottom: 10px !important; }
+    h3 { font-size: 16px !important; margin-bottom: 8px !important; }
+
+    /* 3. PERKECIL BINGKAI GALERI FOTO */
+    .gallery-grid {
+        gap: 10px !important; /* Jarak antar foto dirapatkan */
+    }
+    
+    .gallery-item {
+        border-radius: 5px !important; /* Sudut kotak tidak terlalu bulat */
+        box-shadow: 0 2px 3px rgba(0,0,0,0.1) !important; /* Bayangan ditipiskan */
+    }
+
+    .gallery-item img {
+        /* Opsional: Jika foto galeri dirasa terlalu tinggi di HP, aktifkan ini: */
+        /* height: 180px !important; */ 
+    }
+
+    .caption {
+        font-size: 11px !important; /* Tulisan keterangan foto lebih kecil */
+        padding: 8px !important;    /* Ruang kosong dipersempit */
+    }
+
+    /* 4. RAPATKAN MARGIN HALAMAN (Biar tidak boros tempat kiri-kanan) */
+    .container, .wrapper, .main-content {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        width: 100% !important;
+    }
+}
+
 </style>
 
 <script>
