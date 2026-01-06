@@ -1376,37 +1376,28 @@
         }
     }
 
-/* =========================================
-       FIX JARAK PETA & LOKASI (JURUS PAKSA)
-       ========================================= */
-    @media (max-width: 768px) {
-        /* 1. Paksa wadah utama Lokasi untuk naik MENTOK ke atas */
-        section#lokasi, 
-        .section-lokasi, 
-        .lokasi-section,
-        #lokasi { 
-            margin-top: 0px !important; 
-            padding-top: 0px !important; 
-            transform: translateY(-20px); /* Tarik paksa naik 20 pixel lagi */
-        }
-
-        /* 2. Tarik Judul & Ikon agar nempel */
-        .lokasi-header-mobile {
-            margin-top: 0px !important;
-            margin-bottom: 10px !important;
-            padding-top: 0 !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+/* === KHUSUS TAMPILAN HP (RESPONSIF) - VERSI UTUH === */
+@media screen and (max-width: 768px) {
+    
+    #beranda .static-banner-container img {
+        /* 1. Kita HAPUS paksaan tingginya. Biarkan dia menyesuaikan */
+        height: auto !important; 
         
-        /* 3. Pastikan Peta muncul penuh */
-        .map-responsive {
-            display: block !important;
-            margin-top: 0 !important;
-        }
+        /* 2. Perintah baru: "Pastikan seluruh foto masuk ke dalam kotak tanpa terpotong" */
+        object-fit: contain !important; 
+        
+        /* 3. (Opsional) Sedikit margin biar tidak terlalu nempel atas bawah */
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
+    
+    /* (Opsional) Kita atur wadahnya juga biar tidak ada ruang kosong berlebih */
+     #beranda .static-banner-container {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 5px 0; /* Sedikit bantalan */
+     }
+}
 
 </style>
 
