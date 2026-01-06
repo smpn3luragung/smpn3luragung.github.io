@@ -586,6 +586,18 @@
     border: 0;
 }
 
+/* === KHUSUS TAMPILAN HP (RESPONSIF) === */
+@media screen and (max-width: 768px) {
+    
+    /* Kita tembak lokasi gambarnya */
+    #beranda .static-banner-container img {
+        height: 250px !important; /* 1. Paksa tingginya minimal segini (bisa diubah) */
+        object-fit: cover;        /* 2. Kunci biar gambar tetap proporsional (Zoom Tengah) */
+        object-position: center;  /* 3. Fokus ke tengah gambar */
+    }
+    
+}
+
     </style>
 </head>
 <body>
@@ -993,11 +1005,11 @@
                 <h3>Link Terkait</h3>
 
             <div class="akses-cepat-grid">
-                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbybpIBZ1WHizhjFz3rM49b4qWBnyRLxlKYnAHlfHZyTwlhOWIdHoUYTfONWcKKu4wmreg/exec" target="_blank onclick="matikanMusik()">
+                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbybpIBZ1WHizhjFz3rM49b4qWBnyRLxlKYnAHlfHZyTwlhOWIdHoUYTfONWcKKu4wmreg/exec" target="_blank" onclick="matikanMusik()">
                     📊 SI-CAKAP
                 </a>
                 
-                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbyTQmj7RGBibXeUmB9sHKRqa8751lCpaaWE9B_Rka7HiiEHvkOZ0V2IUr_lCXBI231ATw/exec?page=guru" target="_blank onclick="matikanMusik()">
+                <a href="https://script.google.com/a/macros/guru.smp.belajar.id/s/AKfycbyTQmj7RGBibXeUmB9sHKRqa8751lCpaaWE9B_Rka7HiiEHvkOZ0V2IUr_lCXBI231ATw/exec?page=guru" target="_blank" onclick="matikanMusik()">
                     🎓 Portal Guru
                 </a>
 
