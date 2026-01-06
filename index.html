@@ -598,6 +598,21 @@
     
 }
 
+/* === VIDEO LOKAL RESPONSIF === */
+.video-lokal-container video {
+    width: 100% !important;      /* Paksa lebar mengikuti layar */
+    height: auto !important;     /* Tinggi menyesuaikan biar tidak gepeng */
+    max-width: 600px;            /* Batas maksimal di laptop (biar gak segede gaban) */
+    border-radius: 10px;         /* Sudut melengkung manis */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sedikit bayangan */
+    border: 2px solid #fff;      /* Bingkai putih tipis */
+}
+
+.video-lokal-container {
+    margin: 20px 0;              /* Jarak atas bawah biar lega */
+    padding: 0 10px;             /* Jarak kiri kanan aman di HP */
+}
+
     </style>
 </head>
 <body>
@@ -703,7 +718,7 @@
                 </div>
 
             </div>
-            
+
             <div style="clear: both;"></div>
             
         </div>
@@ -951,17 +966,28 @@
         <div class="gallery-grid">
             
             <div class="gallery-item">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="caption">Profil Sekolah</div>
-            </div>
+    
+    <div style="width: 100%;"> 
+        <video controls style="width: 100%; display: block; border-radius: 5px;">
+            <source src="video/profil.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="caption">Profil Sekolah</div>
+</div>
 
             <div class="gallery-item">
-                <div class="video-wrapper">
+                <div style="width: 100%;">
                     <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="caption">Kegiatan Ekstrakurikuler</div>
+            </div>
+
+	   <div class="gallery-item">
+                <div style="width: 100%;">
+                    <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="caption">Kegiatan Loka Karya</div>
             </div>
 
         </div>
