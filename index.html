@@ -681,7 +681,7 @@
         <div style="display: block;"> 
             
             <div style="float: left; margin-right: 25px; margin-bottom: 15px; width: 180px;">
-                <img src="img/sekolah.png" 
+                <img src="img/kepsek.png" 
                      alt="Kepala Sekolah" 
                      style="width: 100%; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border: 1px solid #ddd;">
             </div>
@@ -1263,9 +1263,38 @@
             inputPesan.focus();
         }
     </script>
-<audio id="audio-sekolah" autoplay loop>
-    <source src="img/kecapi.mp3" type="audio/mp3">
+<audio id="audioSekolah" loop>
+  <source src="https://docs.google.com/uc?export=download&id=1zhdQOXKff1qaeS0Z1HgGGRNzWFBjsiiv" type="audio/mpeg">
 </audio>
+
+<script>
+  // ATUR VOLUME (0.5 = Setengah, 1.0 = Full)
+  var audio = document.getElementById("audioSekolah");
+  audio.volume = 0.5;
+
+  // FUNGSI TOMBOL PUTAR/PAUSE
+  function putarMusik() {
+    var icon = document.getElementById("iconMusik");
+    
+    if (audio.paused) {
+      audio.play();
+      if(icon) { icon.className = "fas fa-pause"; } // Ubah ikon jadi Pause
+    } else {
+      audio.pause();
+      if(icon) { icon.className = "fas fa-play"; } // Ubah ikon jadi Play
+    }
+  }
+
+  // FUNGSI AUTOPLAY (Pancingan Sentuh Layar)
+  document.body.addEventListener("click", function() {
+    if (audio.paused) {
+      audio.play().catch(err => console.log("Menunggu klik user..."));
+      // Update ikon jadi pause karena musik nyala
+      var icon = document.getElementById("iconMusik");
+      if(icon) { icon.className = "fas fa-pause"; }
+    }
+  }, { once: true });
+</script>
 
 <div class="music-btn" onclick="putarMusik()">
     <i class="fas fa-play" id="iconMusik"></i>
