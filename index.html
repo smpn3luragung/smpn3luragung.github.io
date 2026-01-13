@@ -993,6 +993,55 @@
         </div>
     </div>
 </div>
+
+<div style="background: #f8f9fa; padding: 30px; text-align: center; border-top: 4px solid #1a237e; margin-top: 50px;">
+    <h3 style="color: #333; margin-bottom: 5px;">🔧 PANEL ADMIN SEKOLAH</h3>
+    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Area terbatas khusus pengurus OSIS & Guru.</p>
+    
+    <button onclick="bukaPintuRahasia()" style="background: #d32f2f; color: white; padding: 12px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+        <i class="fas fa-lock"></i> LOGIN ADMIN
+    </button>
+</div>
+
+<div id="modalRahasia" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; width: 90%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); position: relative;">
+        
+        <span onclick="document.getElementById('modalRahasia').style.display='none'" style="position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa;">&times;</span>
+
+        <h3 style="margin-top: 0; color: #1a237e; border-bottom: 2px solid #eee; padding-bottom: 15px;">
+            <i class="fas fa-edit"></i> Posting Berita Baru
+        </h3>
+        
+        <form>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Judul:</label>
+                <input type="text" placeholder="Judul Berita..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Isi Berita:</label>
+                <textarea rows="5" placeholder="Ketikk isi berita di sini..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+            </div>
+
+            <button type="button" onclick="alert('✅ BERHASIL! Berita sudah terkirim ke database.')" style="background: #2e7d32; color: white; width: 100%; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                POSTING SEKARANG
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+function bukaPintuRahasia() {
+    var pinInput = prompt("👮‍♂️ KEAMANAN:\nMasukkan PIN Admin:");
+    
+    // GANTI PIN "12345" SESUAI KEINGINAN
+    if (pinInput === "12345") {
+        document.getElementById('modalRahasia').style.display = 'flex';
+    } else if (pinInput != null) {
+        alert("⛔ PIN SALAH! Akses ditolak.");
+    }
+}
+</script>
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -1039,9 +1088,9 @@
                     🎓 Portal Guru
                 </a>
 
-                <a href="javascript:void(0)" onclick="document.getElementById('modalOSIS').style.display='flex'">
-                    🔐 Login OSIS
-                </a>
+                <a href="javascript:void(0)" onclick="bukaOsisAman()">
+    🔐 Login OSIS
+</a>
             </div>
             </div>
             <div class="footer-col">
@@ -1690,6 +1739,21 @@ function matikanMusik() {
     }
 }
 
+</script>
+<script>
+    // --- SATPAM UNTUK TOMBOL KUNING ---
+    function bukaOsisAman() {
+        var sandi = prompt("🔐 KEAMANAN OSIS\n\nMasukkan PIN Rahasia:");
+        
+        // Ganti '12345' dengan PIN yang Ndan mau
+        if (sandi === "osis3L") {
+            // Kalau benar, baru buka pintu (modalOSIS)
+            document.getElementById('modalOSIS').style.display = 'flex';
+        } else if (sandi !== null) {
+            // Kalau salah
+            alert("⛔ PIN SALAH! Akses Ditolak.");
+        }
+    }
 </script>
 </body>
 </html>
