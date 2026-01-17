@@ -633,7 +633,28 @@
                         <li><a onclick="bukaHalaman('beranda', this)" class="active-link">Beranda</a></li>
                         <li><a onclick="bukaHalaman('kabar', this)">Kabar Kampus</a></li>
                         <li><a onclick="bukaHalaman('download', this)">Download</a></li>
-                        <li><a onclick="bukaHalaman('guru', this)">Data Guru</a></li>
+                        <li class="menu-item-has-children" 
+    style="position: relative; display: inline-block;"
+    onmouseover="this.querySelector('.sub-menu').style.display='block'" 
+    onmouseout="this.querySelector('.sub-menu').style.display='none'">
+    
+    <a href="#" style="cursor: pointer;">Tentang Kami ▼</a>
+
+    <ul class="sub-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; z-index: 999; padding: 10px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); list-style: none;">
+        
+        <li style="border-bottom: 1px solid #eee; margin-bottom: 5px;">
+            <a onclick="bukaHalaman('visi_misi', this)" style="color: #333; display: block; padding: 5px;">Visi Misi Sekolah</a>
+        </li>
+        
+        <li style="border-bottom: 1px solid #eee; margin-bottom: 5px;">
+            <a onclick="bukaHalaman('guru', this)" style="color: #333; display: block; padding: 5px;">Daftar Guru</a>
+        </li>
+        
+        <li>
+            <a onclick="bukaHalaman('staf_tu', this)" style="color: #333; display: block; padding: 5px;">Daftar Staf TU</a>
+        </li>
+    </ul>
+</li>
 			<li class="menu-item-has-children" style="position: relative; display: inline-block;">
     			<a href="#" style="cursor: pointer;">Galeri ▼</a>
     
@@ -647,6 +668,13 @@
     		</ul>
 	</li>
                         <li><a onclick="bukaHalaman('alumni', this)">Alumni</a></li>
+			<li>
+    <a href="https://wa.me/6285722007005?text=Yth.%20Pihak%20Sekolah,%20saya%20ingin%20melaporkan%20terkait%20siswa%20di%20luar%20sekolah." 
+       target="_blank" 
+       style="color: red; font-weight: bold;">
+       🚨 Layanan Publik
+    </a>
+</li>
                         
                     </ul>
                 </nav>
@@ -761,42 +789,13 @@
                 <h3><i class="fas fa-newspaper" style="color:var(--warna-utama)"></i> Kabar Kampus</h3>
             </div>
             <div class="berita-grid" id="wadahBerita">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1577896335452-fa0e235248a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Upacara">
-                    <div class="card-body">
-                        <span class="card-date">12 Januari 2026</span>
-                        <a onclick="bacaBerita('upacara')" class="card-title">Upacara Bendera Perdana Semester Genap</a>
-                        <p class="card-desc">Seluruh siswa dan guru mengikuti upacara bendera dengan khidmat sebagai awal semangat baru di tahun 2026.</p>
-                        <button onclick="bacaBerita('upacara')" class="btn-baca">Baca Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/literasi.png" alt="Literasi">
-                    <div class="card-body">
-                        <span class="card-date">15 Januari 2026</span>
-                        <a onclick="bacaBerita('literasi')" class="card-title">Gerakan Literasi Sekolah</a>
-                        <p class="card-desc">Program membaca 15 menit sebelum KBM dimulai kembali digalakkan untuk meningkatkan minat baca siswa.</p>
-                        <button onclick="bacaBerita('literasi')" class="btn-baca">Baca Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/pramuka1.png" alt="Pramuka">
-                    <div class="card-body">
-                        <span class="card-date">17 Januari 2026</span>
-                        <a onclick="bacaBerita('pramuka')" class="card-title">Latihan Gabungan Pramuka</a>
-                        <p class="card-desc">Pasukan Penggalang SMPN 3 Luragung mengadakan latihan gabungan untuk persiapan Jambore Ranting.</p>
-                        <button onclick="bacaBerita('pramuka')" class="btn-baca">Baca Selengkapnya</button>
-                    </div>
+    <p style="text-align:center; padding: 20px; color: #666;">
+        ⏳ Sedang menghubungi Markas Data...
+    </p>
+</div>
                 </div>
             </div>
 
-            <div class="pagination">
-                <button class="btn-nav active">1</button>
-                <button class="btn-nav">2</button>
-                <button class="btn-nav">3</button>
-                <button class="btn-nav" onclick="alert('Halaman berita selanjutnya belum tersedia di demo ini ya!')">
-                    Next <i class="fas fa-chevron-right" style="margin-left:5px;"></i>
-                </button>
             </div>
         </div>
     </div>
@@ -896,6 +895,79 @@
             <div class="guru-grid"></div> 
         </div>
     </div>
+
+   <div id="visi_misi" class="halaman">
+    <div class="container" style="padding: 20px; background: white; border-radius: 10px; margin-top: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        
+        <h2 style="text-align: center; color: #003366; border-bottom: 3px solid #f9a825; padding-bottom: 10px; margin-bottom: 20px;">
+            VISI & MISI SEKOLAH
+        </h2>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h3 style="background: #003366; color: white; display: inline-block; padding: 5px 20px; border-radius: 20px;">VISI</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-top: 15px; font-style: italic;">
+                "Terwujudnya peserta didik yang beriman, bertakwa, berakhlak mulia, mandiri, bernalar kritis, kreatif, gotong royong, berkebinekaan global, dan cinta lingkungan sebagai dasar karakter lulusan."
+            </p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+             <h3 style="background: #003366; color: white; display: inline-block; padding: 5px 20px; border-radius: 20px;">MISI</h3>
+             <ol style="margin-top: 15px; line-height: 1.8; font-size: 16px;">
+                <li>Membiasakan ibadah serta menanamkan sikap jujur, disiplin, dan tanggung jawab dalam kehidupan sehari-hari.</li>
+                <li>Membentuk karakter siswa yang percaya diri, tangguh, dan berdaya juang tinggi.</li>
+                <li>Menanamkan sikap menghargai perbedaan suku, agama, budaya, dan bahasa.</li>
+		<li>Membiasakan hidup bersih, sehat, dan peduli terhadap keberlanjutan lingkungan.</li>
+                <li>Mewujudkan lingkungan sekolah yang bersih, asri, dan nyaman.</li>
+             </ol>
+        </div>
+    </div>
+</div>
+
+<div id="staf_tu" class="halaman">
+    <div class="container" style="padding: 20px; margin-top: 20px;">
+        <h2 style="text-align: center; margin-bottom: 30px; color: #333;">DAFTAR STAF TATA USAHA (TU)</h2>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            
+            <div style="background: white; width: 220px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                <div style="width: 100px; height: 100px; margin: 0 auto 10px; overflow: hidden; border-radius: 50%; border: 3px solid #ddd;">
+                    <img src="https://via.placeholder.com/150" alt="Foto TU" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h4 style="margin: 5px 0; color: #003366;">Alwi Fatahillah, SE</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">NIP. 1980xxxxxxx</p>
+                <span style="background: #f9a825; color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px;">Kepala TU</span>
+            </div>
+
+            <div style="background: white; width: 220px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                <div style="width: 100px; height: 100px; margin: 0 auto 10px; overflow: hidden; border-radius: 50%; border: 3px solid #ddd;">
+                    <img src="https://via.placeholder.com/150" alt="Foto TU" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h4 style="margin: 5px 0; color: #003366;">Sutirman, SE</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">NIP. 1980xxxxxxx</p>
+		<span style="background: #003366; color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px;">Bendahara</span>
+            </div>
+
+             <div style="background: white; width: 220px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                <div style="width: 100px; height: 100px; margin: 0 auto 10px; overflow: hidden; border-radius: 50%; border: 3px solid #ddd;">
+                    <img src="https://via.placeholder.com/150" alt="Foto TU" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h4 style="margin: 5px 0; color: #003366;">Yudi Wahyudi, S.Pd</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">NIP. 1980xxxxxxx</p>
+		<span style="background: #003366; color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px;">Operator Dapodik</span>
+            </div>
+
+	    <div style="background: white; width: 220px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                <div style="width: 100px; height: 100px; margin: 0 auto 10px; overflow: hidden; border-radius: 50%; border: 3px solid #ddd;">
+                    <img src="https://via.placeholder.com/150" alt="Foto TU" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h4 style="margin: 5px 0; color: #003366;">Danny Rosandi Sukma Putra</h4>
+                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">NIPPPK. 1980xxxxxxx</p>
+		<span style="background: #003366; color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px;">Operator Dapodik</span>
+            </div>
+
+        </div>
+    </div>
+</div> 	
 
     <div id="alumni" class="halaman">
         <div class="container">
@@ -1265,8 +1337,9 @@ function bukaPintuRahasia() {
             { nama: "Neni Juharni, S.Pd", mapel: "Bhs. Sunda", foto: "img/neni.png" },
             { nama: "H. Makmur, S.Pd", mapel: "PAIdBP", foto: "img/makmur.png" },
             { nama: "Irfan Faturohman, S.Pd", mapel: "Pendidikan Pancasila", foto: "" },
-            { nama: "Herawati Dwi Astuti", mapel: "IPA", foto: "" },
+            { nama: "Herawati Dwi Astuti, S.Pd", mapel: "IPA", foto: "" },
 	    { nama: "Yunita Maulidina, S.sos", mapel: "Guru BK", foto: "img/yunita.png" },
+	    { nama: "Apiep Solehudin, S.Pd", mapel: "Informatika", foto: "" },
         ];
 
         const wadahGuru = document.querySelector('.guru-grid');
@@ -1741,7 +1814,52 @@ function matikanMusik() {
 
 </script>
 <script>
-    // --- SATPAM UNTUK TOMBOL KUNING ---
+// --- RADAR BERITA (GOOGLE SHEET INTEGRATION) ---
+// By: Kak Gem & Komandan
+
+const spreadsheetID = "1fqH_oi7EDi1EWKOYhHthvJwgboW2tf3Oj_KIAmyxx3s"; // <--- GANTI INI DENGAN ID TADI
+const namaSheet = "berita"; // Pastikan nama tab di google sheet 'berita'
+
+const urlRadar = `https://opensheet.elk.sh/${spreadsheetID}/${namaSheet}`;
+
+// Fungsi Mengambil Berita dari Markas Pusat
+function ambilBerita() {
+    console.log("Sedang menghubungi markas data...");
+    
+    fetch(urlRadar)
+    .then(response => response.json())
+    .then(data => {
+        let wadah = document.getElementById("wadahBerita"); // Pastikan ada div id="wadahBerita" di HTML
+        wadah.innerHTML = ""; // Bersihkan dulu
+
+        // Balik urutan biar berita terbaru (paling bawah di excel) muncul paling atas
+        data.reverse().forEach(berita => {
+            
+            // Cetak Kartu Berita
+            let kartu = `
+            <div class="kartu-berita" style="background: white; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; border-left: 5px solid #003366; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <span style="font-size: 10px; color: #888; display:block; margin-bottom:5px;">📅 ${berita.tanggal}</span>
+                <h3 style="color: #003366; margin: 0 0 10px 0;">${berita.judul}</h3>
+                <p style="color: #444; line-height: 1.6;">${berita.isi}</p>
+                ${berita.link_foto ? `<img src="${berita.link_foto}" style="width:100%; max-height:200px; object-fit:cover; margin-top:10px; border-radius:5px;">` : ''}
+            </div>
+            `;
+            
+            wadah.innerHTML += kartu;
+        });
+    })
+    .catch(error => {
+        console.error("Gagal mengambil data:", error);
+        document.getElementById("wadahBerita").innerHTML = "<p>Gagal memuat berita. Cek koneksi internet.</p>";
+    });
+}
+
+// Jalankan Radar saat web dibuka
+window.addEventListener('load', function() {
+    ambilBerita();
+});
+    
+// --- SATPAM UNTUK TOMBOL KUNING ---
     function bukaOsisAman() {
         var sandi = prompt("🔐 KEAMANAN OSIS\n\nMasukkan PIN Rahasia:");
         
