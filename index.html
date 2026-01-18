@@ -788,7 +788,7 @@
             <div class="section-title">
                 <h3><i class="fas fa-newspaper" style="color:var(--warna-utama)"></i> Kabar Kampus</h3>
             </div>
-            <div class="berita-grid" id="wadahBerita">
+            <div class="berita-grid" id="wadah-berita">
     <p style="text-align:center; padding: 20px; color: #666;">
         ⏳ Sedang menghubungi Markas Data...
     </p>
@@ -928,7 +928,7 @@
             <h3><i class="fas fa-images"></i> Galeri Kegiatan</h3>
         </div>
 
-        <div id="wadahGaleri" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div id="wadah-foto" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
             <p style="text-align:center; width:100%;">⏳ Sedang memuat kenangan...</p>
         </div>
 
@@ -1745,108 +1745,150 @@ function matikanMusik() {
 
 </script>
 <script>
-// --- RADAR BERITA (GOOGLE SHEET INTEGRATION) ---
-// By: Kak Gem & Komandan
+// ============================================================
+// 1. PUSAT DATA (SUDAH DIPERBAIKI SESUAI URL NDAN)
+// ============================================================
 
-const spreadsheetID = "1fqH_oi7EDi1EWKOYhHthvJwgboW2tf3Oj_KIAmyxx3s"; // <--- GANTI INI DENGAN ID TADI
-const namaSheet = "berita"; // Pastikan nama tab di google sheet 'berita'
+// --- JALUR A: BERITA ---
+// ID SUDAH SAYA KOREKSI (Huruf 'o' kecil, bukan 'O' besar)
+const idSheetSekolah = "1fqH_oi7EDi1EWKOYhHthvJwgboW2tf3Oj_KIAmyxx3s"; 
+const namaTabBerita  = "berita"; 
+const urlRadarBerita = `https://opensheet.elk.sh/${idSheetSekolah}/${namaTabBerita}`;
 
-const urlRadar = `https://opensheet.elk.sh/${spreadsheetID}/${namaSheet}`;
+// --- JALUR B: GALERI ---
+const idSheetPribadi = "1psrQGMH2fLWigvx3tTRY7Z_43QzAR135LcIBo8eensI"; 
+const namaTabGaleri  = "galeri"; 
+const urlRadarGaleri = `https://opensheet.elk.sh/${idSheetPribadi}/${namaTabGaleri}`;
 
-// --- RADAR GALERI (GOOGLE SHEET INTEGRATION) ---
-const namaSheetGaleri = "galeri"; 
-const urlRadarGaleri = `https://opensheet.elk.sh/${spreadsheetID}/${namaSheetGaleri}`;
 
-function ambilGaleri() {
-    fetch(urlRadarGaleri)
-    .then(response => response.json())
-    .then(data => {
-        let wadah = document.getElementById("wadahGaleri");
-        wadah.innerHTML = ""; 
+// ============================================================
+// 2. MESIN PENGGERAK (OTOMATIS)
+// ============================================================
 
-        data.reverse().forEach(item => {
-            let kontenMedia = "";
-            // Cek apakah Foto
-            if (item.tipe && item.tipe.toLowerCase() === 'foto') {
-                kontenMedia = `<img src="${item.link}" style="width:100%; height:200px; object-fit:cover; border-radius: 5px;">`;
-            } 
-            // Cek apakah Video
-            else if (item.tipe && item.tipe.toLowerCase() === 'video') {
-                let videoID = item.link.split('v=')[1];
-                if (videoID) {
-                    let ampersandPosition = videoID.indexOf('&');
-                    if (ampersandPosition !== -1) {
-                        videoID = videoID.substring(0, ampersandPosition);
-                    }
-                    kontenMedia = `<iframe src="https://www.youtube.com/embed/${videoID}" frameborder="0" allowfullscreen style="width:100%; height:200px; border-radius: 5px;"></iframe>`;
-                }
-            }
-
-            if (kontenMedia) {
-                let kartu = `
-                <div style="background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                    ${kontenMedia}
-                    <p style="margin-top: 10px; font-weight: bold; color: #333; text-align: center;">${item.judul}</p>
-                </div>
-                `;
-                wadah.innerHTML += kartu;
-            }
-        });
-    })
-    .catch(error => { console.error("Gagal galeri:", error); });
-}
-
-// Fungsi Mengambil Berita dari Markas Pusat
+// --- MESIN BERITA ---
 function ambilBerita() {
-    console.log("Sedang menghubungi markas data...");
+    console.log("Menjalankan Misi Berita...");
     
-    fetch(urlRadar)
-    .then(response => response.json())
-    .then(data => {
-        let wadah = document.getElementById("wadahBerita"); // Pastikan ada div id="wadahBerita" di HTML
-        wadah.innerHTML = ""; // Bersihkan dulu
+    // Cari wadah (Mendukung ID lama 'wadahBerita' atau baru 'wadah-berita')
+    let wadah = document.getElementById("wadah-berita") || document.getElementById("wadahBerita");
 
-        // Balik urutan biar berita terbaru (paling bawah di excel) muncul paling atas
-        data.reverse().forEach(berita => {
-            
-            // Cetak Kartu Berita
-            let kartu = `
-            <div class="kartu-berita" style="background: white; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; border-left: 5px solid #003366; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <span style="font-size: 10px; color: #888; display:block; margin-bottom:5px;">📅 ${berita.tanggal}</span>
-                <h3 style="color: #003366; margin: 0 0 10px 0;">${berita.judul}</h3>
-                <p style="color: #444; line-height: 1.6;">${berita.isi}</p>
-                ${berita.link_foto ? `<img src="${berita.link_foto}" style="width:100%; max-height:200px; object-fit:cover; margin-top:10px; border-radius:5px;">` : ''}
-            </div>
-            `;
-            
-            wadah.innerHTML += kartu;
+    if (!wadah) { console.log("❌ Wadah Berita Hilang!"); return; }
+    
+    wadah.innerHTML = "<p style='text-align:center;'>🔄 Sedang mengambil berita...</p>";
+
+    fetch(urlRadarBerita)
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            wadah.innerHTML = `<div class="alert alert-danger text-center">
+                ⛔ <strong>GAGAL:</strong> Cek Nama Tab Sheet ('berita') & Share Public.<br>
+                Error: ${data.error}
+            </div>`;
+            return;
+        }
+        
+        wadah.innerHTML = ""; // Bersihkan loading
+        
+        // Tampilkan Maksimal 3 Berita
+        data.slice(0, 3).forEach(item => {
+            let gambar = item.gambar || "https://via.placeholder.com/300";
+            wadah.innerHTML += `
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="${gambar}" class="card-img-top" style="height:180px; object-fit:cover;">
+                    <div class="card-body">
+                        <small class="text-muted">📅 ${item.tanggal || '-'}</small>
+                        <h5 class="card-title mt-2">${item.judul}</h5>
+                        <p class="card-text">${item.isi ? item.isi.substring(0, 80)+'...' : ''}</p>
+                    </div>
+                </div>
+            </div>`;
         });
     })
-    .catch(error => {
-        console.error("Gagal mengambil data:", error);
-        document.getElementById("wadahBerita").innerHTML = "<p>Gagal memuat berita. Cek koneksi internet.</p>";
+    .catch(e => {
+        wadah.innerHTML = `<p style='color:red; text-align:center;'>Koneksi Berita Terputus.</p>`;
     });
 }
 
-// Jalankan Radar saat web dibuka
-window.addEventListener('load', function() {
-    ambilBerita(); // Pasukan 1: Ambil Berita
-    ambilGaleri(); // Pasukan 2: Ambil Galeri (JANGAN LUPA INI)
-});
+// --- MESIN GALERI ---
+function ambilGaleri() {
+    console.log("Menjalankan Misi Galeri...");
     
-// --- SATPAM UNTUK TOMBOL KUNING ---
-    function bukaOsisAman() {
-        var sandi = prompt("🔐 KEAMANAN OSIS\n\nMasukkan PIN Rahasia:");
-        
-        // Ganti '12345' dengan PIN yang Ndan mau
-        if (sandi === "osis3L") {
-            // Kalau benar, baru buka pintu (modalOSIS)
-            document.getElementById('modalOSIS').style.display = 'flex';
-        } else if (sandi !== null) {
-            // Kalau salah
-            alert("⛔ PIN SALAH! Akses Ditolak.");
+    // Cari wadah (Mendukung ID lama 'wadahGaleri' atau baru 'wadah-foto')
+    let wadah = document.getElementById("wadah-foto") || document.getElementById("wadahGaleri");
+
+    if (!wadah) { console.log("❌ Wadah Galeri Hilang!"); return; }
+    
+    wadah.innerHTML = "<p style='text-align:center;'>🔄 Sedang mengambil foto...</p>";
+
+    fetch(urlRadarGaleri)
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            wadah.innerHTML = `<div class="alert alert-danger text-center">
+                ⛔ <strong>GAGAL:</strong> Cek Nama Tab Sheet ('galeri') & Share Public.<br>
+                Error: ${data.error}
+            </div>`;
+            return;
         }
+
+        wadah.innerHTML = ""; // Bersihkan loading
+        
+        // Atur Grid Galeri
+        wadah.style.display = "grid";
+        wadah.style.gridTemplateColumns = "repeat(auto-fit, minmax(300px, 1fr))";
+        wadah.style.gap = "20px";
+
+        data.reverse().forEach(item => {
+            let konten = "";
+            let tipe = item.tipe ? item.tipe.toLowerCase() : "";
+
+            if (tipe === 'foto') {
+                konten = `<img src="${item.link}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">`;
+            } else if (tipe === 'video') {
+                let linkVid = item.link.replace("watch?v=", "embed/");
+                konten = `<iframe src="${linkVid}" frameborder="0" allowfullscreen style="width:100%; height:200px; border-radius:8px;"></iframe>`;
+            }
+
+            if (konten) {
+                wadah.innerHTML += `
+                <div style="background:white; padding:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                    ${konten}
+                    <p style="margin-top:10px; font-weight:bold; text-align:center;">${item.judul}</p>
+                </div>`;
+            }
+        });
+    })
+    .catch(e => {
+        wadah.innerHTML = `<p style='color:red; text-align:center;'>Koneksi Galeri Terputus.</p>`;
+    });
+}
+
+// --- SATPAM UNTUK TOMBOL KUNING (OSIS) ---
+function bukaOsisAman() {
+    var sandi = prompt("🔐 KEAMANAN OSIS\n\nMasukkan PIN Rahasia:");
+    
+    // PIN: osis3L
+    if (sandi === "osis3L") {
+        // Kalau benar, buka pintu (pastikan ID modal di HTML adalah 'modalOSIS')
+        let modal = document.getElementById('modalOSIS');
+        if(modal) {
+            modal.style.display = 'flex';
+        } else {
+            alert("Modal OSIS tidak ditemukan!");
+        }
+    } else if (sandi !== null) {
+        // Kalau salah
+        alert("⛔ PIN SALAH! Akses Ditolak.");
     }
+}
+
+// --- EKSEKUSI SAAT WEBSITE DIMUAT ---
+window.addEventListener('load', function() {
+    ambilBerita();
+    ambilGaleri();
+});
+
 </script>
 </body>
 </html>
