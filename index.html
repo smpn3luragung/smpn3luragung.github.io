@@ -840,7 +840,7 @@
                         <h4>SK Pembagian Tugas T.P 2025/2026</h4>
                         <p>Perubahan 19 Jan 2026 | PDF</p>
                     </div>
-                    <a href="dokumen/SK-perubahan-2025-2026.pdf" class="btn-download"><i class="fas fa-download"></i></a>
+                    <a href="dokumen/SK_perubahan-2025-2026.pdf" class="btn-download"><i class="fas fa-download"></i></a>
                 </div>
             </div>
         </div>
@@ -1809,11 +1809,11 @@ function ambilBerita() {
     });
 }
 
-// --- MESIN GALERI ---
+// --- MESIN GALERI (VERSI AUTO-DETECT) ---
 function ambilGaleri() {
     console.log("Menjalankan Misi Galeri...");
     
-    // Cari wadah (Mendukung ID lama 'wadahGaleri' atau baru 'wadah-foto')
+    // Cari wadah
     let wadah = document.getElementById("wadah-foto") || document.getElementById("wadahGaleri");
 
     if (!wadah) { console.log("❌ Wadah Galeri Hilang!"); return; }
@@ -1838,28 +1838,44 @@ function ambilGaleri() {
         wadah.style.gridTemplateColumns = "repeat(auto-fit, minmax(300px, 1fr))";
         wadah.style.gap = "20px";
 
+        // Loop Data
         data.reverse().forEach(item => {
             let konten = "";
-            let tipe = item.tipe ? item.tipe.toLowerCase() : "";
+            
+            // 🛡️ Jaga-jaga kalau link kosong
+            if (!item.link) return; 
 
-            if (tipe === 'foto') {
-                konten = `<img src="${item.link}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">`;
-            } else if (tipe === 'video') {
+            // 🤖 LOGIKA BARU: AUTO DETEKSI
+            // Cek apakah link mengandung kata 'youtube' atau 'youtu.be'
+            let isVideo = item.link.includes("youtube.com") || item.link.includes("youtu.be");
+
+            if (isVideo) {
+                // --- KALO VIDEO YOUTUBE ---
                 let linkVid = item.link.replace("watch?v=", "embed/");
+                // Handle short link (youtu.be)
+                if(item.link.includes("youtu.be")) {
+                    let id = item.link.split("/").pop();
+                    linkVid = "https://www.youtube.com/embed/" + id;
+                }
+                
                 konten = `<iframe src="${linkVid}" frameborder="0" allowfullscreen style="width:100%; height:200px; border-radius:8px;"></iframe>`;
+            
+            } else {
+                // --- SISANYA DIANGGAP FOTO ---
+                konten = `<img src="${item.link}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">`;
             }
 
-            if (konten) {
-                wadah.innerHTML += `
-                <div style="background:white; padding:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                    ${konten}
-                    <p style="margin-top:10px; font-weight:bold; text-align:center;">${item.judul}</p>
-                </div>`;
-            }
+            // Tampilkan ke layar
+            wadah.innerHTML += `
+            <div style="background:white; padding:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                ${konten}
+                <p style="margin-top:10px; font-weight:bold; text-align:center;">${item.judul || ""}</p>
+            </div>`;
         });
     })
     .catch(e => {
-        wadah.innerHTML = `<p style='color:red; text-align:center;'>Koneksi Galeri Terputus.</p>`;
+        console.log(e);
+        wadah.innerHTML = `<p style='color:red; text-align:center;'>Koneksi Galeri Terputus. Cek Console.</p>`;
     });
 }
 
