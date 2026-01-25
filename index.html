@@ -7,6 +7,8 @@
 <link rel="icon" href="img/sekolah.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
 /* TEMPEL DI BAGIAN STYLE PALING ATAS */
@@ -1815,7 +1817,16 @@ function ambilBerita() {
                     <img src="${gambar}" class="card-img-top" style="height:180px; object-fit:cover;">
                     <div class="card-body">
                         <small class="text-muted">📅 ${item.tanggal || '-'}</small>
-                        <h5 class="card-title mt-2">${item.judul}</h5>
+                        <h5 class="card-title mt-2" 
+                                    style="cursor:pointer; text-decoration: underline; color: #0d6efd;" 
+                                    onclick="bacaSelengkapnya(
+                                        '${encodeURIComponent(item.judul || "")}', 
+                                        '${item.tanggal || "-"}', 
+                                        '${gambar}', 
+                                        '${encodeURIComponent(item.isi || "")}'
+                                    )">
+                                    ${item.judul}
+                                </h5>
                         <p class="card-text">${item.isi ? item.isi.substring(0, 80)+'...' : ''}</p>
                     </div>
                 </div>
@@ -1922,6 +1933,32 @@ window.addEventListener('load', function() {
     ambilGaleri();
 });
 
+// --- FUNGSI BACA BERITA DARI SHEET ---
+function bacaSelengkapnya(judul, tanggal, gambar, isi) {
+    // Jaga-jaga kalau isinya ada enter (baris baru), kita ubah jadi <br>
+    // decodeURIComponent digunakan agar tanda kutip/spasi aman
+    let isiBersih = decodeURIComponent(isi).replace(/\n/g, "<br>");
+    let judulBersih = decodeURIComponent(judul);
+
+    Swal.fire({
+        title: judulBersih,
+        html: `
+            <div style="text-align: left;">
+                <small class="text-muted">🗓️ ${tanggal}</small>
+                <br><br>
+                <img src="${gambar}" style="width:100%; max-height:300px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                <div style="text-align: justify; max-height: 300px; overflow-y: auto; padding-right: 5px; line-height: 1.6;">
+                    ${isiBersih}
+                </div>
+            </div>
+        `,
+        width: 600,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText: 'Tutup',
+        confirmButtonColor: '#6c757d'
+    });
+}
 </script>
 </body>
 
